@@ -150,7 +150,7 @@ function ecwid_page_has_productbrowser()
     static $result = null;
 
     if (is_null($result)) {
-        $post_content = get_post(get_the_ID())->post_content;
+        $post_content = get_post()->post_content;
         $result = has_shortcode($post_content, 'ecwid_productbrowser');
     }
 
@@ -246,7 +246,10 @@ function ecwid_seo_title($content) {
   }  
 }
 
-
+function ecwid_wrap_shortcode_content($content)
+{
+    return "<!-- Ecwid shopping cart plugin v 1.7 --><div>$content</div><!-- END Ecwid Shopping Cart v 1.7 -->";
+}
 
 function ecwid_get_scriptjs_code() {
     if (!defined('ECWID_SCRIPTJS')) {
@@ -262,18 +265,17 @@ function ecwid_get_scriptjs_code() {
 }
 
 function ecwid_script_shortcode() {
-    return '<div>' . ecwid_get_scriptjs_code() . '</div>'; 
+    return ecwid_wrap_shortcode_content(ecwid_get_scriptjs_code());
 }
-
 
 function ecwid_minicart_shortcode() {
     $ecwid_enable_minicart = get_option('ecwid_enable_minicart');
     $ecwid_show_categories = get_option('ecwid_show_categories');
     if (!empty($ecwid_enable_minicart) && !empty($ecwid_show_categories)) {
         $s = <<<EOT
-<div><script type="text/javascript"> xMinicart("style=","layout=attachToCategories"); </script></div>
+<script type="text/javascript"> xMinicart("style=","layout=attachToCategories"); </script>
 EOT;
-        return $s;
+        return ecwid_wrap_shortcode_content($s);
     } else {
         return "";
     }
@@ -282,9 +284,9 @@ function ecwid_searchbox_shortcode() {
     $ecwid_show_search_box = get_option('ecwid_show_search_box');
     if (!empty($ecwid_show_search_box)) {
         $s = <<<EOT
-<div><script type="text/javascript"> xSearchPanel("style="); </script></div>
+<script type="text/javascript"> xSearchPanel("style="); </script>
 EOT;
-        return $s;
+        return ecwid_wrap_shortcode_content($s);
     } else {
         return "";
     }
@@ -294,9 +296,9 @@ function ecwid_categories_shortcode() {
     $ecwid_show_categories = get_option('ecwid_show_categories');
     if (!empty($ecwid_show_categories)) {
         $s = <<<EOT
-<div><script type="text/javascript"> xCategories("style="); </script></div>
+<script type="text/javascript"> xCategories("style="); </script>
 EOT;
-        return $s;
+        return ecwid_wrap_shortcode_content($s);
     } else {
         return "";
     }
@@ -396,10 +398,10 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
     }
 
     $s = <<<EOT
-<div> <script type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str);</script></div>
+<script type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str);</script>
 {$plain_content}
 EOT;
-    return $s;
+    return ecwid_wrap_shortcode_content($s);
 }
 
 
