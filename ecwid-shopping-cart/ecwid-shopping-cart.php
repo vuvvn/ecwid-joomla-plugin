@@ -329,7 +329,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
 
     $ecwid_mobile_catalog_link = get_option('ecwid_mobile_catalog_link');
     $ecwid_default_category_id =
-        array_key_exists('default_category_id', $shortcode_params)
+        !empty($shortcode_params) && array_key_exists('default_category_id', $shortcode_params)
         ? $shortcode_params['default_category_id']
         : get_option('ecwid_default_category_id');
 
@@ -389,7 +389,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
                     $ecwid_default_category_str = ',"defaultCategoryId=' . $params['id'] . '"';
                 }
             } else {
-                $plain_content = $catalog->get_category($ecwid_default_category_id);
+                $plain_content = $catalog->get_category(intval($ecwid_default_category_id));
             }
         }
     } else {
