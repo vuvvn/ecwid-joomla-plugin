@@ -34,6 +34,36 @@ if ( is_admin() ){
 }
 add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
 
+$version = get_bloginfo('version');
+
+if (version_compare($version, '3.6') < 0) {
+    /**
+     * A copy of has_shortcode functionality from wordpress 3.6
+     * http://core.trac.wordpress.org/browser/tags/3.6/wp-includes/shortcodes.php
+     */
+
+    function shortcode_exists( $tag ) {
+        global $shortcode_tags;
+	        return array_key_exists( $tag, $shortcode_tags );
+	}
+
+    function has_shortcode( $content, $tag ) {
+        if ( shortcode_exists( $tag ) ) {
+            preg_match_all( '/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER );
+            if ( empty( $matches ) )
+                return false;
+
+            foreach ( $matches as $shortcode ) {
+                if ( $tag === $shortcode[2] ) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+}
+
+
 function ecwid_backward_compatibility() {
 
     // Backward compatibility with 1.1.2 and earlier
@@ -149,7 +179,7 @@ function ecwid_page_has_productbrowser()
     static $result = null;
 
     if (is_null($result)) {
-        $post_content = get_post()->post_content;
+        $post_content = get_post(get_the_ID())->post_content;
         $result = has_shortcode($post_content, 'ecwid_productbrowser');
     }
 
