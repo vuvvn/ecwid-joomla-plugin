@@ -375,8 +375,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
             include_once WP_PLUGIN_DIR . '/ecwid-shopping-cart/lib/ecwid_product_api.php';
             include_once WP_PLUGIN_DIR . '/ecwid-shopping-cart/lib/EcwidCatalog.php';
 
-            $ecwid_page_id = get_option("ecwid_store_page_id");
-            $page_url = get_page_link($ecwid_page_id);
+            $page_url = get_page_link();
 
             $catalog = new EcwidCatalog($store_id, $page_url); 
 
