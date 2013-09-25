@@ -1,0 +1,11 @@
+.pure-form.ecwid-settings fieldset {
+	font-size: 14px;
+}
+
+.pure-form.ecwid-settings .pure-control-group label {
+	width: 18em;
+}
+
+.pure-form.ecwid-settings.general-settings .pure-control-group label {
+	width: 8em;
+}
