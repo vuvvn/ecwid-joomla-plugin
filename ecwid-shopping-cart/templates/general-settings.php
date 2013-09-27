@@ -1,12 +1,6 @@
 <form class="pure-form pure-form-aligned ecwid-settings general-settings" method="POST" action="options.php">
 
-	<h1 style="background:url('<?php echo ECWID_PLUGIN_URL; ?>images/ecwid-menu-icon.png') no-repeat 0% 115%; padding-left: 30px;line-height: 30px">Ecwid shopping cart settings</h1>
-	<?php if ($ecwid_settings_message): ?>
-		<div id="" class="updated fade">
-			<p><strong><?php _e('Error'); ?>:</strong> <?php echo $ecwid_settings_message; ?></p>
-		</div>
-	<?php endif; ?>
-
+	<?php include "settings-header.php"; ?>
 
 	<?php settings_fields('ecwid_options_page'); ?>
 	<fieldset>
@@ -28,7 +22,7 @@
 
 			<?php if (get_ecwid_store_id() == 1003): ?>
 				<img src="<?php echo ECWID_PLUGIN_URL; ?>images/ecwid_wp_attention.gif" alt="">
-				<?php _e('The Store ID isn\'t set up. Please enter your Store ID to assign your site with your Ecwid store and show your products. <a href="http://kb.ecwid.com/Instruction-on-how-to-get-your-free-Store-ID-(for-WordPress)" target="_blank">How to get this free ID</a>', 'ecwid-shopping-cart'); ?>
+				<?php _e('The Store ID isn\'t set up.', 'ecwid-shopping-cart'); ?>
 			<?php endif; ?>
 		</div>
 
@@ -38,3 +32,8 @@
 		<button type="submit" class="pure-button pure-button-primary"><?php _e('Save changes', 'ecwid-shopping-cart'); ?></button>
 	</div>
 </form>
+<?php if (get_ecwid_store_id() == '1003'): ?>
+<div class="ecwid-instructions">
+<?php _e('Instructions on how to get your free Store ID', 'ecwid-shopping-cart'); ?>
+</div>
+<?php endif; ?>

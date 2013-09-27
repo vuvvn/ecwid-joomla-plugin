@@ -9,3 +9,17 @@
 .pure-form.ecwid-settings.general-settings .pure-control-group label {
 	width: 8em;
 }
+
+.ecwid-instructions {
+	font-size: 14px;
+	max-width: 750px;
+}
+
+.ecwid-instructions h4 {
+	font-size: 15px;
+}
+
+.ecwid-instructions .notes {
+	font-size: 12px;
+	color: #606060;
+}

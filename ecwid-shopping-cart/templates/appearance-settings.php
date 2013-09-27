@@ -1,11 +1,6 @@
-<h1>Ecwid shopping cart settings</h1>
-<?php if ($ecwid_settings_message): ?>
-	<div id="" class="updated fade">
-		<p><strong><?php _e('Error'); ?>:</strong> <?php echo $ecwid_settings_message; ?></p>
-	</div>
-<?php endif; ?>
-
 <form class="pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
+	<?php include "settings-header.php"; ?>
+
 	<?php settings_fields('ecwid_options_page'); ?>
 	<fieldset>
 
@@ -96,7 +91,7 @@
 				name="ecwid_pb_productsperpage_list"
 				type="text"
 				value="<?php echo esc_attr(get_option('ecwid_pb_productsperpage_list')); ?>"
-			$disabled_str
+				$disabled_str
 			/>
 		</div>
 
@@ -110,7 +105,7 @@
 				name="ecwid_pb_productsperpage_table"
 				type="text"
 				value="<?php echo esc_attr(get_option('ecwid_pb_productsperpage_table')); ?>"
-			$disabled_str
+				$disabled_str
 			/>
 		</div>
 
@@ -120,13 +115,13 @@
 			</label>
 
 			<select	id="ecwid_pb_defaultview" name="ecwid_pb_defaultview" $disabled_str>
-				<option value="grid" <?php if($ecwid_pb_defaultview == 'grid') echo 'selected="selected"' ?> >
+				<option value="grid" <?php if(get_option('ecwid_pb_defaultview') == 'grid') echo 'selected="selected"' ?> >
 					<?php _e('Grid mode', 'ecwid-shopping-cart'); ?>
 				</option>
-				<option value="list" <?php if($ecwid_pb_defaultview == 'list') echo 'selected="selected"' ?> >
+				<option value="list" <?php if(get_option('ecwid_pb_defaultview') == 'list') echo 'selected="selected"' ?> >
 					<?php _e('List mode', 'ecwid-shopping-cart'); ?>
 				</option>
-				<option value="table" <?php if($ecwid_pb_defaultview == 'table') echo 'selected="selected"' ?> >
+				<option value="table" <?php if(get_option('ecwid_pb_defaultview') == 'table') echo 'selected="selected"' ?> >
 					<?php _e('Table mode', 'ecwid-shopping-cart'); ?>
 				</option>
 			</select>
@@ -138,13 +133,13 @@
 			</label>
 
 			<select	id="ecwid_pb_searchview" name="ecwid_pb_searchview" $disabled_str>
-				<option value="grid" <?php if($ecwid_pb_searchview == 'grid') echo 'selected="selected"' ?> >
+				<option value="grid" <?php if(get_option('ecwid_pb_searchview') == 'grid') echo 'selected="selected"' ?> >
 					<?php _e('Grid mode', 'ecwid-shopping-cart'); ?>
 				</option>
-				<option value="list" <?php if($ecwid_pb_searchview == 'list') echo 'selected="selected"' ?> >
+				<option value="list" <?php if(get_option('ecwid_pb_searchview') == 'list') echo 'selected="selected"' ?> >
 					<?php _e('List mode', 'ecwid-shopping-cart'); ?>
 				</option>
-				<option value="table" <?php if($ecwid_pb_searchview == 'table') echo 'selected="selected"' ?> >
+				<option value="table" <?php if(get_option('ecwid_pb_searchview') == 'table') echo 'selected="selected"' ?> >
 					<?php _e('Table mode', 'ecwid-shopping-cart'); ?>
 				</option>
 			</select>
