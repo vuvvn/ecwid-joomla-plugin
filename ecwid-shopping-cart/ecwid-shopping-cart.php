@@ -4,7 +4,7 @@ Plugin Name: Ecwid Shopping Cart
 Plugin URI: http://www.ecwid.com?source=wporg
 Description: Ecwid is a free full-featured shopping cart. It can be easily integrated with any Wordpress blog and takes less than 5 minutes to set up.
 Author: Ecwid Team
-Version: 1.8 
+Version: 2.0
 Author URI: http://www.ecwid.com?source=wporg
 */
 
@@ -144,12 +144,7 @@ function ecwid_seo_compatibility_init($title)
     // Title for All in One SEO Pack
     remove_filter('wp_title', array($aiosp, 'wp_title'), 20);
 	$aioseop_options['aiosp_rewrite_titles'] = false;
-	add_filter('aioseop_description', 'return_null');
-}
-
-function return_null()
-{
-	return null;
+	add_filter('aioseop_description', __return_null);
 }
 
 function ecwid_seo_compatibility_restore()
@@ -169,7 +164,7 @@ function add_ecwid_admin_bar_node() {
     //add parent menu node
     $wp_admin_bar->add_menu( array(
         'id' => 'ecwid_main',
-        'title' => '<img src="'.plugins_url().'/ecwid-shopping-cart/ecwid_menu_icon.png" style="width: 22px;height: 22px;margin-top: 3px;"/>',
+        'title' => '<img src="'.plugins_url().'/ecwid-shopping-cart/images/ecwid-icon.png" style="width: 23px;height: 23px;margin-top: 2px;"/>',
     ));
     //add ecwid home page
     $wp_admin_bar->add_menu(array(
@@ -338,7 +333,7 @@ function ecwid_seo_title($content) {
 
 function ecwid_wrap_shortcode_content($content)
 {
-    return "<!-- Ecwid shopping cart plugin v 1.8 --><div>$content</div><!-- END Ecwid Shopping Cart v 1.8 -->";
+    return "<!-- Ecwid shopping cart plugin v 2.0 --><div>$content</div><!-- END Ecwid Shopping Cart v 2.0 -->";
 }
 
 function ecwid_get_scriptjs_code() {
@@ -359,6 +354,9 @@ function ecwid_script_shortcode() {
 }
 
 function ecwid_minicart_shortcode() {
+
+	if (defined('ECWID_MINICART_WIDGET_PRESENT')) return '';
+
     $ecwid_enable_minicart = get_option('ecwid_enable_minicart');
     $ecwid_show_categories = get_option('ecwid_show_categories');
     if (!empty($ecwid_enable_minicart) && !empty($ecwid_show_categories)) {
@@ -665,10 +663,52 @@ function ecwid_general_settings_do_page() {
 }
 
 function ecwid_advanced_settings_do_page() {
+	wp_register_script('ecwid-appearance-js', plugins_url('ecwid-shopping-cart/js/advanced.js'), array(), '', '');
+	wp_enqueue_script('ecwid-appearance-js');
+
+	wp_register_script('select2-js', plugins_url('ecwid-shopping-cart/lib/select2/select2.js'), array(), '', '');
+	wp_enqueue_script('select2-js');
+
+	wp_register_style('select2-css', plugins_url('ecwid-shopping-cart/lib/select2/select2.css'), array(), '', 'all');
+	wp_enqueue_style('select2-css');
+
+	$categories = false;
+	if (ecwid_is_api_enabled()) {
+		$api = ecwid_new_product_api();
+		$categories = $api->get_all_categories();
+		$by_id = array();
+		foreach ($categories as $key => $category) {
+			$by_id[$category['id']] = $category;
+		}
+		unset($categories);
+
+		foreach ($by_id as $id => $category) {
+			$name_path = array($category['name']);
+			while (isset($category['parentId'])) {
+				$category = $by_id[$category['parentId']];
+				$name_path[] = $category['name'];
+			}
+
+			$by_id[$id]['path'] = array_reverse($name_path);
+			$by_id[$id]['path_str'] = implode(" > ", $by_id[$id]['path']);
+		}
+
+		function sort_by_path($a, $b) {
+			return strcmp($a['path_str'], $b['path_str']);
+		}
+
+		uasort($by_id, sort_by_path);
+
+		$categories = $by_id;
+	}
+
 	require_once plugin_dir_path(__FILE__) . '/templates/advanced-settings.php';
 }
 
 function ecwid_appearance_settings_do_page() {
+
+	wp_register_script('ecwid-appearance-js', plugins_url('ecwid-shopping-cart/js/appearance.js'), array(), '', '');
+	wp_enqueue_script('ecwid-appearance-js');
 
 	$disabled = false;
 	if (!empty($ecwid_page_id) && ($ecwid_page_id > 0)) {
@@ -951,20 +991,21 @@ function ecwid_add_dashboard_widgets() {
 
 function ecwid_add_menu_icon()
 {
-	$image_url = ECWID_PLUGIN_URL . '/images/ecwid-menu-icon.png';
+	$inactive_url = ECWID_PLUGIN_URL . '/images/ecwid-icon-inactive.png';
+	$image_url = ECWID_PLUGIN_URL . '/images/ecwid-icon.png';
 	echo <<<HTML
 <style>
 #adminmenu #toplevel_page_ecwid div.wp-menu-image {
-	background: url($image_url) no-repeat 0px 0px;
-	margin: 3px;
-	width: 22px;
-	height: 22px;
+	background: url($inactive_url) no-repeat 0px 0px;
+	margin: 2px;
+	width: 23px;
+	height: 23px;
 }
 
 #adminmenu #toplevel_page_ecwid:hover div.wp-menu-image,
 #adminmenu #toplevel_page_ecwid.wp-has-current-submenu div.wp-menu-image
 {
-	background-position: 0px -44px;
+	background-image: url($image_url);
 }
 
 </style>
@@ -977,12 +1018,20 @@ HTML;
 class EcwidMinicartWidget extends WP_Widget {
 
     function EcwidMinicartWidget() {
-    $widget_ops = array('classname' => 'widget_ecwid_minicart', 'description' => __( "Your store's minicart") );
-    $this->WP_Widget('ecwidminicart', __('Ecwid Shopping Bag (Normal)'), $widget_ops);
+		$widget_ops = array('classname' => 'widget_ecwid_minicart', 'description' => __( "Your store's minicart") );
+    	$this->WP_Widget('ecwidminicart', __('Ecwid Shopping Bag (Normal)'), $widget_ops);
+
+		add_action('wp_enqueue_scripts', array(&$this, 'check_active'));
     }
 
+	function check_active() {
+		if (is_active_widget(false, false, $this->id_base, true)) {
+			define('ECWID_MINICART_WIDGET_PRESENT', 1);
+		}
+	}
+
     function widget($args, $instance) {
-        extract($args);
+	    extract($args);
         $title = apply_filters('widget_title', empty($instance['title']) ? '&nbsp;' : $instance['title']);
 
         echo $before_widget;

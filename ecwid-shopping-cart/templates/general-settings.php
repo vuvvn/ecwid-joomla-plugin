@@ -1,39 +1,64 @@
-<form class="pure-form pure-form-aligned ecwid-settings general-settings" method="POST" action="options.php">
+<div class="pure-form ecwid-settings general-settings">
 
-	<?php include "settings-header.php"; ?>
+	<form method="POST" action="options.php">
 
-	<?php settings_fields('ecwid_options_page'); ?>
-	<fieldset>
+		<?php include "settings-header.php"; ?>
 
-		<legend><?php _e('General', 'ecwid-shopping-cart'); ?></legend>
-		<div class="pure-control-group">
-			<label for="store_id">
-				<a href="http://kb.ecwid.com/Instruction-on-how-to-get-your-free-Store-ID-(for-WordPress)" target="_blank">
+		<?php settings_fields('ecwid_options_page'); ?>
+		<fieldset>
+
+			<legend><?php _e('General', 'ecwid-shopping-cart'); ?></legend>
+			<div class="pure-control-group store-id">
+				<label for="store_id">
 					<?php _e('Store ID', 'ecwid-shopping-cart'); ?>
-				</a>
-			</label>
-			<input
-				id="ecwid_store_id"
-				name="ecwid_store_id"
-				type="text"
-				placeholder="<?php _e('Store ID', 'ecwid-shopping-cart'); ?>"
-				value="<?php if (get_ecwid_store_id() != 1003) echo esc_attr(get_ecwid_store_id()); ?>"
-			/>
+				</label>
+				<input
+					id="ecwid_store_id"
+					name="ecwid_store_id"
+					type="text"
+					placeholder="<?php _e('Store ID', 'ecwid-shopping-cart'); ?>"
+					value="<?php if (get_ecwid_store_id() != 1003) echo esc_attr(get_ecwid_store_id()); ?>"
+				/>
+				<button type="submit" class="pure-button pure-button-primary"><?php _e('Save changes', 'ecwid-shopping-cart'); ?></button>
+			</div>
 
 			<?php if (get_ecwid_store_id() == 1003): ?>
-				<img src="<?php echo ECWID_PLUGIN_URL; ?>images/ecwid_wp_attention.gif" alt="">
-				<?php _e('The Store ID isn\'t set up.', 'ecwid-shopping-cart'); ?>
+				<div class="warning">
+					<?php _e("The Store ID isn't set up.", 'ecwid-shopping-cart'); ?>
+				</div>
 			<?php endif; ?>
+
+		</fieldset>
+
+		<div class="pure-control-group">
 		</div>
+	</form>
 
-	</fieldset>
+	<div class="ecwid-instructions">
 
-	<div class="pure-control-group">
-		<button type="submit" class="pure-button pure-button-primary"><?php _e('Save changes', 'ecwid-shopping-cart'); ?></button>
+		<h3><?php _e('Instructions on how to get your free Store ID:', 'ecwid-shopping-cart'); ?></h3>
+		<hr />
+		<ol>
+			<li>
+				<h4><?php _e('Go to Ecwid control panel.', 'ecwid-shopping-cart'); ?></h4>
+				<p>
+					<?php _e('Open this URL: <a target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register">https://my.ecwid.com/cp?source=wporg#register</a>. You will get to "Sign In or Register" form.', 'ecwid-shopping-cart'); ?>
+				</p>
+			</li>
+			<li>
+				<h4><?php _e('Register an account at Ecwid.', 'ecwid-shopping-cart'); ?></h4>
+				<p><?php _e('Use section "Using Ecwid account" for that. The registration is free.', 'ecwid-shopping-cart'); ?></p>
+				<p class="note"><?php _e('Note: the login may take several seconds. Please, be patient.', 'ecwid-shopping-cart'); ?></p>
+				<p class="note2"><?php _e('Or you can log in using your account at Gmail, Facebook, Twitter, Yahoo, or another provider. Choose one from the list of the providers (click on "More providers" if you don\'t see your provider there). Click on the provider logo, you will be redirected to the account login page. Submit your username/password there to login to your Ecwid.', 'ecwid-shopping-cart'); ?></p>
+			</li>
+			<li class="find-id-in-ecwid-cp">
+				<h4><?php _e('Look at the right bottom corner of the page.', 'ecwid-shopping-cart'); ?></h4>
+				<p><?php _e('You will see the&nbsp;<b>"Store ID: NNNNNN"</b> text, where <b>NNNNNN</b> is your <b>Store ID</b>.<br>
+    For example if the text is&nbsp;<b>Store ID: 1003</b>, your Store ID is <b>1003</b>. &nbsp;</p>', 'ecwid-shopping-cart'); ?></p>
+				<p class="note"><?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?></p>
+			</li>
+		</ol>
+		<hr />
+		<p><?php _e('If you have any questions, feel free to ask them on <a href="http://www.ecwid.com/forums/?source=wporg">Ecwid forums</a> or <a href="http://www.ecwid.com/contact-us.html?source=wporg">contact Ecwid team</a>.', 'ecwid-shopping-cart'); ?></p>
 	</div>
-</form>
-<?php if (get_ecwid_store_id() == '1003'): ?>
-<div class="ecwid-instructions">
-<?php _e('Instructions on how to get your free Store ID', 'ecwid-shopping-cart'); ?>
 </div>
-<?php endif; ?>
