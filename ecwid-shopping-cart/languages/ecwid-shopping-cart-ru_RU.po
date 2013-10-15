@@ -101,6 +101,9 @@ msgstr "Вид \"таблица\""
 msgid "Here you can manage your store look and control how many rows and columns will be in every view for comfort use. Numbers define maximum values, there may be shown less columns, depending on your browser width. Categories view is similar to grid, you can control their look separately."
 msgstr "Здесь задаётся количество элементов в рядах и в столбцах в соответствующих видах страницы продуктов. Числа определяют максимальные значения, и столбцов может быть меньше в зависимости от ширины браузера. Внешний вид страницы категорий похож на режим \"сетка\", их отображение задаётся отдельно."
 
+msgid "By default, the Product Browser widget opens with a list of root categories. But you can configure it to show a different category when user opens it for the first time."
+msgstr "По умолчанию, в магазине открывается спискок корневых категорий. Эта настройка позволяет установить, содержимое какой категории будет показано пользователю, когда он открывает магазин первый раз."
+
 msgid "Default view mode on product pages"
 msgstr "Вид страницы продуктов по умолчанию"
 

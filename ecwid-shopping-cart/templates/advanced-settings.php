@@ -42,11 +42,9 @@
 				value="<?php echo esc_attr(get_option('ecwid_default_category_id')) ?>"
 				/>
 			<?php endif; ?>
-			<span>
-				<a href="http://kb.ecwid.com/Default-category-for-product-browser" target="_blank">
-					<?php _e('What is it?', 'ecwid-shopping-cart'); ?>
-				</a>
-			</span>
+			<div style="display: inline-block" class="note">
+				<?php _e('By default, the Product Browser widget opens with a list of root categories. But you can configure it to show a different category when user opens it for the first time.', 'ecwid-shopping-cart'); ?>
+			</div>
 		</div>
 
 		<hr />
