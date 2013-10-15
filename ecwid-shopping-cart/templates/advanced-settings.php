@@ -60,7 +60,7 @@
 				id="ecwid_sso_secret_key"
 				type="text"
 				name="ecwid_sso_secret_key"
-				placeholder="<?php _e('Single Sign-on Secret Key'); ?>"
+				placeholder="<?php _e('Single Sign-on Secret Key', 'ecwid-shopping-cart'); ?>"
 				value="<?php echo esc_attr(get_option('ecwid_sso_secret_key')); ?>"
 				/>
 

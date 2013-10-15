@@ -71,6 +71,9 @@ msgstr "ID категории по умолчанию"
 msgid "What is it?"
 msgstr "Что это?"
 
+msgid "Single Sign-on Secret Key"
+msgstr "Секретный ключ системы единой авторизации"
+
 msgid "This feature allows your customers to sign into your WordPress site and fully use your store without having to sign into Ecwid. I.e. if a customer is logged in to your site, he/she is logged in to your store automatically, even if he/she didn't have an account in your store before. In order to enable this feature you should set the secret key that can be found on the <b>\"System Settings > API > Single Sign-on API\"</b> page in your Ecwid control panel. Please note that this API is available only to <a href=\"http://www.ecwid.com/compare-plans.html\" target=\"_blank\">paid users</a>."
 msgstr "Эта функция позволяет вашим посетителям авторизоваться на вашем сайте и использовать магазин без авторизации в Ecwid, т.е. если посетитель авторизован на сайте, то он также автоматически авторизуется в магазине, даже если он не создавал аккаунт в магазине. Чтобы включить эту функцию, установите секретный ключ в контрольной панели Ecwid на странице <b>\"Настройки > API > Single Sign-on API\"</b>. API доступен только для <a href=\"http://www.ecwid.com/plans-and-pricing.html?source=wporg\" target=\"_blank\">платных аккаунтов</a>."
 
@@ -86,29 +89,20 @@ msgstr "Показывать горизонтальные категории"
 msgid "Categories per row"
 msgstr "Категорий в ряд"
 
-msgid "Products per column in grid mode"
-msgstr "Продуктов в столбце в режиме \"сетка\""
+msgid "Grid view"
+msgstr "Вид \"сетка\""
 
-msgid "Products per row in grid mode"
-msgstr "Продуктов в ряд в режиме \"сетка\""
+msgid "List view"
+msgstr "Вид \"список\""
 
-msgid "Products per page in list mode"
-msgstr "Продуктов на странице в режиме \"список\""
+msgid "Table view"
+msgstr "Вид \"таблица\""
 
-msgid "Products per page in table mode"
-msgstr "Продуктов на странице в режиме \"таблица\""
+msgid "Here you can manage your store look and control how many rows and columns will be in every view for comfort use. Numbers define maximum values, there may be shown less columns, depending on your browser width. Categories view is similar to grid, you can control their look separately."
+msgstr "Здесь задаётся количество элементов в рядах и в столбцах в соответствующих видах страницы продуктов. Числа определяют максимальные значения, и столбцов может быть меньше в зависимости от ширины браузера. Внешний вид страницы категорий похож на режим \"сетка\", их отображение задаётся отдельно."
 
 msgid "Default view mode on product pages"
 msgstr "Вид страницы продуктов по умолчанию"
-
-msgid "Grid mode"
-msgstr "Режим \"сетка\""
-
-msgid "List mode"
-msgstr "Режим \"список\""
-
-msgid "Table mode"
-msgstr "Режим \"таблица\""
 
 msgid "Default view mode on search results"
 msgstr "Вид страницы результатов поиска по умолчанию"

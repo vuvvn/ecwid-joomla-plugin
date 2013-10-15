@@ -57,60 +57,64 @@
 
 		<hr />
 
-		<div class="pure-control-group">
-			<label for="ecwid_pb_productspercolumn_grid">
-				<?php _e('Products per column in grid mode', 'ecwid-shopping-cart'); ?>
-			</label>
 
-			<input
-				id="ecwid_pb_productspercolumn_grid"
-				name="ecwid_pb_productspercolumn_grid"
-				type="text"
-				value="<?php echo esc_attr(get_option('ecwid_pb_productspercolumn_grid')); ?>"
-			$disabled_str
-			/>
-		</div>
 
 		<div class="pure-control-group">
-			<label for="ecwid_pb_productsperrow_grid">
-				<?php _e('Products per row in grid mode', 'ecwid-shopping-cart'); ?>
-			</label>
+			<div class="ecwid-pb-view-size grid active" tabindex="1">
+				<div class="title"><?php _e('Grid view', 'ecwid-shopping-cart'); ?></div>
+				<div class="main-area"></div>
+				<div class="right">
+					<div class="ruler"></div>
+					<input
+						type="text"
+						size="2"
+						name="ecwid_pb_productsperrow_grid"
+						class="number"
+						value="<?php echo esc_attr(get_option('ecwid_pb_productsperrow_grid')); ?>"
+						/>
+				</div>
+				<div class="bottom">
+					<div class="ruler"></div>
+					<input
+						type="text"
+						size="2"
+						name="ecwid_pb_productspercolumn_grid"
+						class="number"
+						value="<?php echo esc_attr(get_option('ecwid_pb_productspercolumn_grid')); ?>"
+						/>
+				</div>
+			</div>
 
-			<input
-				id="ecwid_pb_productsperrow_grid"
-				name="ecwid_pb_productsperrow_grid"
-				type="text"
-				value="<?php echo esc_attr(get_option('ecwid_pb_productsperrow_grid')); ?>"
-			$disabled_str
-			/>
-		</div>
+			<div class="ecwid-pb-view-size list" tabindex="1">
+				<div class="title"><?php _e('List view', 'ecwid-shopping-cart'); ?></div>
+				<div class="main-area"></div>
+				<div class="right">
+					<div class="ruler"></div>
+					<input
+						type="text"
+						size="2"
+						name="ecwid_pb_productsperpage_list"
+						class="number"
+						value="<?php echo esc_attr(get_option('ecwid_pb_productsperpage_list')); ?>" />
+				</div>
+			</div>
 
-		<div class="pure-control-group">
-			<label for="ecwid_pb_productsperpage_list">
-				<?php _e('Products per page in list mode', 'ecwid-shopping-cart'); ?>
-			</label>
 
-			<input
-				id="ecwid_pb_productsperpage_list"
-				name="ecwid_pb_productsperpage_list"
-				type="text"
-				value="<?php echo esc_attr(get_option('ecwid_pb_productsperpage_list')); ?>"
-			$disabled_str
-			/>
-		</div>
-
-		<div class="pure-control-group">
-			<label for="ecwid_pb_productsperpage_table">
-				<?php _e('Products per page in table mode', 'ecwid-shopping-cart'); ?>
-			</label>
-
-			<input
-				id="ecwid_pb_productsperpage_table"
-				name="ecwid_pb_productsperpage_table"
-				type="text"
-				value="<?php echo esc_attr(get_option('ecwid_pb_productsperpage_table')); ?>"
-			$disabled_str
-			/>
+			<div class="ecwid-pb-view-size table" tabindex="1">
+				<div class="title"><?php _e('Table view', 'ecwid-shopping-cart'); ?></div>
+				<div class="main-area"></div>
+				<div class="right">
+					<div class="ruler"></div>
+					<input
+						type="text"
+						size="2"
+						name="ecwid_pb_productsperpage_table"
+						class="number"
+						value="<?php echo esc_attr(get_option('ecwid_pb_productsperpage_table')); ?>"
+						/>
+				</div>
+			</div>
+			<p class="note pb-note"><?php _e('Here you can manage your store look and control how many rows and columns will be in every view for comfort use. Numbers define maximum values, there may be shown less columns, depending on your browser width. Categories view is similar to grid, you can control their look separately.', 'ecwid-shopping-cart'); ?></p>
 		</div>
 
 		<hr />
@@ -122,13 +126,13 @@
 
 			<select	id="ecwid_pb_defaultview" name="ecwid_pb_defaultview" $disabled_str>
 				<option value="grid" <?php if(get_option('ecwid_pb_defaultview') == 'grid') echo 'selected="selected"' ?> >
-					<?php _e('Grid mode', 'ecwid-shopping-cart'); ?>
+					<?php _e('Grid view', 'ecwid-shopping-cart'); ?>
 				</option>
 				<option value="list" <?php if(get_option('ecwid_pb_defaultview') == 'list') echo 'selected="selected"' ?> >
-					<?php _e('List mode', 'ecwid-shopping-cart'); ?>
+					<?php _e('List view', 'ecwid-shopping-cart'); ?>
 				</option>
 				<option value="table" <?php if(get_option('ecwid_pb_defaultview') == 'table') echo 'selected="selected"' ?> >
-					<?php _e('Table mode', 'ecwid-shopping-cart'); ?>
+					<?php _e('Table view', 'ecwid-shopping-cart'); ?>
 				</option>
 			</select>
 		</div>
@@ -140,13 +144,13 @@
 
 			<select	id="ecwid_pb_searchview" name="ecwid_pb_searchview" $disabled_str>
 				<option value="grid" <?php if(get_option('ecwid_pb_searchview') == 'grid') echo 'selected="selected"' ?> >
-					<?php _e('Grid mode', 'ecwid-shopping-cart'); ?>
+					<?php _e('Grid view', 'ecwid-shopping-cart'); ?>
 				</option>
 				<option value="list" <?php if(get_option('ecwid_pb_searchview') == 'list') echo 'selected="selected"' ?> >
-					<?php _e('List mode', 'ecwid-shopping-cart'); ?>
+					<?php _e('List view', 'ecwid-shopping-cart'); ?>
 				</option>
 				<option value="table" <?php if(get_option('ecwid_pb_searchview') == 'table') echo 'selected="selected"' ?> >
-					<?php _e('Table mode', 'ecwid-shopping-cart'); ?>
+					<?php _e('Table view', 'ecwid-shopping-cart'); ?>
 				</option>
 			</select>
 		</div>
