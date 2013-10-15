@@ -144,7 +144,7 @@ msgid "You will see the <b>\"Store ID: NNNNNN\"</b> text, where <b>NNNNNN</b> is
 msgstr "Вы увидите надпись <b>ID магазина: NNNNNN</b>, где <b>NNNNNN</b> это и есть <b>ID магазина</b>. Например, если там написано <b>ID магазина: 1003</b>, то ваш ID магазина <b>1003</b>."
 
 msgid "You will also get your Store ID by email."
-msgstr "Также вы получит ID вашего магазина на ваш e-mail."
+msgstr "Также вы получите ID вашего магазина на ваш e-mail."
 
 msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>."
 msgstr "Есть вопросы? Посетите <a href=\"http://help.ecwid.com/?source=wporg\">Центр поддержки Ecwid (англ)</a> или <a href=\"http://www.ecwid.com/forums/forumdisplay.php?f=10\"> русскоязычный раздел форума</a>."
