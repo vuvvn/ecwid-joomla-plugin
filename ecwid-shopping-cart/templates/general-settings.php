@@ -59,6 +59,6 @@
 			</li>
 		</ol>
 		<hr />
-		<p><?php _e('If you have any questions, feel free to ask them on <a href="http://www.ecwid.com/forums/?source=wporg">Ecwid forums</a> or <a href="http://www.ecwid.com/contact-us.html?source=wporg">contact Ecwid team</a>.', 'ecwid-shopping-cart'); ?></p>
+		<p><?php _e('Questions? Visit <a href="http://help.ecwid.com/?source=wporg">Ecwid support center</a>.', 'ecwid-shopping-cart'); ?></p>
 	</div>
 </div>
