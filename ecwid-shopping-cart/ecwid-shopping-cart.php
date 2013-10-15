@@ -164,33 +164,37 @@ function add_ecwid_admin_bar_node() {
     global $wp_admin_bar;
      if ( !is_super_admin() || !is_admin_bar_showing() )
         return;
-    //add parent menu node
+
     $wp_admin_bar->add_menu( array(
         'id' => 'ecwid_main',
         'title' => '<img src="'.plugins_url().'/ecwid-shopping-cart/images/ecwid-icon.png" style="width: 23px;height: 23px;margin-top: 2px;"/>',
     ));
-    //add ecwid home page
+	$wp_admin_bar->add_menu(array(
+			"id" => "ecwid_help",
+			"title" => __("Get help", 'ecwid-shopping-cart'),
+			"parent" => "ecwid_main",
+			'href' =>  'http://help.ecwid.com'
+		)
+	);
     $wp_admin_bar->add_menu(array(
             "id" => "ecwid_home",
-            "title" => __("Ecwid Site", 'ecwid-shopping-cart'),
+            "title" => __("Go to Ecwid site", 'ecwid-shopping-cart'),
             "parent" => "ecwid_main",
             'href' => 'http://www.ecwid.com?source=wporg'
         )
     );
-    //add store page link
     $wp_admin_bar->add_menu(array(
             "id" => "ecwid_go_to_page",
-            "title" => __("My Ecwid Store", 'ecwid-shopping-cart'),
+            "title" => __("Visit storefront", 'ecwid-shopping-cart'),
             "parent" => "ecwid_main",
             'href' =>  get_page_link(get_option("ecwid_store_page_id"))
         )
     );
-    //add settings page link
     $wp_admin_bar->add_menu(array(
             "id" => "ecwid_settings",
-            "title" => __("Settings page", 'ecwid-shopping-cart'),
+            "title" => __("Manage my store", 'ecwid-shopping-cart'),
             "parent" => "ecwid_main",
-            'href' =>  admin_url('options-general.php?page=ecwid_options_page' )
+            'href' =>  admin_url('admin.php?page=ecwid')
         )
     );
     $wp_admin_bar->add_menu(array(
@@ -594,7 +598,7 @@ function ecwid_options_add_page() {
 
 	add_menu_page(
 		__('Ecwid shopping cart settings', 'ecwid-shopping-cart'),
-		__('Ecwid', 'ecwid-shopping-cart'),
+		__('Ecwid Store', 'ecwid-shopping-cart'),
 		'manage_options',
 		'ecwid',
 		'ecwid_general_settings_do_page'
