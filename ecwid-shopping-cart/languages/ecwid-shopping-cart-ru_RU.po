@@ -146,5 +146,5 @@ msgstr "Вы увидите надпись <b>ID магазина: NNNNNN</b>, �
 msgid "You will also get your Store ID by email."
 msgstr "Также вы получит ID вашего магазина на ваш e-mail."
 
-msgid "If you have any questions, feel free to ask them on <a href=\"http://www.ecwid.com/forums/?source=wporg\">Ecwid forums</a> or <a href=\"http://www.ecwid.com/contact-us.html?source=wporg\">contact Ecwid team</a>."
-msgstr "Если у вас есть вопросы, вы их можете задать на <a href=\"http://www.ecwid.com/forums/?source=wporg\">форуме Ecwid</a> или <a href=\"http://www.ecwid.com/contact-us.html?source=wporg\">связаться с командой Ecwid</a>."
+msgid "Questions? Visit <a href=\"http://help.ecwid.com/?source=wporg\">Ecwid support center</a>."
+msgstr "Есть вопросы? Посетите <a href=\"http://help.ecwid.com/?source=wporg\">Центр поддержки Ecwid (англ)</a> или <a href=\"http://www.ecwid.com/forums/forumdisplay.php?f=10\" русскоязычный раздел форума</a>."
