@@ -87,7 +87,7 @@ msgid "Display horizontal categories"
 msgstr "Показывать горизонтальные категории"
 
 msgid "Categories per row"
-msgstr "Категорий в ряд"
+msgstr "Количество категорий в ряд"
 
 msgid "Grid view"
 msgstr "Вид \"сетка\""
