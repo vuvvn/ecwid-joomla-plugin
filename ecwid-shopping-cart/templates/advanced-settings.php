@@ -3,6 +3,8 @@
 	<?php include "settings-header.php"; ?>
 
 	<?php settings_fields('ecwid_options_page'); ?>
+	<input type="hidden" name="settings_section" value="advanced" />
+
 	<fieldset>
 
 		<legend><?php _e('Advanced', 'ecwid-shopping-cart'); ?></legend>

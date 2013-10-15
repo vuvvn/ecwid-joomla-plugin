@@ -3,6 +3,7 @@
 	<form method="POST" action="options.php">
 
 		<?php include "settings-header.php"; ?>
+		<input type="hidden" name="settings_section" value="general" />
 
 		<?php settings_fields('ecwid_options_page'); ?>
 		<fieldset>
@@ -24,7 +25,7 @@
 
 			<?php if (get_ecwid_store_id() == 1003): ?>
 				<div class="warning">
-					<?php _e("The Store ID isn't set up.", 'ecwid-shopping-cart'); ?>
+					<?php _e("The Store ID isn't set up. Please enter your Store ID to assign your site with your Ecwid store and show your products. <a target=\"_blank\" href=\"http://kb.ecwid.com/w/page/21530844/Instruction%20on%20how%20to%20get%20your%20free%20Store%20ID%20%28for%20WordPress%29\">How to get this free ID</a>", 'ecwid-shopping-cart'); ?>
 				</div>
 			<?php endif; ?>
 
@@ -53,8 +54,7 @@
 			</li>
 			<li class="find-id-in-ecwid-cp">
 				<h4><?php _e('Look at the right bottom corner of the page.', 'ecwid-shopping-cart'); ?></h4>
-				<p><?php _e('You will see the&nbsp;<b>"Store ID: NNNNNN"</b> text, where <b>NNNNNN</b> is your <b>Store ID</b>.<br>
-    For example if the text is&nbsp;<b>Store ID: 1003</b>, your Store ID is <b>1003</b>. &nbsp;</p>', 'ecwid-shopping-cart'); ?></p>
+				<p><?php _e('You will see the <b>"Store ID: NNNNNN"</b> text, where <b>NNNNNN</b> is your <b>Store ID</b>.<br> For example if the text is <b>Store ID: 1003</b>, your Store ID is <b>1003</b>.', 'ecwid-shopping-cart'); ?></p>
 				<p class="note"><?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?></p>
 			</li>
 		</ol>

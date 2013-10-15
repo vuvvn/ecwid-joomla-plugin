@@ -145,7 +145,7 @@
 }
 
 .ecwid-pb-view-size.active .title {
-	font-weight: bold;
+	font-weight: boldz;
 }
 
 .ecwid-pb-view-size * {
@@ -157,7 +157,7 @@
 }
 
 .ecwid-pb-view-size.grid.active .main-area {
-	background-image: url(../images/grid-active.png);
+	background-image: zurl(../images/grid-active.png);
 }
 
 .ecwid-pb-view-size.list .main-area {
@@ -165,7 +165,7 @@
 }
 
 .ecwid-pb-view-size.list.active .main-area {
-	background-image: url(../images/list-active.png);
+	background-image: zurl(../images/list-active.png);
 }
 
 .ecwid-pb-view-size.table .main-area {
@@ -173,7 +173,7 @@
 }
 
 .ecwid-pb-view-size.table.active .main-area {
-	background-image: url(../images/table-active.png);
+	background-image: zurl(../images/table-active.png);
 }
 
 .ecwid-pb-view-size {
