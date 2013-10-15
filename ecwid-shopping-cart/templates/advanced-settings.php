@@ -53,7 +53,7 @@
 
 		<div class="pure-control-group last">
 			<label for="ecwid_sso_secret_key">
-				<?php _e('Single Sign-on Secret Key'); ?>
+				<?php _e('Single Sign-on Secret Key', 'ecwid-shopping-cart'); ?>
 			</label>
 
 			<input
