@@ -41,7 +41,7 @@ if ( is_admin() ){
   add_action('wp_head', 'ecwid_meta');
   add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_action('wp_head', 'ecwid_seo_compatibility_restore', 1000);
-  add_action('wp_head', 'ecwid_meta_description');
+  add_action('wp_head', 'ecwid_meta_description', 0);
   $ecwid_seo_title = '';
 }
 add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
@@ -263,6 +263,7 @@ function ecwid_meta_description() {
 	$description = preg_replace("![\\s]+!", " ", $description);
 	$description = trim($description, " \t\xA0\n\r"); // Space, tab, non-breaking space, newline, carriage return
 	$description = mb_substr($description, 0, 160);
+	$description = htmlentities($description);
 
     echo <<<HTML
 <meta name="description" content="$description" />
