@@ -6,6 +6,11 @@
 	margin-left:14px;
 }
 
+/* 2.8 compatibility for left menu icon */
+.wp-menu-image>a>img {
+display: none;
+}
+
 .ecwid-settings {
 	width: 650px;
 }
