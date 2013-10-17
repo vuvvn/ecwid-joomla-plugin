@@ -97,9 +97,10 @@
 }
 
 .ecwid-instructions p.note2,
-.ecwid-settings.advanced-settings .note {
+.ecwid-settings .note {
 	font-size: 12px;
 	color: #A0A0A0;
+	display: inline-block;
 }
 
 .ecwid-instructions ol li {
@@ -229,4 +230,10 @@
 
 .ecwid-settings.advanced-settings .note {
 	margin-top: 15px;
+}
+
+.ecwid-settings .note.inline-note {
+	max-width: 350px;
+	margin-left: 10px;
+	vertical-align: middle;
 }
