@@ -1,6 +1,6 @@
 === Ecwid Shopping Cart ===
 Contributors: Ecwid Team
-Tags: ecwid, shopping cart, ecommerce, e-commerce, paypal, google checkout, 2checkout, store, shop, product catalog, inventory
+Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 3.6
 Stable tag: 1.8
