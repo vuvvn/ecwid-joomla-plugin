@@ -54,6 +54,9 @@
 			<?php endif; ?>
 			$disabled_str
 			/>
+			<span class="note inline-note">
+				<?php _e("If you added minicart to your blog's sidebar, please disable this option.", 'ecwid-shopping-cart'); ?>
+			</span>
 		</div>
 		
 		<div class="pure-control-group">

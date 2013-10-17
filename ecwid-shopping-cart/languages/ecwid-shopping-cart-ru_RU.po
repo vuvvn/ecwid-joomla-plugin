@@ -134,6 +134,9 @@ msgstr "Для этого кликните \"Создать новый проф�
 msgid "Enable minicart attached to horizontal categories"
 msgstr "Показывать корзину у горизонтального меню категорий"
 
+msgid "If you added minicart to your blog's sidebar, please disable this option."
+msgstr "Если вы добавили на страницу виджет корзины, пожалуйста, отключите эту настройку."
+
 msgid "Note: the login may take several seconds. Please, be patient."
 msgstr "Это может занять несколько секунд. Пожалуйтся, подождите."
 
