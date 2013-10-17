@@ -17,6 +17,9 @@ msgstr "→ Начать продавать на Facebook"
 msgid "<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a target=\"_blank\" href=\"%s\">the created page</a> to see your store with demo products. In order to finish the installation, please go to the <a href=\"admin.php?page=ecwid\"><strong>Ecwid settings</strong></a> and configure the plugin."
 msgstr "<strong>Магазин Ecwid почти готов к использованию</strong>. Пройдите по <a target=\"_blank\" href=\"%s\">ссылке</a>, чтобы посмотреть ваш магазин с демонстрационными продуктами. Чтобы закончить установку, пожалуйста, откройте страницу <a href=\"admin.php?page=ecwid\"><strong>настроек Ecwid</strong></a> и настройте плагин."
 
+msgid "Store"
+msgstr "Магазин"
+
 msgid "Ecwid shopping cart settings"
 msgstr "Настройки Ecwid"
 
