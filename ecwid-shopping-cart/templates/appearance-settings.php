@@ -41,6 +41,22 @@
 		</div>
 
 		<div class="pure-control-group">
+			<label for="ecwid_enable_minicart">
+				<?php _e('Enable minicart attached to horizontal categories', 'ecwid-shopping-cart'); ?>
+			</label>
+
+			<input
+				id="ecwid_enable_minicart"
+				name="ecwid_enable_minicart"
+				type="checkbox"
+				<?php if (get_option('ecwid_enable_minicart')): ?>
+				checked="checked"
+			<?php endif; ?>
+			$disabled_str
+			/>
+		</div>
+		
+		<div class="pure-control-group">
 			<label for="ecwid_pb_categoriesperrow">
 				<?php _e('Categories per row', 'ecwid-shopping-cart'); ?>
 			</label>

@@ -131,6 +131,9 @@ msgstr "Зарегистрируйте аккаунт Ecwid."
 msgid "Use section \"Using Ecwid account\" for that. The registration is free."
 msgstr "Для этого кликните \"Создать новый профиль Ecwid\". Регистрация бесплатная."
 
+msgid "Enable minicart attached to horizontal categories"
+msgstr "Показывать корзину у горизонтального меню категорий"
+
 msgid "Note: the login may take several seconds. Please, be patient."
 msgstr "Это может занять несколько секунд. Пожалуйтся, подождите."
 
