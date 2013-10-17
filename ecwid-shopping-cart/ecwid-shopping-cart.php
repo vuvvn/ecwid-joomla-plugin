@@ -362,8 +362,6 @@ function ecwid_script_shortcode() {
 
 function ecwid_minicart_shortcode() {
 
-	if (defined('ECWID_MINICART_WIDGET_PRESENT')) return '';
-
     $ecwid_enable_minicart = get_option('ecwid_enable_minicart');
     $ecwid_show_categories = get_option('ecwid_show_categories');
     if (!empty($ecwid_enable_minicart) && !empty($ecwid_show_categories)) {
@@ -795,13 +793,6 @@ class EcwidMinicartWidget extends WP_Widget {
 		$widget_ops = array('classname' => 'widget_ecwid_minicart', 'description' => __("Your store's minicart", 'ecwid-shopping-cart') );
     	$this->WP_Widget('ecwidminicart', __('Ecwid Shopping Bag (Normal)', 'ecwid-shopping-cart'), $widget_ops);
 
-		add_action('wp_enqueue_scripts', array(&$this, 'check_active'));
-    }
-
-	function check_active() {
-		if (is_active_widget(false, false, $this->id_base, true)) {
-			define('ECWID_MINICART_WIDGET_PRESENT', 1);
-		}
 	}
 
     function widget($args, $instance) {
