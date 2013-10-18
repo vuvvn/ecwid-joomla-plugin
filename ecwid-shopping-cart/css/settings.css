@@ -36,6 +36,7 @@ display: none;
 	font-weight: bold;
 	text-align: left;
 	margin-right: 5px;
+	display: inline-block;
 }
 
 .pure-form.ecwid-settings.general-settings .pure-control-group label {
