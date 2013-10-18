@@ -638,6 +638,8 @@ function ecwid_register_admin_styles() {
 }
 
 function ecwid_register_settings_styles() {
+	wp_register_style('ecwid-settings-pure-css', plugins_url('ecwid-shopping-cart/css/pure-min.css'), array(), '', 'all');
+	wp_enqueue_style('ecwid-settings-pure-css');
 	wp_register_style('ecwid-settings-css', plugins_url('ecwid-shopping-cart/css/settings.css'), array(), '', 'all');
 	wp_enqueue_style('ecwid-settings-css');
 }
