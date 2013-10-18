@@ -24,13 +24,14 @@
 }
 
 
-.pure-form.ecwid-settings  .pure-button.pure-button-primary {
-	color: white;z#d3e7fb;
+.pure-form.ecwid-settings .pure-button.pure-button-primary {
+	color: white;
+	font-weight: normal;
 	border-color: #189DEE;
 	background-color: #189DEE;
 }
 
-.pure-form.ecwid-settings  .pure-button.pure-button-primary:hover {
+.pure-form.ecwid-settings .pure-button.pure-button-primary:hover {
 	border-color: #137ebe;
 	background-color: #137ebe;
 }
@@ -65,14 +66,6 @@ display: none;
 	font-weight: bold;
 	text-align: left;
 	margin-right: 5px;
-}
-
-.pure-form.ecwid-settings.general-settings .pure-control-group label {
-	width: 8em;
-}
-.ecwid-settings.general-settings label {
-	display: block;
-	margin-bottom: 9px;
 }
 
 .ecwid-settings.general-settings button {
@@ -240,6 +233,7 @@ display: none;
 
 .general-settings .greeting-box .main-message {
 	font-size: 24px;
+	font-weight: bold;
 	line-height: 29px;
 	padding-top: 32px;
 }
@@ -258,16 +252,18 @@ display: none;
 .general-settings ol li {
 	font-size: 20px;
 	margin-bottom: 34px;
+	font-weight: bold;
 }
 
 .general-settings ol li * {
 	color: #333333;
 	font-size:13px;
+	font-weight: normal;
 }
 
 .general-settings ol li h4 {
 	font-size: 20px;
-	font-weight: normal;
+	font-weight: bold;
 	margin: 0px 0px 12px;
 	display: inline-block;
 }

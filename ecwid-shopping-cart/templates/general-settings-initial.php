@@ -39,7 +39,7 @@
 				<li>
 					<h4><?php _e('Find your store id', 'ecwid-shopping-cart'); ?></h4>
 					<div class="find-store-id-in-cp">
-						<?php _e('You are already have Ecwid account, look at the right bottom corner of the Ecwid control panel page. You will see the "<em>Store ID: NNNNNN</em>" text, where <em>NNNNNN</em> is your Store ID. For example if the text is <em>Store ID: 18240</em>, Your Store ID is <em>18240</em>.', 'ecwid-shopping-cart'); ?>
+						<?php _e('You are already have Ecwid account, look at the right bottom corner of the Ecwid control panel page.<br /> You will see the "<em>Store ID: NNNNNN</em>" text, where <em>NNNNNN</em> is your Store ID.<br /> For example if the text is <em>Store ID: 18240</em>, Your Store ID is <em>18240</em>.', 'ecwid-shopping-cart'); ?>
 					</div>
 					<div><?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?></div>
 				</li>
