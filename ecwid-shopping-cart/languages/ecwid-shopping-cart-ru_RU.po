@@ -48,7 +48,7 @@ msgid "Your store's minicart"
 msgstr "Корзина вашего магазина"
 
 msgid "Ecwid Shopping Bag (Normal)"
-msgstr "Корзина Ecwid (По умолчанию)"
+msgstr "Корзина Ecwid (Основной режим)"
 
 msgid "Ecwid Shopping Bag (Mini view)"
 msgstr "Корзина Ecwid (Компактная)"
