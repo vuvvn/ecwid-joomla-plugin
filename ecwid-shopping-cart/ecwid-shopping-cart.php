@@ -11,7 +11,8 @@ Author URI: http://www.ecwid.com?source=wporg
 register_activation_hook( __FILE__, 'ecwid_store_activate' );
 register_deactivation_hook( __FILE__, 'ecwid_store_deactivate' );
 
-define("APP_ECWID_COM","app.ecwid.com");
+define("APP_ECWID_COM", "app.ecwid.com");
+define("ECWID_DEMO_STORE_ID", 1003);
 
 if ( ! defined( 'ECWID_PLUGIN_DIR' ) ) {
 	define( 'ECWID_PLUGIN_DIR', plugin_dir_path( realpath(__FILE__) ) );
@@ -505,7 +506,7 @@ function ecwid_store_activate() {
 <!-- Ecwid code. Please do not remove this line  otherwise your Ecwid shopping cart will not work properly. --> [ecwid_script] [ecwid_minicart] [ecwid_searchbox] [ecwid_categories] [ecwid_productbrowser] <!-- Ecwid code end -->
 EOT;
   	add_option("ecwid_store_page_id", '', '', 'yes');	
-  	add_option("ecwid_store_id", '1003', '', 'yes');
+  	add_option("ecwid_store_id", ECWID_DEMO_STORE_ID, '', 'yes');
     
     add_option("ecwid_enable_minicart", 'Y', '', 'yes');
     add_option("ecwid_show_categories", 'Y', '', 'yes');
@@ -554,7 +555,7 @@ EOT;
 }
 function ecwid_show_admin_message() {
 
-	if (get_ecwid_store_id() != 1003) {
+	if (get_ecwid_store_id() != ECWID_DEMO_STORE_ID) {
 		return;
 	} else {
 		$ecwid_page_id = get_option("ecwid_store_page_id");
@@ -680,7 +681,11 @@ function ecwid_settings_api_init() {
 
 function ecwid_general_settings_do_page() {
 
-	require_once plugin_dir_path(__FILE__) . '/templates/general-settings.php';
+	if (get_ecwid_store_id() == ECWID_DEMO_STORE_ID) {
+		require_once plugin_dir_path(__FILE__) . '/templates/general-settings-initial.php';
+	} else {
+		require_once plugin_dir_path(__FILE__) . '/templates/general-settings.php';
+	}
 }
 
 function ecwid_advanced_settings_do_page() {
@@ -752,7 +757,7 @@ function get_ecwid_store_id() {
     if (is_null($store_id)) {
         $store_id = get_option('ecwid_store_id');
         if (empty($store_id))
-          $store_id = 1003;
+          $store_id = ECWID_DEMO_STORE_ID;
     }
 	return $store_id;
 }

@@ -35,7 +35,7 @@
 		</div>
 	</form>
 
-	<div class="ecwid-instructions">
+	<div class="general-settings">
 
 		<h3><?php _e('Instructions on how to get your free Store ID:', 'ecwid-shopping-cart'); ?></h3>
 		<hr />
