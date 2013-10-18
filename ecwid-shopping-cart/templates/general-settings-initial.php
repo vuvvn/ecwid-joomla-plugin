@@ -2,6 +2,7 @@
 	<?php include "settings-header.php"; ?>
 
 	<form method="POST" action="options.php">
+		<?php settings_fields('ecwid_options_page'); ?>
 		<fieldset>
 
 			<legend><?php _e('General', 'ecwid-shopping-cart'); ?></legend>
@@ -17,7 +18,6 @@
 			</div>
 			<hr />
 
-			<?php settings_fields('ecwid_options_page'); ?>
 			<ol>
 				<li>
 					<h4><?php _e('Register at Ecwid', 'ecwid-shopping-cart'); ?></h4>

@@ -23,7 +23,6 @@
  border-color: rgba(19, 126, 190, .5);
 }
 
-
 .pure-form.ecwid-settings .pure-button.pure-button-primary {
 	color: white;
 	font-weight: normal;
@@ -34,6 +33,12 @@
 .pure-form.ecwid-settings .pure-button.pure-button-primary:hover {
 	border-color: #137ebe;
 	background-color: #137ebe;
+}
+
+.pure-form.ecwid-settings .link {
+	border: 0px none;
+	background: transparent;
+	box-shadow: none;
 }
 
 /* 2.8 compatibility for left menu icon */
@@ -231,8 +236,14 @@ display: none;
 	padding-left: 175px;
 }
 
+.general-settings .greeting-box.complete {
+	background: url(../images/store_ready.png) no-repeat;
+	height: 150px;
+	padding-left: 155px;
+}
+
 .general-settings .greeting-box .main-message {
-	font-size: 24px;
+	font-size: 22px;
 	font-weight: bold;
 	line-height: 29px;
 	padding-top: 32px;
@@ -303,4 +314,24 @@ display: none;
 	position: relative;
 	top: 2px;
 	width: 153px;
+}
+
+.general-settings .section {
+	line-height: 32px;
+	height: 32px;
+	margin: 36px 16px;
+}
+
+.general-settings .section.small-text {
+	line-height: normal;
+}
+
+
+.general-settings .section .info {
+	font-size: 18px;
+	float: left;
+}
+
+.general-settings .section .buttons {
+	float: right;
 }
