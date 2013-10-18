@@ -26,8 +26,8 @@ if ( is_admin() ){
   add_action('admin_notices', 'ecwid_show_admin_message');
   add_action('admin_menu', 'ecwid_options_add_page');
   add_action('wp_dashboard_setup', 'ecwid_add_dashboard_widgets' );
-  add_action('admin_head', 'ecwid_add_menu_icon');
   add_action('admin_enqueue_scripts', 'ecwid_register_admin_styles');
+  add_action('admin_enqueue_scripts', 'ecwid_register_settings_styles');
 
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
@@ -167,7 +167,7 @@ function add_ecwid_admin_bar_node() {
 
     $wp_admin_bar->add_menu( array(
         'id' => 'ecwid_main',
-        'title' => '<img src="'.plugins_url().'/ecwid-shopping-cart/images/ecwid-icon.png" style="width: 23px;height: 23px;margin-top: 2px;"/>',
+        'title' => '<div class="ecwid-top-menu-item"></div>',
     ));
 	$wp_admin_bar->add_menu(array(
 			"id" => "ecwid_help",
@@ -633,10 +633,13 @@ function ecwid_options_add_page() {
 }
 
 function ecwid_register_admin_styles() {
-	wp_register_style('ecwid-admin-pure-css', plugins_url('ecwid-shopping-cart/css/pure-min.css'), array(), '', 'all');
 	wp_register_style('ecwid-admin-css', plugins_url('ecwid-shopping-cart/css/admin.css'), array(), '', 'all');
-	wp_enqueue_style('ecwid-admin-pure-css');
 	wp_enqueue_style('ecwid-admin-css');
+}
+
+function ecwid_register_settings_styles() {
+	wp_register_style('ecwid-settings-css', plugins_url('ecwid-shopping-cart/css/settings.css'), array(), '', 'all');
+	wp_enqueue_style('ecwid-settings-css');
 }
 
 
@@ -761,31 +764,6 @@ function ecwid_add_dashboard_widgets() {
     wp_add_dashboard_widget('ecwid_dashboard_widget','Ecwid Links', 'ecwid_dashboard_widget_function');	
   }
 }
-
-function ecwid_add_menu_icon()
-{
-	$inactive_url = ECWID_PLUGIN_URL . '/images/ecwid-icon-inactive.png';
-	$image_url = ECWID_PLUGIN_URL . '/images/ecwid-icon.png';
-	echo <<<HTML
-<style>
-#adminmenu #toplevel_page_ecwid div.wp-menu-image {
-	background: url($inactive_url) no-repeat 0px 0px;
-	margin: 2px;
-	width: 23px;
-	height: 23px;
-}
-
-#adminmenu #toplevel_page_ecwid:hover div.wp-menu-image,
-#adminmenu #toplevel_page_ecwid.wp-has-current-submenu div.wp-menu-image
-{
-	background-image: url($image_url);
-}
-
-</style>
-HTML;
-
-}
-
 
 
 class EcwidMinicartWidget extends WP_Widget {
