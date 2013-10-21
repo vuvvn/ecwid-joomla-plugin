@@ -4,7 +4,8 @@
 	background: url(../images/icon-head-default.png) no-repeat 0% 2px;
 }
 
-#wpadminbar .ecwid-top-menu-item:hover {
+#wpadminbar .ecwid-top-menu-item:hover,
+#wpadminbar .hover .ecwid-top-menu-item{
 	background-image: url(../images/icon-head-active.png);
 }
 
