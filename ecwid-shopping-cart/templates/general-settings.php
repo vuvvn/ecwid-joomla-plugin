@@ -46,7 +46,11 @@
 						<?php _e('Billing plan', 'ecwid-shopping-cart'); ?>:
 						<strong>
 							<?php
-							_e(ecwid_is_api_enabled() ? 'Paid' : 'Free', 'ecwid-shopping-cart');
+							if (ecwid_is_api_enabled()) {
+								_e('Paid', 'ecwid-shopping-cart');
+							} else {
+								_e('Free', 'ecwid-shopping-cart');
+							}
 							?>
 						</strong>
 					</span>

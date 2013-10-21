@@ -204,6 +204,13 @@ msgstr "Оплата и тарифы"
 msgid "Upgrade"
 msgstr "Апгрейд"
 
+
+msgid "Free"
+msgstr "Бесплатный"
+
+msgid "Paid"
+msgstr "Платный"
+
 msgid "You want to connect another Ecwid account?"
 msgstr "Хотите подключить другой аккаунт Ecwid?"
 
