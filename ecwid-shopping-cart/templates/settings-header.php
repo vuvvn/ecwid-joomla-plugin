@@ -1,3 +1,3 @@
-<h1>
+<h2>
 	<?php _e('Ecwid shopping cart settings', 'ecwid-shopping-cart'); ?>
-</h1>
+</h2>

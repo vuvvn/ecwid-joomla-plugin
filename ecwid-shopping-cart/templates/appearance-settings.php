@@ -1,4 +1,4 @@
-<form class="pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
+<form class="wrap pure-form pure-form-aligned ecwid-settings appearance-settings" method="POST" action="options.php">
 	<?php include "settings-header.php"; ?>
 
 	<?php settings_fields('ecwid_options_page'); ?>

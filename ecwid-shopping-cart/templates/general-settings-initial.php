@@ -1,4 +1,4 @@
-<div class="pure-form ecwid-settings general-settings">
+<div class="wrap pure-form ecwid-settings general-settings">
 	<?php include "settings-header.php"; ?>
 
 	<form method="POST" action="options.php">

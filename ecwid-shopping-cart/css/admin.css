@@ -21,8 +21,8 @@
 	background-image: url(../images/icon-sidebar-active.png);
 }
 
-.ecwid-settings h1 {
-	background:url(../images/icon-title.png) no-repeat;
+.ecwid-settings h2 {
+	background:url(../images/icon-title.png) no-repeat 0% 50%;
 	padding-left: 43px;
 	line-height: 32px;
 }

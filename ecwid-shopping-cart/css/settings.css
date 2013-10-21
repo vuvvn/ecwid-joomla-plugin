@@ -333,7 +333,7 @@ display: none;
 
 .general-settings .section {
 	line-height: 24px;
-	height: 95px;
+	height: 94px;
 	display: table;
 	vertical-align: middle;
 	width: 640px;
@@ -365,4 +365,5 @@ display: none;
 
 .general-settings .section .secondary-info {
 	font-size: 12px;
+	line-height: 20px;
 }
