@@ -8,19 +8,26 @@
 
 .pure-form.ecwid-settings .pure-button {
 	height: auto;
-	line-height: 16px;
-	padding: 8px 20px;
+	line-height: 32px;
+	padding: 0px 20px;
 	font-size: 14px;
-	font-weight: bold;
 	background-image: none;
 	background-color: #f6f6f6;
-	color: #246fba;
+	font-weight: normal;
+	color: #333333;
 	border: 1px solid #cccccc;
 	border-radius: 3px;
 }
 
+.pure-form.ecwid-settings .pure-button-secondary {
+	font-weight: bold;
+	color: #246fba;
+}
+
+
 .pure-form.ecwid-settings a.pure-button:hover {
- border-color: rgba(19, 126, 190, .5);
+  border-color: #137ebe;
+	color: #137ebe;
 }
 
 .pure-form.ecwid-settings .pure-button.pure-button-primary {
@@ -78,6 +85,10 @@ display: none;
 	top: 2px;
 	padding: 5px 31px 5px 31px;
 	margin-left: 5px;
+}
+
+.ecwid-settings.general-settings hr {
+	margin-bottom: 6px;
 }
 
 .ecwid-settings .warning {
@@ -231,27 +242,30 @@ display: none;
 }
 
 .general-settings .greeting-box {
-	background: url(../images/store_inprogress.png) no-repeat;
-	height: 150px;
-	padding-left: 175px;
+	background: url(../images/store_inprogress.png);
+	background-repeat: no-repeat;
+	background-position: 18px 3px;
+	height: 141px;
+	padding-left: 190px;
+	padding-bottom: 12px;
+	display: table-cell;
+	vertical-align: middle;
 }
 
 .general-settings .greeting-box.complete {
-	background: url(../images/store_ready.png) no-repeat;
-	height: 150px;
-	padding-left: 155px;
+	background-image: url(../images/store_ready.png);
+	height: 141px;
 }
 
 .general-settings .greeting-box .main-message {
 	font-size: 22px;
 	font-weight: bold;
 	line-height: 29px;
-	padding-top: 32px;
 }
 
 .general-settings .greeting-box .secondary-message {
 	font-size: 18px;
-	padding-top: 10px;
+	padding-top: 6px;
 }
 
 .general-settings ol {
@@ -264,6 +278,7 @@ display: none;
 	font-size: 20px;
 	margin-bottom: 34px;
 	font-weight: bold;
+	padding-top: 10px;
 }
 
 .general-settings ol li * {
@@ -317,9 +332,22 @@ display: none;
 }
 
 .general-settings .section {
-	line-height: 32px;
-	height: 32px;
-	margin: 36px 16px;
+	line-height: 24px;
+	height: 95px;
+	display: table;
+	vertical-align: middle;
+	width: 640px;
+}
+
+.general-settings .section .left {
+	display: table-cell;
+	vertical-align: middle;
+}
+
+.general-settings .section .right {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: right;
 }
 
 .general-settings .section.small-text {
@@ -327,11 +355,14 @@ display: none;
 }
 
 
-.general-settings .section .info {
-	font-size: 18px;
+.general-settings .section .left-section {
 	float: left;
 }
 
-.general-settings .section .buttons {
-	float: right;
+.general-settings .section .main-info {
+	font-size: 18px;
+}
+
+.general-settings .section .secondary-info {
+	font-size: 12px;
 }

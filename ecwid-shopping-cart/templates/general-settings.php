@@ -15,19 +15,20 @@
 					<?php else: ?>
 						<?php _e('Greetings!', 'ecwid-shopping-cart'); ?>
 					<?php endif; ?>
-					<br />
-					<?php _e('Your Ecwid store is connected to Wordpress.', 'ecwid-shopping-cart'); ?>
 				</div>
+
 				<div class="secondary-message">
-					<?php _e('Just 3 little steps left.', 'ecwid-shopping-cart'); ?>
+					<?php _e('Your Ecwid store is connected to Wordpress.', 'ecwid-shopping-cart'); ?>
 				</div>
 			</div>
 			<hr />
 			<div class="section">
-				<div class="info">
-					<?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <strong><? echo esc_attr(get_ecwid_store_id()); ?></strong>
+				<div class="left">
+					<span class="main-info">
+						<?php _e('Store ID', 'ecwid-shopping-cart'); ?>: <strong><? echo esc_attr(get_ecwid_store_id()); ?></strong>
+					</span>
 				</div>
-				<div class="buttons">
+				<div class="right"">
 					<a class="pure-button" target="_blank" href="//my.ecwid.com/cp">
 						<?php _e('Control panel', 'ecwid-shopping-cart'); ?>
 					</a>
@@ -40,17 +41,26 @@
 			<hr />
 
 			<div class="section">
-				<div class="info">
-					<?php _e('Billing plan', 'ecwid-shopping-cart'); ?>:
-					<strong>
-					<?php if (ecwid_is_api_enabled()):?>
-						<?php _e('Paid', 'ecwid_shopping_cart'); ?>
-					<?php else: ?>
-						<?php _e('Free', 'ecwid-shopping-cart'); ?>
-					<?php endif; ?>
-					</strong>
+				<div class="left">
+					<span class="main-info">
+						<?php _e('Billing plan', 'ecwid-shopping-cart'); ?>:
+						<strong>
+							<?php
+							_e(ecwid_is_api_enabled() ? 'Paid' : 'Free', 'ecwid-shopping-cart');
+							?>
+						</strong>
+					</span>
+					<div class="secondary-info">
+						<?php
+						if (ecwid_is_api_enabled())
+							_e('Thank you for supporting Ecwid!', 'ecwid-shopping-cart');
+						else
+							_e('You can get more premium features with our paid plans.', 'ecwid-shopping-cart');
+						?>
+					</div>
 				</div>
-				<div class="buttons">
+
+				<div class="right">
 					<?php if (ecwid_is_api_enabled()): ?>
 						<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/CP.html#profile=Billing&t2=My_Profile">
 							<?php _e('Billing and plans', 'ecwid-shopping-cart'); ?>
@@ -65,10 +75,12 @@
 
 			<hr />
 
-			<div class="section small-text">
-				<span><?php _e('You want to connect another Ecwid account?', 'ecwid-shopping-cart'); ?></span><br />
-				<a href="#" onClick="javascript:document.forms['settings'].submit(); return false;"><?php _e('Disconnect and change Store ID', 'ecwid-shopping-cart'); ?></a>
- 			</div>
+			<div class="section">
+				<div class="left secondary-info">
+					<span><?php _e('You want to connect another Ecwid account?', 'ecwid-shopping-cart'); ?></span><br />
+					<a href="#" onClick="javascript:document.forms['settings'].submit(); return false;"><?php _e('Disconnect and change Store ID', 'ecwid-shopping-cart'); ?></a>
+ 				</div>
+			</div>
 
 			<hr />
 			<p><?php _e('Questions? Visit <a href="http://help.ecwid.com/?source=wporg">Ecwid support center</a>.', 'ecwid-shopping-cart'); ?></p>
