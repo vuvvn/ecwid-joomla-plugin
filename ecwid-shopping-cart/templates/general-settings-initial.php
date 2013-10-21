@@ -26,10 +26,10 @@
 					</div>
 					<div class="ecwid-account-buttons">
 						<a class="pure-button pure-button-secondary" target="_blank" href="//my.ecwid.com/cp#register">
-							<?php _e('Create new Ecwid account'); ?>
+							<?php _e('Create new Ecwid account', 'ecwid-shopping-cart'); ?>
 						</a>
 						<a class="pure-button pure-button-secondary">
-							<?php _e("I already have Ecwid account, sign in"); ?>
+							<?php _e('I already have Ecwid account, sign in', 'ecwid-shopping-cart'); ?>
 						</a>
 					</div>
 					<div class="note">
@@ -39,7 +39,7 @@
 				<li>
 					<h4><?php _e('Find your store id', 'ecwid-shopping-cart'); ?></h4>
 					<div class="find-store-id-in-cp">
-						<?php _e('You are already have Ecwid account, look at the right bottom corner of the Ecwid control panel page.<br /> You will see the "<em>Store ID: NNNNNN</em>" text, where <em>NNNNNN</em> is your Store ID.<br /> For example if the text is <em>Store ID: 18240</em>, Your Store ID is <em>18240</em>.', 'ecwid-shopping-cart'); ?>
+						<?php _e('You already have Ecwid account, look at the right bottom corner of the Ecwid control panel page.<br /> You will see the "<em>Store ID: NNNNNN</em>" text, where <em>NNNNNN</em> is your Store ID.<br /> For example if the text is <em>Store ID: 1003</em>, Your Store ID is <em>1003</em>.', 'ecwid-shopping-cart'); ?>
 					</div>
 					<div><?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?></div>
 				</li>
