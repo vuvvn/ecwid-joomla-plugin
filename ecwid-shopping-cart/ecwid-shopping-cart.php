@@ -77,8 +77,11 @@ if (version_compare($version, '3.6') < 0) {
 }
 
 function ecwid_load_textdomain() {
-	load_textdomain('ecwid-shopping-cart', ECWID_PLUGIN_DIR . '/languages/ecwid-shopping-cart-en_US.mo');
-	load_plugin_textdomain( 'ecwid-shopping-cart', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	if ($_GET['force_language']) {
+		load_textdomain('ecwid-shopping-cart', ECWID_PLUGIN_DIR . '/languages/ecwid-shopping-cart-' . $_GET['force_language'] . '.mo');
+	} else {
+		load_plugin_textdomain( 'ecwid-shopping-cart', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+	}
 }
 function ecwid_load_default_textdomain()
 {
