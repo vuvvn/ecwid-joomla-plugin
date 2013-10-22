@@ -558,7 +558,7 @@ EOT;
 }
 function ecwid_show_admin_message() {
 
-	if (get_ecwid_store_id() != ECWID_DEMO_STORE_ID) {
+	if (get_ecwid_store_id() != ECWID_DEMO_STORE_ID || $_GET['page'] == 'ecwid') {
 		return;
 	} else {
 		$ecwid_page_id = get_option("ecwid_store_page_id");
