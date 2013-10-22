@@ -29,7 +29,7 @@
 					</span>
 				</div>
 				<div class="right"">
-					<a class="pure-button" target="_blank" href="//my.ecwid.com/cp">
+					<a class="pure-button" target="_blank" href="//my.ecwid.com/cp?source=wporg">
 						<?php _e('Control panel', 'ecwid-shopping-cart'); ?>
 					</a>
 					<a class="pure-button" target="_blank" href="<?php echo esc_attr(get_page_link(get_option('ecwid_store_page_id'))); ?>">

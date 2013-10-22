@@ -25,10 +25,10 @@
 						<?php _e('The registration is free. The login might take several seconds. Please, be patient.', 'ecwid-shopping-cart'); ?>
 					</div>
 					<div class="ecwid-account-buttons">
-						<a class="pure-button pure-button-secondary" target="_blank" href="//my.ecwid.com/cp#register">
+						<a class="pure-button pure-button-secondary" target="_blank" href="//my.ecwid.com/cp?source=wporg#register">
 							<?php _e('Create new Ecwid account', 'ecwid-shopping-cart'); ?>
 						</a>
-						<a class="pure-button pure-button-secondary">
+						<a class="pure-button pure-button-secondary" target="_blank" href="//my.ecwid.com/cp?source=wporg">
 							<?php _e('I already have Ecwid account, sign in', 'ecwid-shopping-cart'); ?>
 						</a>
 					</div>
