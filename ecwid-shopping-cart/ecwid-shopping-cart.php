@@ -351,8 +351,7 @@ function ecwid_wrap_shortcode_content($content)
 function ecwid_get_scriptjs_code() {
     if (!defined('ECWID_SCRIPTJS')) {
       $store_id = get_ecwid_store_id();
-      $s =  "<script type=\"text/javascript\" src=\"//" . APP_ECWID_COM . "/script.js?$store_id\"></script>";
-      $s =  "<script type=\"text/javascript\" src=\"//" . APP_ECWID_COM . "/script.js?$store_id\"></script>";
+      $s =  '<script type="text/javascript" data-cfasync="false" src="//' . APP_ECWID_COM . '/script.js?' . $store_id . '"></script>';
       define('ECWID_SCRIPTJS','Yep');
       $s = $s . ecwid_sso(); 
       return $s;
