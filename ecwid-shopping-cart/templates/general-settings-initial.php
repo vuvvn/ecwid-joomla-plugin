@@ -1,19 +1,19 @@
 <div class="wrap pure-form ecwid-settings general-settings">
-	<?php include "settings-header.php"; ?>
+
+	<h2><?php _e('Ecwid Shopping Cart - General plugin settings', 'ecwid-shopping-cart'); ?></h2>
 
 	<form method="POST" action="options.php">
 		<?php settings_fields('ecwid_options_page'); ?>
 		<fieldset>
 
-			<legend><?php _e('General', 'ecwid-shopping-cart'); ?></legend>
 			<input type="hidden" name="settings_section" value="general" />
 
 			<div class="greeting-box">
 				<div class="main-message">
-					<?php _e('You are almost finished connecting your store to Wordpress.', 'ecwid-shopping-cart'); ?>
+					<?php _e('Thank you for choosing Ecwid to build your online store.', 'ecwid-shopping-cart'); ?>
 				</div>
 				<div class="secondary-message">
-					<?php _e('Just 3 little steps left.', 'ecwid-shopping-cart'); ?>
+					<?php _e('The first step towards opening your online business: <br />Let’s get started and add a store to your WordPress website in <strong>3</strong> simple steps.', 'ecwid-shopping-cart'); ?>
 				</div>
 			</div>
 			<hr />
@@ -22,26 +22,25 @@
 				<li>
 					<h4><?php _e('Register at Ecwid', 'ecwid-shopping-cart'); ?></h4>
 					<div>
-						<?php _e('The registration is free. The login might take several seconds. Please, be patient.', 'ecwid-shopping-cart'); ?>
+						<?php _e('Create a new Ecwid account which you will use to manage your store and inventory. The registration is free.', 'ecwid-shopping-cart'); ?>
 					</div>
 					<div class="ecwid-account-buttons">
-						<a class="pure-button pure-button-secondary" target="_blank" href="//my.ecwid.com/cp?source=wporg#register">
+						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register">
 							<?php _e('Create new Ecwid account', 'ecwid-shopping-cart'); ?>
 						</a>
-						<a class="pure-button pure-button-secondary" target="_blank" href="//my.ecwid.com/cp?source=wporg">
+						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard">
 							<?php _e('I already have Ecwid account, sign in', 'ecwid-shopping-cart'); ?>
 						</a>
 					</div>
 					<div class="note">
-						<?php _e('Or you can log in using your account at Gmail, Facebook, or PayPal. Choose one from the list of the providers. Click on the provider logo, you will be redirected to the account login page. Submit your username/password there to login to your Ecwid. And proceed to second step.', 'ecwid-shopping-cart'); ?>
+						<?php _e('You will be able to sign up through your exising Google, Facebook or PayPal profiles as well.', 'ecwid-shopping-cart'); ?>
 					</div>
 				</li>
 				<li>
-					<h4><?php _e('Find your store id', 'ecwid-shopping-cart'); ?></h4>
-					<div class="find-store-id-in-cp">
-						<?php _e('You already have Ecwid account, look at the right bottom corner of the Ecwid control panel page.<br /> You will see the "<em>Store ID: NNNNNN</em>" text, where <em>NNNNNN</em> is your Store ID.<br /> For example if the text is <em>Store ID: 1003</em>, Your Store ID is <em>1003</em>.', 'ecwid-shopping-cart'); ?>
+					<h4><?php _e('Find your store ID', 'ecwid-shopping-cart'); ?></h4>
+					<div>
+						<?php _e('Store ID is a unique identifier of any Ecwid store, it consists of several digits. You can find it on the "Dashboard" page of Ecwid control panel. Also the store ID will be sent in the Welcome email after the registration.', 'ecwid-shopping-cart'); ?>
 					</div>
-					<div><?php _e('You will also get your Store ID by email.', 'ecwid-shopping-cart'); ?></div>
 				</li>
 				<li>
 					<h4>
@@ -56,7 +55,7 @@
 							placeholder="<?php _e('Store ID', 'ecwid-shopping-cart'); ?>"
 							value="<?php if (get_ecwid_store_id() != 1003) echo esc_attr(get_ecwid_store_id()); ?>"
 							/>
-						<button type="submit" class="pure-button pure-button-primary"><?php _e('Save changes', 'ecwid-shopping-cart'); ?></button>
+						<button type="submit" class="pure-button pure-button-primary"><?php _e('Save and connect your Ecwid store to the site', 'ecwid-shopping-cart'); ?></button>
 					</div>
 
 				</li>

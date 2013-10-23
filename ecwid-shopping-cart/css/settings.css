@@ -260,12 +260,13 @@ display: none;
 .general-settings .greeting-box .main-message {
 	font-size: 22px;
 	font-weight: bold;
-	line-height: 29px;
+	line-height: 22px;
 }
 
 .general-settings .greeting-box .secondary-message {
 	font-size: 18px;
 	padding-top: 6px;
+	line-height: 20px;
 }
 
 .general-settings ol {
