@@ -10,7 +10,7 @@
 		<legend><?php _e('Advanced', 'ecwid-shopping-cart'); ?></legend>
 		<div class="pure-control-group">
 
-			<?php if (ecwid_is_api_enabled()): ?>
+			<?php if (ecwid_is_paid_account()): ?>
 			<label for="ecwid_default_category_id">
 				<?php _e('Default category', 'ecwid-shopping-cart'); ?>
 			</label>

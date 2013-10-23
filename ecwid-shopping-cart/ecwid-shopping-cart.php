@@ -486,6 +486,7 @@ function ecwid_productbrowser_shortcode($shortcode_params) {
                     $plain_content = $catalog->get_category($params['id']);
                     $ecwid_default_category_str = ',"defaultCategoryId=' . $params['id'] . '"';
                 }
+
             } else {
                 $plain_content = $catalog->get_category(intval($ecwid_default_category_id));
             }
@@ -702,7 +703,7 @@ function ecwid_advanced_settings_do_page() {
 	wp_enqueue_style('select2-css');
 
 	$categories = false;
-	if (ecwid_is_api_enabled()) {
+	if (ecwid_is_paid_account()) {
 		$api = ecwid_new_product_api();
 		$categories = $api->get_all_categories();
 		$by_id = array();
@@ -1051,6 +1052,11 @@ function ecwid_hmacsha1($data, $key) {
             );
     return bin2hex($hmac);
     }
+}
+
+function ecwid_is_paid_account()
+{
+	return ecwid_is_api_enabled() && get_ecwid_store_id() != ECWID_DEMO_STORE_ID;
 }
 
 function ecwid_is_api_enabled()
