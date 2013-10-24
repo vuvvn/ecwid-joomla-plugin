@@ -184,7 +184,7 @@
 	<fieldset>
 		<hr />
 		<div class="pure-control-group">
-			<button type="submit" class="pure-button pure-button-primary"><?php _e('Save'); ?></button>
+			<button type="submit" class="pure-button pure-button-primary"><?php _e('Save changes', 'ecwid-shopping-cart'); ?></button>
 		</div>
 	</fieldset>
 </form>
