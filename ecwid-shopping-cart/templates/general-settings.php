@@ -6,7 +6,6 @@
 		<?php settings_fields('ecwid_options_page'); ?>
 		<fieldset>
 
-			<legend><?php _e('General', 'ecwid-shopping-cart'); ?></legend>
 			<input type="hidden" name="settings_section" value="general" />
 
 			<div class="greeting-box complete">
