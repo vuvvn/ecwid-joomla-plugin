@@ -60,7 +60,7 @@
 			$disabled_str
 			/>
 			<span class="note inline-note">
-				<?php _e("You should disable this option, if you added minicart to your website's sidebar.", 'ecwid-shopping-cart'); ?>
+				<?php _e("You should disable this option, if you added minicart to your website's&nbsp;sidebar.", 'ecwid-shopping-cart'); ?>
 			</span>
 		</div>
 		
@@ -83,7 +83,7 @@
 
 
 		<div class="pure-control-group">
-			<label><?php _e('Number of products per page', 'ecwid-shopping-cart'); ?></label><br />
+			<label class="products-per-page-label"><?php _e('Number of products per page', 'ecwid-shopping-cart'); ?></label>
 			<div class="ecwid-pb-view-size grid active" tabindex="1">
 				<div class="title"><?php _e('Grid view', 'ecwid-shopping-cart'); ?></div>
 				<div class="main-area"></div>

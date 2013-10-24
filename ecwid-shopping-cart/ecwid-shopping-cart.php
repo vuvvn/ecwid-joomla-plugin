@@ -195,13 +195,20 @@ function add_ecwid_admin_bar_node() {
         )
     );
     $wp_admin_bar->add_menu(array(
-            "id" => "ecwid_settings",
+            "id" => "ecwid_control_panel",
             "title" => __("Manage my store", 'ecwid-shopping-cart'),
             "parent" => "ecwid_main",
-            'href' =>  admin_url('admin.php?page=ecwid')
+            'href' =>  'https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard'
         )
     );
-    $wp_admin_bar->add_menu(array(
+	$wp_admin_bar->add_menu(array(
+			"id" => "ecwid_settings",
+			"title" => __("Manage plugin settings", 'ecwid-shopping-cart'),
+			"parent" => "ecwid_main",
+			'href' =>  admin_url('admin.php?page=ecwid')
+		)
+	);
+	$wp_admin_bar->add_menu(array(
             "id" => "ecwid_fb_app",
             "title" => __("→ Sell on Facebook", 'ecwid-shopping-cart'),
             "parent" => "ecwid_main",

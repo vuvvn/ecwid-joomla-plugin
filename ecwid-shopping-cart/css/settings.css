@@ -24,8 +24,7 @@
 	color: #246fba;
 }
 
-
-.pure-form.ecwid-settings a.pure-button:hover {
+.pure-form.ecwid-settings a.pure-button:not(.pure-button-primary):hover {
   border-color: #137ebe;
 	color: #137ebe;
 }
@@ -126,6 +125,12 @@ display: none;
 
 .ecwid-settings.appearance-settings {
 	max-width: 650px;
+}
+
+.ecwid-settings.appearance-settings .products-per-page-label {
+	padding-top: 5px;
+	padding-bottom: 10px;
+	display: block;
 }
 
 .ecwid-pb-view-size {
@@ -232,7 +237,7 @@ display: none;
 
 .ecwid-settings .note.inline-note {
 	max-width: 350px;
-	margin-left: 10px;
+	margin-left: 15px;
 	vertical-align: middle;
 }
 
@@ -304,10 +309,10 @@ display: none;
 }
 
 .ecwid-settings .note {
-	font-size: 12px;
+	font-size: 11px;
 	color: #A0A0A0;
 	display: inline-block;
-	line-height:18px;
+	line-height: 16px;
 }
 
 

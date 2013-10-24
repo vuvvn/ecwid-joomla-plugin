@@ -37,16 +37,16 @@
 					</div>
 				</li>
 				<li>
-					<h4><?php _e('Find your store ID', 'ecwid-shopping-cart'); ?></h4>
+					<h4><?php _e('Find your Store ID', 'ecwid-shopping-cart'); ?></h4>
 					<div>
-						<?php _e('Store ID is a unique identifier of any Ecwid store, it consists of several digits. You can find it on the "Dashboard" page of Ecwid control panel. Also the store ID will be sent in the Welcome email after the registration.', 'ecwid-shopping-cart'); ?>
+						<?php _e('Store ID is a unique identifier of any Ecwid store, it consists of several digits. You can find it on the "Dashboard" page of Ecwid control panel. Also the Store ID will be sent in the Welcome email after the registration.', 'ecwid-shopping-cart'); ?>
 					</div>
 				</li>
 				<li>
 					<h4>
-						<?php _e('Enter your store ID', 'ecwid-shopping-cart'); ?>
+						<?php _e('Enter your Store ID', 'ecwid-shopping-cart'); ?>
 					</h4>
-					<div><label for="ecwid_store_id"><?php _e('Enter your store ID here:', 'ecwid-shopping-cart'); ?></label></div>
+					<div><label for="ecwid_store_id"><?php _e('Enter your Store ID here:', 'ecwid-shopping-cart'); ?></label></div>
 					<div class="pure-control-group store-id">
 						<input
 							id="ecwid_store_id"

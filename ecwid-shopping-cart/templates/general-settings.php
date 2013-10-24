@@ -1,5 +1,5 @@
 <div class="wrap pure-form ecwid-settings general-settings">
-	<h2><?php _e('Ecwid Shopping Cart - General plugin settings', 'ecwid-shopping-cart'); ?></h2>
+	<h2><?php _e('Ecwid Shopping Cart - General settings', 'ecwid-shopping-cart'); ?></h2>
 
 
 	<form method="POST" action="options.php" name="settings">
@@ -83,10 +83,7 @@
 				<div class="left secondary-info">
 					<?php
 						echo sprintf(
-							__(
-								'If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>.',
-								'ecwid-shopping-cart'
-							),
+							__('If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>.', 'ecwid-shopping-cart'),
 							'href="#" onClick="javascript:document.forms[\'settings\'].submit(); return false;"'
 						);
 					?>
