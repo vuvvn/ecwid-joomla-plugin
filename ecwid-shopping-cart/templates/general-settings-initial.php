@@ -1,6 +1,6 @@
 <div class="wrap pure-form ecwid-settings general-settings">
 
-	<h2><?php _e('Ecwid Shopping Cart - General plugin settings', 'ecwid-shopping-cart'); ?></h2>
+	<h2><?php _e('Ecwid Shopping Cart - General settings', 'ecwid-shopping-cart'); ?></h2>
 
 	<form method="POST" action="options.php">
 		<?php settings_fields('ecwid_options_page'); ?>
