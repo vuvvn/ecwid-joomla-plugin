@@ -146,9 +146,8 @@ function ecwid_seo_compatibility_init($title)
     // Canonical for All in One SEO Pack
     $aioseop_options['aiosp_can'] = false;
     // Title for All in One SEO Pack
-    remove_filter('wp_title', array($aiosp, 'wp_title'), 20);
-	$aioseop_options['aiosp_rewrite_titles'] = false;
 	add_filter('aioseop_description', __return_null);
+	add_filter('aioseop_title', __return_null);
 
 	return $title;
 
