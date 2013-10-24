@@ -74,7 +74,7 @@
 				</div>
 			</div>
 
-			<div class="disconnect-store-id">
+			<div class="note grayed-links">
 				<?php
 					echo sprintf(
 						__('If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>.', 'ecwid-shopping-cart'),

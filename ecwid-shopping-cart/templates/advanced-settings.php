@@ -73,7 +73,7 @@
 			<div class="note">
 				<?php _e("This optional feature allows enabling Single Sign-On : when customers are logged in to your site, they are automatically logged in to your Ecwid store as well, even if they didn't have an account in the store before. It makes sense to enable this feature, if your visitors actually create accounts in your WordPress website.", 'ecwid-shopping-cart'); ?>
 			</div>
-			<div class="note">
+			<div class="note grayed-links">
 				<?php _e('In order to enable this feature you should submit a secret key. You will find this key in your Ecwid control panel,  at "System Settings > API > Single Sign-on API" page . This feature is available for <a href="http://www.ecwid.com/compare-plans.html" target="_blank">paid users</a> only.', 'ecwid-shopping-cart'); ?>
 			</div>
 		</div>
