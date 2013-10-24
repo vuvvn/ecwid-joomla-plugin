@@ -344,7 +344,7 @@ display: none;
 
 .general-settings .section {
 	line-height: 24px;
-	height: 94px;
+	height: 80px;
 	display: table;
 	vertical-align: middle;
 	width: 640px;
@@ -377,4 +377,12 @@ display: none;
 .general-settings .section .secondary-info {
 	font-size: 12px;
 	line-height: 20px;
+}
+
+.general-settings .disconnect-store-id,
+.general-settings .disconnect-store-id a:not(:hover)
+{
+	font-size: 11px;
+	color: #bbbbbb;
+	margin: 10px 0px;
 }

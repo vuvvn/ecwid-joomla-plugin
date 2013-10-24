@@ -37,8 +37,6 @@
 				</div>
 			</div>
 
-			<hr />
-
 			<div class="section">
 				<div class="left">
 					<span class="main-info">
@@ -76,17 +74,14 @@
 				</div>
 			</div>
 
-			<hr />
+			<div class="disconnect-store-id">
+				<?php
+					echo sprintf(
+						__('If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>.', 'ecwid-shopping-cart'),
+						'href="#" onClick="javascript:document.forms[\'settings\'].submit(); return false;"'
+					);
+				?>
 
-			<div class="section">
-				<div class="left secondary-info">
-					<?php
-						echo sprintf(
-							__('If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>.', 'ecwid-shopping-cart'),
-							'href="#" onClick="javascript:document.forms[\'settings\'].submit(); return false;"'
-						);
-					?>
- 				</div>
 			</div>
 
 			<hr />
