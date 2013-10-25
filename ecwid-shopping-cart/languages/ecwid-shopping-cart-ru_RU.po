@@ -151,7 +151,7 @@ msgid "Table view"
 msgstr "Вид \"таблица\""
 
 msgid "Here you can control how many products will be displayed per page. These options define maximum values. If there is not enough space to show all product columns, Ecwid will adapt the number of columns to hold all products."
-msgstr "Здесь вы можете задать количество отображаемых продуктов на странице. Эти цифры определяют максимальные значения. Если на  странице будет недостаточно места, чтобы отобразить все стобцы сетки продуктов, Ecwid уменьшит их количество."
+msgstr "Здесь вы можете задать количество отображаемых продуктов на странице. Эти цифры определяют максимальные значения. Если на странице в сетке продуктов будет недостаточно места для отображения всех столбцов, Ecwid уменьшит их количество."
 
 msgid "Default view mode on product pages"
 msgstr "Вид страницы продуктов по умолчанию"
