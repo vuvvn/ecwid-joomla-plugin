@@ -3,7 +3,7 @@ Contributors: Ecwid Team
 Tags: ecwid, shopping cart, ecommerce, wordpress ecommerce, wp e-commerce, paypal, e-commerce, online store, store, shop, cart, online shop, shopping, digital goods, downloadable products, product catalog, ecomerce, products, facebook, f-commerce
 Requires at least: 2.8
 Tested up to: 3.7
-Stable tag: 1.8
+Stable tag: 2.0
 
 Ecwid is a free full-featured shopping cart that can easily be added to any blog
 and takes less than 5 minutes to set up.
@@ -78,6 +78,22 @@ http://codex.wordpress.org/Managing_Plugins#Installing_Plugins
 - Knowledge Base: [http://kb.ecwid.com](http://kb.ecwid.com)
 
 == Changelog ==
+= 2.0 =
+- **New revamped plugin settings**: the new settings layout makes the plugin easy and intuitive for starters, yet powerful and advanced for experienced merchants.
+
+- **Multilingual plugin backend**: the plugin settings now support multilanguage. Currently available in English and Russian. More translations are coming!
+
+- **SEO improvements**
+  - Auto generated meta description tags for the product and category pages. Now, Google should properly index product/category descriptions and display them in the search results.
+  - &lt;title&gt; tags for categories. The SEO category pages in your store now include both title and description tags so they will appear in Google search results properly.
+
+- **Smooth HTTP/HTTPS switch**: Ecwid always transfers all sensitive data using secure HTTPS connection and a special 'HTTPS' option in the Ecwid plugin settings is not necessary anymore. Now, the plugin detects connection type and adjust Ecwid integration codes automatically. No manual adjustments are needed regardless of whether you run your site under HTTP or HTTPS.
+
+- **Improved compatibility with CloudFlare Rocket Loader**: previously, using CloudFlare Rocket Loader along with Ecwid might cause intermittent loading issues for some stores. We've improved the plugin code to prevent such issues.
+
+= 1.8.1 =
+- [!] Fixed meta title tag display issue on the main store page appeared with the version 1.8 : in some cases, the store page title tag was stripped. Now it should work OK.
+
 = 1.8 =
 - [+] Improved compatibility with popular SEO plugins (Yoast WordPress SEO, All in one SEO Pack and Platinum SEO pack) : now Ecwid prevents them from generating wrong title and canonical tags on the product pages.
 - [+] Ability to display separate categories on separate pages with custom shortcodes. Now, the plugin allows setting different default categories for different store pages. So if you have multiple store pages and want to display specific categories on them, you can set up a default category for each of them in the [ecwid\_productbrowser] shortcode like this: [ecwid\_productbrowser default\_category\_id="12345"] . On the other hand, if you have one store page, you can set the default category on the plugin settings page as usual.
