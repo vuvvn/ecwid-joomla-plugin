@@ -77,17 +77,9 @@ if (version_compare($version, '3.6') < 0) {
 }
 
 function ecwid_load_textdomain() {
-	if ($_GET['force_language']) {
-		load_textdomain('ecwid-shopping-cart', ECWID_PLUGIN_DIR . '/languages/ecwid-shopping-cart-' . $_GET['force_language'] . '.mo');
-	} else {
-		load_plugin_textdomain( 'ecwid-shopping-cart', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
-	}
+	load_plugin_textdomain( 'ecwid-shopping-cart', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
-function ecwid_load_default_textdomain()
-{
-//	load_textdomain('ecwid-shopping-cart', dirname( plugin_basename( __FILE__ ) ) . '/languages/ecwid-shopping-cart-en_US.mo');
-}
-add_filter('load_textdomain', 'ecwid_load_default_textdomain');
+
 add_filter( 'plugins_loaded', 'ecwid_load_textdomain' );
 
 function ecwid_backward_compatibility() {
