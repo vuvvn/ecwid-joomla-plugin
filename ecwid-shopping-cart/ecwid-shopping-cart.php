@@ -55,24 +55,28 @@ if (version_compare($version, '3.6') < 0) {
      * http://core.trac.wordpress.org/browser/tags/3.6/wp-includes/shortcodes.php
      */
 
-    function shortcode_exists( $tag ) {
-        global $shortcode_tags;
-	        return array_key_exists( $tag, $shortcode_tags );
+	if (!function_exists('shortcode_exists')) {
+		function shortcode_exists( $tag ) {
+			global $shortcode_tags;
+				return array_key_exists( $tag, $shortcode_tags );
+		}
 	}
 
-    function has_shortcode( $content, $tag ) {
-        if ( shortcode_exists( $tag ) ) {
-            preg_match_all( '/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER );
-            if ( empty( $matches ) )
-                return false;
+	if (!function_exists('has_shortcode')) {
+		function has_shortcode( $content, $tag ) {
+			if ( shortcode_exists( $tag ) ) {
+				preg_match_all( '/' . get_shortcode_regex() . '/s', $content, $matches, PREG_SET_ORDER );
+				if ( empty( $matches ) )
+					return false;
 
-            foreach ( $matches as $shortcode ) {
-                if ( $tag === $shortcode[2] ) {
-                    return true;
-                }
-            }
-        }
-		return false;
+				foreach ( $matches as $shortcode ) {
+					if ( $tag === $shortcode[2] ) {
+						return true;
+					}
+				}
+			}
+			return false;
+		}
 	}
 }
 
