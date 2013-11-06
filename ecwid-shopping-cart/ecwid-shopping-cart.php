@@ -563,12 +563,14 @@ function ecwid_show_admin_message() {
 	if (get_ecwid_store_id() != ECWID_DEMO_STORE_ID || $_GET['page'] == 'ecwid') {
 		return;
 	} else {
+		$class = version_compare(get_bloginfo('version'), '3.0') < 0 ? "updated fade" : "update-nag";
 		$ecwid_page_id = get_option("ecwid_store_page_id");
 		$page_url = get_page_link($ecwid_page_id);
 		echo sprintf(
-			'<div class="updated fade"><p>'
+			'<div class="%s">'
 			. __('<strong>Ecwid shopping cart is almost ready</strong>. Please visit <a target="_blank" href="%s">the created page</a> to see your store with demo products. In order to finish the installation, please go to the <a href="admin.php?page=ecwid"><strong>Ecwid settings</strong></a> and configure the plugin.', 'ecwid-shopping-cart')
-			. '</p></div>',
+			. '</div>',
+			$class,
 			$page_url
 		);
 	}
