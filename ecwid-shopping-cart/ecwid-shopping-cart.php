@@ -37,12 +37,13 @@ if ( is_admin() ){
   add_shortcode('ecwid_categories', 'ecwid_categories_shortcode');
   add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
   add_action('init', 'ecwid_backward_compatibility');
+  add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_filter('wp_title', 'ecwid_seo_title', 20);
+  add_action('wp_head', 'ecwid_meta_description', 0);
   add_action('wp_head', 'ecwid_ajax_crawling_fragment');
   add_action('wp_head', 'ecwid_meta');
-  add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_action('wp_head', 'ecwid_seo_compatibility_restore', 1000);
-  add_action('wp_head', 'ecwid_meta_description', 0);
+  add_filter( 'widget_meta_poweredby', 'ecwid_add_credits');
   $ecwid_seo_title = '';
 }
 add_action('admin_bar_menu', 'add_ecwid_admin_bar_node', 1000);
@@ -344,6 +345,19 @@ function ecwid_seo_title($content) {
     return $content;
   }
 }
+
+function ecwid_add_credits($old_powered_by)
+{
+	if (!ecwid_is_paid_account()) {
+		return $old_powered_by
+			. sprintf(
+				'<li><a href="http://ecwid.com/?source=wporg" title="%s">%s</a></li>',
+				__('Store powered by Ecwid', 'ecwid-shopping-cart'),
+				'Ecwid.com'
+			);
+	}
+}
+
 
 function ecwid_wrap_shortcode_content($content)
 {
