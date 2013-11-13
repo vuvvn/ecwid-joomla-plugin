@@ -129,22 +129,31 @@ function ecwid_seo_compatibility_init($title)
     // Default wordpress canonical
     remove_action( 'wp_head','rel_canonical');
 
-    // Canonical for Yoast Wordpress SEO
+    // Yoast Wordpress SEO
     global $wpseo_front;
+	// Canonical
     remove_action( 'wpseo_head', array( $wpseo_front, 'canonical' ), 20);
+	// Title
+	remove_action( 'get_header', array( $wpseo_front, 'force_rewrite_output_buffer' ) );
+	remove_action( 'wp_footer', array( $wpseo_front, 'flush_cache'));
+	// Description
 	remove_action( 'wpseo_head', array( $wpseo_front, 'metadesc' ), 10 );
 
-    // Canonical for Platinum SEO Pack
+	// Platinum SEO Pack
+    // Canonical
     ecwid_override_option('psp_canonical', false);
-    // Title for Platinum SEO Pack
+    // Title
     ecwid_override_option('aiosp_rewrite_titles', false);
 
+	// All in one SEO Pack
     global $aioseop_options, $aiosp;
-    // Canonical for All in One SEO Pack
+    // Canonical
     $aioseop_options['aiosp_can'] = false;
-    // Title for All in One SEO Pack
-	add_filter('aioseop_description', __return_null);
+    // Title
 	add_filter('aioseop_title', __return_null);
+	// Description
+	add_filter('aioseop_description', __return_null);
+
 
 	return $title;
 
