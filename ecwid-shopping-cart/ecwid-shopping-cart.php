@@ -668,7 +668,8 @@ function ecwid_register_settings_styles() {
 
 
 function ecwid_settings_api_init() {
-	switch ($_POST['settings_section']) {
+
+	if (isset($_POST['settings_section'])) switch ($_POST['settings_section']) {
 		case 'appearance':
 			register_setting('ecwid_options_page', 'ecwid_enable_minicart');
 
