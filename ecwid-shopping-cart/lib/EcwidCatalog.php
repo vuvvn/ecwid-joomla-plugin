@@ -159,6 +159,7 @@ class EcwidCatalog
 	{
 		$params = array
 		(
+			array('alias' => 'category', "action" => "category", "params" => array("id" => $id)),
 			array("alias" => "c", "action" => "categories", "params" => array("parent" => $id)),
 			array("alias" => "p", "action" => "products", "params" => array("category" => $id)),
 			array("alias" => "pf", "action" => "profile")
@@ -166,11 +167,13 @@ class EcwidCatalog
 
 		$batch_result = $this->ecwid_api->get_batch_request($params);
 
+		$category 	= $batch_result["category"];
 		$categories = $batch_result["c"];
 		$products   = $batch_result["p"];
 		$profile	= $batch_result["pf"];
 
-		$return = '';
+		$return = '<h1>' . esc_html($category['name']) . '</h1>';
+		$return .= '<div>' . $category['description'] . '</div';
 
 		if (is_array($categories)) 
 		{
