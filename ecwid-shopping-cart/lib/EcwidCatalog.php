@@ -37,7 +37,7 @@ class EcwidCatalog
 		{
 		
 			$return = '<div itemscope itemtype="http://schema.org/Product">';
-			$return .= '<h1 class="ecwid_catalog_product_name" itemprop="name">' . esc_html($product["name"]) . '</h1>';
+			$return .= '<h2 class="ecwid_catalog_product_name" itemprop="name">' . esc_html($product["name"]) . '</h2>';
 			$return .= '<p class="ecwid_catalog_product_sku" itemprop="sku">' . esc_html($product["sku"]) . '</p>';
 			
 			if (!empty($product["thumbnailUrl"])) 
@@ -172,7 +172,7 @@ class EcwidCatalog
 		$products   = $batch_result["p"];
 		$profile	= $batch_result["pf"];
 
-		$return = '<h1>' . esc_html($category['name']) . '</h1>';
+		$return = '<h2>' . esc_html($category['name']) . '</h2>';
 		$return .= '<div>' . $category['description'] . '</div';
 
 		if (is_array($categories)) 
