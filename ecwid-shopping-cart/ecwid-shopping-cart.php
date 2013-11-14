@@ -31,6 +31,7 @@ if ( is_admin() ){
   add_action('admin_enqueue_scripts', 'ecwid_register_admin_styles');
   add_action('admin_enqueue_scripts', 'ecwid_register_settings_styles');
   add_action('wp_ajax_ecwid_hide_vote_message', 'ecwid_hide_vote_message');
+  add_filter('plugins_loaded', 'ecwid_load_textdomain');
 
 } else {
   add_shortcode('ecwid_script', 'ecwid_script_shortcode');
@@ -39,6 +40,7 @@ if ( is_admin() ){
   add_shortcode('ecwid_categories', 'ecwid_categories_shortcode');
   add_shortcode('ecwid_productbrowser', 'ecwid_productbrowser_shortcode');
   add_action('init', 'ecwid_backward_compatibility');
+  add_action('template_redirect', 'ecwid_404_on_broken_escaped_fragment');
   add_action('wp_title', 'ecwid_seo_compatibility_init', 0);
   add_filter('wp_title', 'ecwid_seo_title', 20);
   add_action('wp_head', 'ecwid_meta_description', 0);
@@ -87,7 +89,26 @@ function ecwid_load_textdomain() {
 	load_plugin_textdomain( 'ecwid-shopping-cart', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 }
 
-add_filter( 'plugins_loaded', 'ecwid_load_textdomain' );
+function ecwid_404_on_broken_escaped_fragment() {
+	$params = ecwid_parse_escaped_fragment($_GET['_escaped_fragment_']);
+	include_once WP_PLUGIN_DIR . '/ecwid-shopping-cart/lib/ecwid_product_api.php';
+
+	$api = ecwid_new_product_api();
+
+	if (isset($params['mode']) && !empty($params['mode']) && isset($params['id'])) {
+		$result = array();
+		if ($params['mode'] == 'product') {
+			$result = $api->get_product($params['id']);
+		} elseif ($params['mode'] == 'category') {
+			$result = $api->get_category($params['id']);
+		}
+		if (empty($result)) {
+			global $wp_query;
+
+			$wp_query->set_404();
+		}
+	}
+}
 
 function ecwid_backward_compatibility() {
     // Backward compatibility with 1.1.2 and earlier
