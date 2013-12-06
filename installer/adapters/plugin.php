@@ -1,9 +1,9 @@
 <?php
 /**
  * @package   Installer Bundle Framework - RocketTheme
- * @version   1.7 July 15, 2011
+ * @version   2.0.2 November 5, 2013
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2011 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Installer uses the Joomla Framework (http://www.joomla.org), a GNU/GPLv2 content management system

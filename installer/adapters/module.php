@@ -1,9 +1,9 @@
 <?php
 /**
  * @package   Installer Bundle Framework - RocketTheme
- * @version   1.7 July 15, 2011
+ * @version   2.0.2 November 5, 2013
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2011 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Installer uses the Joomla Framework (http://www.joomla.org), a GNU/GPLv2 content management system
@@ -12,8 +12,7 @@
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die();
 
-if (!class_exists("JInstallerModule"))
-{
+if (!class_exists("JInstallerModule")) {
     @include_once(JPATH_LIBRARIES . '/joomla/installer/adapters/module.php');
 }
 /**
@@ -138,8 +137,7 @@ class RokInstallerModule extends JInstallerModule
 
     protected function updateExtension(&$extension)
     {
-        if ($extension)
-        {
+        if ($extension) {
             $extension->access = $this->access;
             $extension->enabled = $this->enabled;
             $extension->protected = $this->protected;
@@ -167,15 +165,16 @@ class RokInstallerModule extends JInstallerModule
         // update the extension info
         $this->updateExtension($extention);
 
-        if(strtolower($this->route) == 'install')
-        {
-            // remove the auto installed module instance
-            $this->removeInstances($extention->element);
-        }
+        if ($this->getInstallType() != 'update') {
+            if (strtolower($this->route) == 'install') {
+                // remove the auto installed module instance
+                $this->removeInstances($extention->element);
+            }
 
-        foreach($coginfo->module as $moduleinfo)
-        {
-            $this->addInstance($extention->element, $moduleinfo);
+            foreach ($coginfo->module as $moduleinfo)
+            {
+                $this->addInstance($extention->element, $moduleinfo);
+            }
         }
 
     }
@@ -192,8 +191,8 @@ class RokInstallerModule extends JInstallerModule
         $db = $this->parent->getDbo();
         // Lets delete all the module copies for the type we are uninstalling
         $query = 'SELECT `id`' .
-                 ' FROM `#__modules`' .
-                 ' WHERE module = ' . $db->Quote($module_name);
+            ' FROM `#__modules`' .
+            ' WHERE module = ' . $db->Quote($module_name);
         $db->setQuery($query);
 
         try
@@ -206,16 +205,15 @@ class RokInstallerModule extends JInstallerModule
         }
 
         // Do we have any module copies?
-        if (count($modules))
-        {
+        if (count($modules)) {
             // Ensure the list is sane
             JArrayHelper::toInteger($modules);
             $modID = implode(',', $modules);
 
             // Wipe out any items assigned to menus
             $query = 'DELETE' .
-                     ' FROM #__modules_menu' .
-                     ' WHERE moduleid IN (' . $modID . ')';
+                ' FROM #__modules_menu' .
+                ' WHERE moduleid IN (' . $modID . ')';
             $db->setQuery($query);
             try
             {
@@ -229,8 +227,8 @@ class RokInstallerModule extends JInstallerModule
 
             // Wipe out any instances in the modules table
             $query = 'DELETE' .
-                     ' FROM #__modules' .
-                     ' WHERE id IN (' . $modID . ')';
+                ' FROM #__modules' .
+                ' WHERE id IN (' . $modID . ')';
             $db->setQuery($query);
 
             try
@@ -245,7 +243,8 @@ class RokInstallerModule extends JInstallerModule
         }
     }
 
-    protected function addInstance($module_name, &$moduleInfo){
+    protected function addInstance($module_name, &$moduleInfo)
+    {
 
         $db = $this->parent->getDbo();
 
@@ -256,8 +255,8 @@ class RokInstallerModule extends JInstallerModule
         if ($moduleInfo['position']) $module->set('position', (string)$moduleInfo['position']);
         if ($moduleInfo['access']) $module->set('access', (int)$moduleInfo['access']);
         if ($moduleInfo['ordering']) $module->set('ordering', (int)$moduleInfo['ordering']);
-        $module->set('language', ($moduleInfo['language'])?(string)$moduleInfo['language']:'*');
-        if ($moduleInfo['published']){
+        $module->set('language', ($moduleInfo['language']) ? (string)$moduleInfo['language'] : '*');
+        if ($moduleInfo['published']) {
             $published = (string)$moduleInfo['published'];
             switch (strtolower($published))
             {
@@ -273,7 +272,7 @@ class RokInstallerModule extends JInstallerModule
             }
             $module->set('published', $published);
         }
-        if ($moduleInfo['showtitle']){
+        if ($moduleInfo['showtitle']) {
             $showtitle = (string)$moduleInfo['showtitle'];
             switch (strtolower($showtitle))
             {
@@ -289,7 +288,7 @@ class RokInstallerModule extends JInstallerModule
             }
             $module->set('showtitle', $showtitle);
         }
-        if($moduleInfo['client']){
+        if ($moduleInfo['client']) {
             $client = (string)$moduleInfo['client'];
             switch ($client)
             {
@@ -305,25 +304,24 @@ class RokInstallerModule extends JInstallerModule
             }
             $module->set('client_id', $client_id);
         }
-        if($moduleInfo->params){
+        if ($moduleInfo->params) {
             $module->set('params', (string)$moduleInfo->params);
         }
-        if($moduleInfo->content){
+        if ($moduleInfo->content) {
             $module->set('content', (string)$moduleInfo->content);
         }
-        if($moduleInfo->note){
+        if ($moduleInfo->note) {
             $module->set('note', (string)$moduleInfo->note);
         }
         $module->store();
 
         $module_id = $db->insertid();
 
-        $query	= $db->getQuery(true);
-        if ($moduleInfo['assigned'] && strtolower((string)$moduleInfo['assigned']) == 'all')
-        {
+        $query = $db->getQuery(true);
+        if ($moduleInfo['assigned'] && strtolower((string)$moduleInfo['assigned']) == 'all') {
             $query->clear();
             $query->insert('#__modules_menu');
-            $query->set('moduleid='.(int)$module_id);
+            $query->set('moduleid=' . (int)$module_id);
             $query->set('menuid=0');
             $db->setQuery((string)$query);
             $db->query();
