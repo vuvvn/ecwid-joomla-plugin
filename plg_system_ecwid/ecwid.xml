@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <extension group="system" method="upgrade" type="plugin" version="2.5">
-    <name>System - RokEcwid</name>
+    <name>System - Ecwid</name>
     <creationDate>December 5, 2013</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
@@ -8,10 +8,10 @@
     <copyright>(C) 2009 - 2013 Ecwid, Inc.(C)</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <version>1.5</version>
-    <description>Support Plugin for RokECWID</description>
+    <description>Support Plugin for Ecwid</description>
     <files>
         <filename>index.html</filename>
-        <filename plugin="rokecwid">rokecwid.php</filename>
+        <filename plugin="ecwid">ecwid.php</filename>
     </files>
     <config/>
 </extension>

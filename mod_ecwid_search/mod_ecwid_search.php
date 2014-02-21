@@ -1,6 +1,6 @@
 <?php
 /**
- * @version   $Id: mod_rokecwid_search.php 6867 2013-01-28 23:08:31Z btowles $
+ * @version   $Id: mod_ecwid_search.php 6867 2013-01-28 23:08:31Z btowles $
  * @author    RocketTheme http://www.rockettheme.com
  * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
@@ -20,18 +20,18 @@ if (!defined('ECWID_SCRIPT')) define('ECWID_SCRIPT',1);
 
 global $ecwid_itemid, $Itemid, $option;
 
-if ($option=='com_rokecwid') {
+if ($option=='com_ecwid') {
 	$ecwid_itemid = $Itemid;
 } elseif (!isset($ecwid_itemid)) {
 	$db = JFactory::getDBO();
-	$queryitemid = "SELECT id FROM #__menu WHERE type='component' AND link LIKE '%com_rokecwid%view=ecwid%' ORDER BY id ASC LIMIT 1";
+	$queryitemid = "SELECT id FROM #__menu WHERE type='component' AND link LIKE '%com_ecwid%view=ecwid%' ORDER BY id ASC LIMIT 1";
 	$db->setQuery($queryitemid);
 	$ecwid_itemid = $db->loadResult();
 }
 
 ?>
 <script type="text/javascript">
-	var ecwid_ProductBrowserURL = "<?php echo JRoute::_('index.php?option=com_rokecwid&Itemid='.$ecwid_itemid, true); ?>";
+	var ecwid_ProductBrowserURL = "<?php echo JRoute::_('index.php?option=com_ecwid&Itemid='.$ecwid_itemid, true); ?>";
 </script>
 
 <div id="ecwid_search_module_wrapper">

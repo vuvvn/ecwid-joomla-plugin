@@ -5,12 +5,12 @@
  * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  */
-if (!class_exists('PlgSystemrokecwid_installerInstallerScript')) {
+if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 
 	/**
 	 *
 	 */
-	class PlgSystemrokecwid_installerInstallerScript
+	class PlgSystemecwid_installerInstallerScript
 	{
 		/**
 		 * @var array

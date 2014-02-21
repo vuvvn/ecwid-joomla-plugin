@@ -17,7 +17,7 @@
 
 <h1>Configure your Ecwid Shop in Joomla!</h1>
 
-<p>RokEcwid component works as a bridge between Ecwid and Joomla!. In just few steps your store will be up and
+<p>Ecwid component works as a bridge between Ecwid and Joomla!. In just few steps your store will be up and
 	running.</p>
 <ul class="steps">
 	<li class="first">
@@ -33,15 +33,15 @@
 		<p>Once you are set with your store, copy the Store ID from the footer (bottom right) of the Ecwid Control
 			Panel, like in the screenshot below. In this case it will be <strong>1003</strong>.</p>
 
-		<p><img src="components/com_rokecwid/assets/images/sshot-1.jpg" alt="Screenshot 1" width="198" height="88"/></p>
+		<p><img src="components/com_ecwid/assets/images/sshot-1.jpg" alt="Screenshot 1" width="198" height="88"/></p>
 	</li>
 	<li class="third">
-		<h3>Set your Store ID on RokEcwid</h3>
+		<h3>Set your Store ID on Ecwid</h3>
 
 		<p>After you have retrieved your Store ID, set it into the Store ID field on the right, in this page and
 			save.</p>
 
-		<p><img src="components/com_rokecwid/assets/images/sshot-2.jpg" alt="Screenshot 2" width="288" height="160"/>
+		<p><img src="components/com_ecwid/assets/images/sshot-2.jpg" alt="Screenshot 2" width="288" height="160"/>
 		</p>
 	</li>
 	<p class="bottom">For more information you can check the <a target="_blank" href="http://www.ecwid.com/?source=joomlaext_30">Ecwid

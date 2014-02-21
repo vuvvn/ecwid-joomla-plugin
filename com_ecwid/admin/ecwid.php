@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    $Id: rokecwid.php 10741 2013-05-28 17:02:09Z steph $
+ * @version    $Id: ecwid.php 10741 2013-05-28 17:02:09Z steph $
  * @author     RocketTheme http://www.rockettheme.com
  * @copyright  Copyright (C) 2007 - 2013 RocketTheme, LLC
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
@@ -22,7 +22,7 @@ include_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/legacy_class.php');
 require_once( JPATH_COMPONENT_ADMINISTRATOR.'/controller.php' );
 
 
-$controller = RokEcwidLegacyJController::getInstance('RokEcwid');
+$controller = EcwidLegacyJController::getInstance('Ecwid');
 $controller->execute(JFactory::getApplication()->input->getCmd('task'));
 $controller->redirect();
 ?>

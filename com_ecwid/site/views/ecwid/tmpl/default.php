@@ -17,7 +17,7 @@ if (!defined('ECWID_SCRIPT')) {
 $app = JFactory::getApplication();
 $params = $app->getParams();
 
-include_once (JPATH_SITE . '/components/com_rokecwid/helpers/ecwid_catalog.php');
+include_once (JPATH_SITE . '/components/com_ecwid/helpers/ecwid_catalog.php');
 
 list($column_grid, $row_grid) = explode(",", $params->get('grid', '3,3'));
 

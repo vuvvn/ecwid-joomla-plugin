@@ -27,7 +27,7 @@ jimport('joomla.application.component.controller');
  */
 include_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/legacy_class.php');
 
-class RokEcwidController extends RokEcwidLegacyJController
+class EcwidController extends EcwidLegacyJController
 {
 	protected $default_view = 'default';
 }

@@ -22,30 +22,30 @@ $model = $this->getModel();
 <script type="text/javascript">
 	Joomla.submitbutton = function(task)
 	{
-		if (task == 'rokbridge.cancel' || document.formvalidator.isValid(document.id('rokecwid-form'))) {
-			Joomla.submitform(task, document.getElementById('rokecwid-form'));
+		if (task == 'rokbridge.cancel' || document.formvalidator.isValid(document.id('ecwid-form'))) {
+			Joomla.submitform(task, document.getElementById('ecwid-form'));
 		}
 		else {
 			alert('<?php echo $this->escape(JText::_('JGLOBAL_VALIDATION_FORM_FAILED'));?>');
 		}
 	}
 </script>
-<form action="<?php echo JRoute::_('index.php?option=com_rokecwid&controller=default&layout=default'); ?>" method="post" name="adminForm" id="rokecwid-form" class="form-validate">
+<form action="<?php echo JRoute::_('index.php?option=com_ecwid&controller=default&layout=default'); ?>" method="post" name="adminForm" id="ecwid-form" class="form-validate">
 	<table class="noshow">
 		<tr valign="top">
 			<td width="60%">
-				<div id="rokecwid-guide">
+				<div id="ecwid-guide">
 					<h2>Guide</h2>
 
-					<div id="rokecwid-wrapper">
-						<div id="rokecwid-content">
+					<div id="ecwid-wrapper">
+						<div id="ecwid-content">
 							<?php echo $this->loadTemplate('guide'); ?>
 						</div>
 					</div>
 				</div>
 			</td>
 			<td width="40%">
-				<div id="rokecwid-config">
+				<div id="ecwid-config">
 					<h2>Configuration</h2>
 					<?php echo $this->render(); ;?>
 
@@ -58,7 +58,7 @@ $model = $this->getModel();
 		</tr>
 	</table>
     <input type="hidden" name="controller" value="default" />
-    <input type="hidden" name="option" value="com_rokecwid" />
+    <input type="hidden" name="option" value="com_ecwid" />
     <input type="hidden" name="task" value="" />
     <?php echo JHtml::_('form.token'); ?>
 </form>

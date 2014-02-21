@@ -23,11 +23,11 @@ jimport('joomla.application.component.controller');
 /**
  * ecwid Component Controller
  */
-class RokEcwidController extends RokEcwidLegacyJController {
+class EcwidController extends EcwidLegacyJController {
 	function display($cachable = false, $urlparams = array()) {
 
 		if (isset($_GET['ecwid_product_id']) || isset($_GET['ecwid_category_id'])) {
-		    $ecwid_page = RokEcwidController::buildEcwidUrl();
+		    $ecwid_page = EcwidController::buildEcwidUrl();
 		    $ecwid_page .= '#!/~/';
 
 		    if (isset($_GET['ecwid_product_id'])) {
@@ -84,7 +84,7 @@ class RokEcwidController extends RokEcwidLegacyJController {
     }
  
     static function buildEcwidUrl($url_with_anchor = '', $additional_get_params = array()) {
-        $request_uri  = parse_url(RokEcwidController::getRequestUri());
+        $request_uri  = parse_url(EcwidController::getRequestUri());
         $base_url = $request_uri['path'];
 
         // extract anchor

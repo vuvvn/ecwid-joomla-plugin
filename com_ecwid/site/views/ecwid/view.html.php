@@ -24,7 +24,7 @@ include_once(JPATH_COMPONENT_ADMINISTRATOR.'/helpers/legacy_class.php');
 /**
  * HTML View class for the ecwid component
  */
-class RokEcwidViewEcwid extends RokEcwidLegacyJView {
+class EcwidViewEcwid extends EcwidLegacyJView {
 	function display($tpl = null) {
 
         $this->_prepareDocument();

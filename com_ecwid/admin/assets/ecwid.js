@@ -1,5 +1,5 @@
 /**
- * @version   $Id: rokecwid.js 6867 2013-01-28 23:08:31Z btowles $
+ * @version   $Id: ecwid.js 6867 2013-01-28 23:08:31Z btowles $
  * @author    RocketTheme http://www.rockettheme.com
  * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only

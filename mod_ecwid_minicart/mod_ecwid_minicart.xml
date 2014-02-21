@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <extension client="site" method="upgrade" type="module" version="2.5">
-    <name>RokEcwid Mini-cart Module</name>
+    <name>Ecwid Mini-cart Module</name>
     <creationDate>December 5, 2013</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
@@ -10,7 +10,7 @@
     <version>1.5</version>
     <description>Module to show the ECWID mini-cart</description>
     <files>
-        <filename module="mod_rokecwid_minicart">mod_rokecwid_minicart.php</filename>
+        <filename module="mod_ecwid_minicart">mod_ecwid_minicart.php</filename>
         <filename>index.html</filename>
     </files>
     <config>

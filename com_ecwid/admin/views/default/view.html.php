@@ -31,17 +31,17 @@ include_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/legacy_class.php');
  * @since          1.0
  */
 
-class RokEcwidViewDefault extends RokEcwidLegacyJView
+class EcwidViewDefault extends EcwidLegacyJView
 {
 	/**
 	 * Display the view
 	 */
 	public function display($tpl = null)
 	{
-		$option   = JFactory::getApplication()->input->getWord('option', 'com_rokecwid');
+		$option   = JFactory::getApplication()->input->getWord('option', 'com_ecwid');
 		$document = JFactory::getDocument();
-		$document->addStyleSheet('components/' . $option . '/assets/rokecwid.css');
-		$document->addScript('components/' . $option . '/assets/rokecwid.js');
+		$document->addStyleSheet('components/' . $option . '/assets/ecwid.css');
+		$document->addScript('components/' . $option . '/assets/ecwid.js');
 
 		// Initialiase variables.
 		$this->form   = $this->get('form');
@@ -54,7 +54,7 @@ class RokEcwidViewDefault extends RokEcwidLegacyJView
 		$uri = JFactory::getURI();
 
 		$document = JFactory::getDocument();
-		$document->setTitle(JText::_('RokEcwid Edit Configuration'));
+		$document->setTitle(JText::_('Ecwid Edit Configuration'));
 		parent::display($tpl);
 	}
 
@@ -65,9 +65,9 @@ class RokEcwidViewDefault extends RokEcwidLegacyJView
 	 */
 	protected function addToolbar()
 	{
-		JToolBarHelper::title(JText::_('COM_ROKECWID_CONFIGURATION'));
-        JToolBarHelper::save('default.save', 'COM_ROKECWID_SAVE');
-        JToolBarHelper::cancel('default.cancel', 'COM_ROKECWID_RESET');
+		JToolBarHelper::title(JText::_('COM_ECWID_CONFIGURATION'));
+        JToolBarHelper::save('default.save', 'COM_ECWID_SAVE');
+        JToolBarHelper::cancel('default.cancel', 'COM_ECWID_RESET');
 
 		JToolBarHelper::divider();
 	}
@@ -79,12 +79,12 @@ class RokEcwidViewDefault extends RokEcwidLegacyJView
 		}
 
 		$html   = array();
-		$html[] = '<div id="rokecwid-paramslist">';
+		$html[] = '<div id="ecwid-paramslist">';
 
 		//		if ($description = $self->_xml[$group]->attributes('description')) {
 		//			// add the params description to the display
 		//			$desc	= JText::_($description);
-		//			$html[]	= '<div id="rokecwid-params-description>'.$desc.'</div>';
+		//			$html[]	= '<div id="ecwid-params-description>'.$desc.'</div>';
 		//		}
 
 		$fields = $this->form->getFieldset('params');
@@ -108,7 +108,7 @@ class RokEcwidViewDefault extends RokEcwidLegacyJView
 				$class = ' last';
 			}
 
-			$html[] = '<div class="rokecwid-row' . $class . '">';
+			$html[] = '<div class="ecwid-row' . $class . '">';
 
 			if ($field->label != '') {
 				$html[] = '<div class="label"><span>' . $field->label . '</span></div>';

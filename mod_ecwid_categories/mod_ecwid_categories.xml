@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <extension client="site" method="upgrade" type="module" version="2.5">
-    <name>RokEcwid Categories Module</name>
+    <name>Ecwid Categories Module</name>
     <creationDate>December 5, 2013</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
@@ -11,7 +11,7 @@
     <description>Module to show the ECWID store categories</description>
     <files>
         <filename>index.html</filename>
-        <filename module="mod_rokecwid_categories">mod_rokecwid_categories.php</filename>
+        <filename module="mod_ecwid_categories">mod_ecwid_categories.php</filename>
     </files>
     <config>
         <fields name="params">

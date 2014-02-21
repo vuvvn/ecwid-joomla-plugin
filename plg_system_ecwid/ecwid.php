@@ -1,6 +1,6 @@
 <?php
 /**
- * @version    $Id: rokecwid.php 11282 2013-06-06 13:23:58Z steph $
+ * @version    $Id: ecwid.php 11282 2013-06-06 13:23:58Z steph $
  * @author     RocketTheme http://www.rockettheme.com
  * @copyright  Copyright (C) 2007 - 2013 RocketTheme, LLC
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
@@ -19,7 +19,7 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.plugin.plugin');
 
-class plgSystemRokEcwid extends JPlugin
+class plgSystemEcwid extends JPlugin
 {
 	/**
 	 * Constructor
@@ -35,7 +35,7 @@ class plgSystemRokEcwid extends JPlugin
 	 *
 	 * @since    1.0
 	 */
-	function plgSystemRokEcwid(& $subject, $config)
+	function plgSystemEcwid(& $subject, $config)
 	{
 		parent::__construct($subject, $config);
 	}
@@ -81,7 +81,7 @@ class plgSystemRokEcwid extends JPlugin
 		//print_r ($body);
 
 		if (defined('ECWID_SCRIPT')) {
-			$eparams = JComponentHelper::getParams('com_rokecwid');
+			$eparams = JComponentHelper::getParams('com_ecwid');
 			$body    = JResponse::getBody();
 
 			$ecwid_script = "app.ecwid.com/script.js";

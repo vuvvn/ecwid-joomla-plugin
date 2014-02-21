@@ -7,33 +7,33 @@
  */
 defined('_JEXEC') or die('Restricted access');
 
-if (!class_exists('RokEcwidLegacyJView', false)) {
+if (!class_exists('EcwidLegacyJView', false)) {
 	$jversion = new JVersion();
 	if (version_compare($jversion->getShortVersion(), '2.5.5', '>')) {
-		class RokEcwidLegacyJView extends JViewLegacy
+		class EcwidLegacyJView extends JViewLegacy
 		{
 		}
 
-		class RokEcwidLegacyJController extends JControllerLegacy
+		class EcwidLegacyJController extends JControllerLegacy
 		{
 		}
 
-		class RokEcwidLegacyJModel extends JModelLegacy
+		class EcwidLegacyJModel extends JModelLegacy
 		{
 		}
 	} else {
 		jimport('joomla.application.component.view');
 		jimport('joomla.application.component.controller');
 		jimport('joomla.application.component.model');
-		class RokEcwidLegacyJView extends JView
+		class EcwidLegacyJView extends JView
 		{
 		}
 
-		class RokEcwidLegacyJController extends JController
+		class EcwidLegacyJController extends JController
 		{
 		}
 
-		class RokEcwidLegacyJModel extends JModel
+		class EcwidLegacyJModel extends JModel
 		{
 		}
 	}

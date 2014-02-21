@@ -21,13 +21,13 @@ jimport('joomla.application.component.modelform');
  * @package        Joomla
  * @subpackage     Config
  */
-class RokEcwidModelDefault extends JModelForm
+class EcwidModelDefault extends JModelForm
 {
 
 	/**
 	 * Get the params for the configuration variables
 	 */
-	function getParams($component = "com_rokecwid")
+	function getParams($component = "com_ecwid")
 	{
 		static $instance;
 
@@ -49,7 +49,7 @@ class RokEcwidModelDefault extends JModelForm
 	protected function loadFormData()
 	{
 		// Check the session for previously entered form data.
-		$data = JFactory::getApplication()->getUserState('com_rokecwid.default.default.data', array());
+		$data = JFactory::getApplication()->getUserState('com_ecwid.default.default.data', array());
 
 		if (empty($data)) {
 			$data = $this->getParams();
@@ -99,7 +99,7 @@ class RokEcwidModelDefault extends JModelForm
 		$params->set("storeID", trim($params->get("storeID")));
 
 		$table  = JTable::getInstance('extension');
-		$result = $table->find(array('element' => 'com_rokecwid'));
+		$result = $table->find(array('element' => 'com_ecwid'));
 		$table->load($result);
 
 		$table->params = $params->__toString();

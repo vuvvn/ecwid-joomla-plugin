@@ -21,12 +21,12 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * ecwid Common Helper
  */
-class RokEcwidCommon  {
+class EcwidCommon  {
 
 	function displayECWIDScript() {
 	
 		// Get Component parameters
-		$eparams = JComponentHelper::getParams( 'com_rokecwid' );
+		$eparams = JComponentHelper::getParams( 'com_ecwid' );
 		
 		$body = JResponse::getBody();
 		

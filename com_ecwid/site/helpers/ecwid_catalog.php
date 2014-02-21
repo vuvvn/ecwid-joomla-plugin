@@ -44,7 +44,7 @@ function show_ecwid($params) {
 		
 	$list_of_views = $params['list_of_views'];
 
-	$c = new EcwidCatalog($store_id, RokEcwidController::buildEcwidUrl());
+	$c = new EcwidCatalog($store_id, EcwidController::buildEcwidUrl());
 
     if (is_array($list_of_views))    
     	foreach ($list_of_views as $k=>$v) {
