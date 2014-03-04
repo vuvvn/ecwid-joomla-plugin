@@ -25,7 +25,35 @@ class EcwidControllerDefault extends JControllerForm
 		$this->registerTask('apply', 'save');
 	}
 
-	public function save($key = null, $urlVar = null)
+	public function saveAppearance()
+	{
+		$data = JFactory::getApplication()->input->get('jform', array(), 'array');
+		$data = array_merge(
+			array(
+				'displayCategories' => 0,
+				'displaySearchBox' => 0,
+				'displayMinicart' => 0,
+			),
+			$data
+		);
+
+		$result = $this->save($this->getModel()->getAppearanceForm(), $data);
+		// Redirect to the list screen.
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option. '&layout=appearance', false));
+
+		return $result;
+	}
+
+	public function saveGeneral()
+	{
+		$result = $this->save($this->getModel()->getAppearanceForm(), $data);
+		// Redirect to the list screen.
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&layout=general', false));
+
+		return $result;
+	}
+
+	public function save($form, $data = null)
 	{
 		// Check for request forgeries.
 		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
@@ -35,14 +63,13 @@ class EcwidControllerDefault extends JControllerForm
 		$lang  = JFactory::getLanguage();
 		$model = $this->getModel();
 
-		$data    = JFactory::getApplication()->input->get('jform', array(), 'array');
+		if (is_null($data)) {
+			$data = JFactory::getApplication()->input->get('jform', array(), 'array');
+		}
 		$context = "$this->option.edit.$this->context";
-		$task    = $this->getTask();
-
 
 		// Validate the posted data.
 		// Sometimes the form needs some posted data, such as for plugins and modules.
-		$form = $model->getForm($data, false);
 
 		if (!$form) {
 			$app->enqueueMessage($model->getError(), 'error');
@@ -90,11 +117,6 @@ class EcwidControllerDefault extends JControllerForm
 		}
 
 		$this->setMessage(JText::_(($lang->hasKey($this->text_prefix . ($app->isSite() ? '_SUBMIT' : '') . '_SAVE_SUCCESS') ? $this->text_prefix : 'JLIB_APPLICATION') . ($app->isSite() ? '_SUBMIT' : '') . '_SAVE_SUCCESS'));
-
-
-		// Redirect to the list screen.
-		$this->setRedirect(JRoute::_('index.php?option=' . $this->option, false));
-
 
 		// Invoke the postSave method to allow for the child class to access the model.
 		$this->postSaveHook($model, $validData);

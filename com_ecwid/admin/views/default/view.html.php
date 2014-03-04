@@ -40,22 +40,41 @@ class EcwidViewDefault extends EcwidLegacyJView
 	{
 		$option   = JFactory::getApplication()->input->getWord('option', 'com_ecwid');
 		$document = JFactory::getDocument();
-		$document->addStyleSheet('components/' . $option . '/assets/ecwid.css');
+		$document->addStyleSheet('components/' . $option . '/assets/css/ecwid.css');
+		$document->addStyleSheet('components/' . $option . '/assets/css/pure-min.css');
+		$document->addStyleSheet('components/' . $option . '/assets/css/' . $this->_layout . '.css');
 		$document->addScript('components/' . $option . '/assets/ecwid.js');
 
-		// Initialiase variables.
-		$this->form   = $this->get('form');
 		$this->params = $this->get('params');
 
 		$document = JFactory::getDocument();
 		// Set toolbar items for the page
 		$this->addToolbar();
 
+		$this->form = $this->getForm();
+
 		$uri = JFactory::getURI();
 
 		$document = JFactory::getDocument();
 		$document->setTitle(JText::_('Ecwid Edit Configuration'));
 		parent::display($tpl);
+	}
+
+	public function getForm()
+	{
+		if (!isset($this->form)) {
+			$this->form = null;
+		}
+		$form = $this->get($this->getLayout() . 'Form');
+		if (empty($form)) {
+			if (method_exists(get_parent_class(), 'getForm')) {
+				$form = parent::getForm();
+			} else {
+				$form = $this->get('form');
+			}
+		}
+
+		return $this->form = $form;
 	}
 
 	/**
@@ -66,10 +85,27 @@ class EcwidViewDefault extends EcwidLegacyJView
 	protected function addToolbar()
 	{
 		JToolBarHelper::title(JText::_('COM_ECWID_CONFIGURATION'));
-        JToolBarHelper::save('default.save', 'COM_ECWID_SAVE');
+        JToolBarHelper::save('default.save' . $this->_layout, 'COM_ECWID_SAVE');
         JToolBarHelper::cancel('default.cancel', 'COM_ECWID_RESET');
 
 		JToolBarHelper::divider();
+	}
+
+	protected function embed_svg($name)
+	{
+		$code = file_get_contents(JPATH_COMPONENT_ADMINISTRATOR . '/assets/svg/' . $name . '.svg');
+
+		echo $code;
+	}
+
+	protected function renderElement($name)
+	{
+		echo $this->getForm()->getField($name)->input;
+	}
+
+	protected function renderLabel($name)
+	{
+		echo $this->getForm()->getField($name)->label;
 	}
 
 	protected function render()

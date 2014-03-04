@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fieldset name="params">
+
+		  	<field name="displaySearchBox" type="checkbox"
+				  		 default="1" label="COM_ECWID_APPEARANCE_DISPLAY_SEARCH_BOX_LABEL"
+  						 description="COM_ECWID_APPEARANCE_DISPLAY_SEARCH_BOX_DESC"/>
+
+        <field name="displayMinicart" type="checkbox"
+               default="1" label="COM_ECWID_APPEARANCE_DISPLAY_MINICART_LABEL"
+							 description="COM_ECWID_APPEARANCE_DISPLAY_MINICART_DESC"/>
+
+        <field name="displayCategories" type="checkbox"
+						 default="1" label="COM_ECWID_APPEARANCE_DISPLAY_CATEGORIES_LABEL"
+						 description="COM_ECWID_APPEARANCE_DISPLAY_CATEGORIES_DESC" />
+
+        <field name="categoriesPerRow" type="text"
+               default="3" label="COM_ECWID_FORM_DEFAULT_CATEGORIESPERROW_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_CATEGORIESPERROW_DESC"
+							 class="small-input" />
+
+        <field name="defaultCategory" type="text"
+               default="" label="COM_ECWID_FORM_DEFAULT_DEFAULTCATEGORYID_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_DEFAULTCATEGORYID_DESC"/>
+
+        <field name="categoryView" type="list" default="grid" label="COM_ECWID_FORM_DEFAULT_CATEGORYVIEW_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_CATEGORYVIEW_DESC">
+            <option value="grid">COM_ECWID_GRID</option>
+            <option value="list">COM_ECWID_LIST</option>
+            <option value="table">COM_ECWID_TABLE</option>
+        </field>
+
+        <field name="searchView" type="list" default="list" label="COM_ECWID_FORM_DEFAULT_SEARCHVIEW_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_SEARCHVIEW_DESC">
+            <option value="grid">COM_ECWID_GRID</option>
+            <option value="list">COM_ECWID_LIST</option>
+            <option value="table">COM_ECWID_TABLE</option>
+        </field>
+
+        <field name="gridRows" type="text"
+               default="3" label="COM_ECWID_FORM_DEFAULT_GRID_ROWS_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_GRID_ROWS_DESC"
+							 class="small-input" />
+
+  			<field name="gridColumns" type="text"
+						 default="3" label="COM_ECWID_FORM_DEFAULT_GRID_ROWS_LABEL"
+						 description="COM_ECWID_FORM_DEFAULT_GRID_ROWS_DESC"
+						 class="small-input" />
+
+        <field name="list" type="text"
+               default="10" label="COM_ECWID_FORM_DEFAULT_LIST_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_LIST_DESC"
+							 class="small-input" />
+
+        <field name="table" type="text"
+               default="20" label="COM_ECWID_FORM_DEFAULT_TABLE_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_TABLE_DESC"
+							 class="small-input" />
+    </fieldset>
+</form>
