@@ -25,6 +25,15 @@ class EcwidControllerDefault extends JControllerForm
 		$this->registerTask('apply', 'save');
 	}
 
+	public function resetStoreID()
+	{
+		$data = $this->getModel()->getParams();
+		//JRegistry::
+		$this->getModel()->save(array('storeID' => false));
+
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option, false));
+	}
+
 	public function saveAppearance()
 	{
 		$data = JFactory::getApplication()->input->get('jform', array(), 'array');
@@ -44,11 +53,20 @@ class EcwidControllerDefault extends JControllerForm
 		return $result;
 	}
 
-	public function saveGeneral()
+	public function saveDefault()
 	{
-		$result = $this->save($this->getModel()->getAppearanceForm(), $data);
+		$result = $this->save($this->getModel()->getForm());
 		// Redirect to the list screen.
-		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&layout=general', false));
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option, false));
+
+		return $result;
+	}
+
+	public function saveAdvanced()
+	{
+		$result = $this->save($this->getModel()->getAdvancedForm());
+		// Redirect to the list screen.
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&layout=advanced', false));
 
 		return $result;
 	}
