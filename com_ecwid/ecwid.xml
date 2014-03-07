@@ -27,7 +27,7 @@
 	<submenu>
 		<menu link="option=com_ecwid">COM_ECWID_GENERAL_SETTINGS</menu>
 		<menu link="option=com_ecwid&amp;layout=appearance">COM_ECWID_APPEARANCE_SETTINGS</menu>
-		<menu link="option=com_eciwd&amp;layout=advanced">COM_ECWID_ADVANCED_SETTINGS</menu>
+		<menu link="option=com_ecwid&amp;layout=advanced">COM_ECWID_ADVANCED_SETTINGS</menu>
 	</submenu>
 
         <files folder="admin">
