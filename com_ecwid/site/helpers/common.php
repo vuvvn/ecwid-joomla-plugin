@@ -44,6 +44,34 @@ class EcwidCommon  {
 	
 	}	
 	
+
+
+	// Returns ecwid_ProductBrowserURL javascript code that provides modules with a product browser url to link to
+	function getProductBrowserJS() {
+		global $ecwid_itemid, $Itemid, $option;
+
+		if ($option == 'com_ecwid') {
+			$ecwid_itemid = $Itemid;
+		} elseif (!isset($ecwid_itemid)) {
+			$db = JFactory::getDBO();
+			$queryitemid = "SELECT id FROM #__menu WHERE type='component' AND link LIKE '%com_ecwid%view=ecwid%' AND published='1' ORDER BY id ASC LIMIT 1";
+			$db->setQuery($queryitemid);
+			$ecwid_itemid = $db->loadResult();
+		}
+		$url = 'index.php?option=com_ecwid';
+		if ($ecwid_itemid) {
+			$url .= '&Itemid=' . $ecwid_itemid;
+		}
+
+		$url = JRoute::_($url, true);
+
+		$code = '<script type="text/javascript">';
+		$code .= ' var ecwid_ProductBrowserURL = "' . $url . '"';
+		$code .= '</script>';
+
+		return $code;
+	}
+
 	
 }
 ?>
