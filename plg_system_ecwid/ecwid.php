@@ -86,7 +86,7 @@ class plgSystemEcwid extends JPlugin
 
 			$ecwid_script = "app.ecwid.com/script.js";
             $protocol     = '//';
-            $escript      = '<script data-cfasync="false" type="text/javascript" src="' . $protocol . $ecwid_script . '?' . $eparams->get('storeID', 1003) . '"></script>';
+            $escript      = '<script data-cfasync="false" type="text/javascript" src="' . $protocol . $ecwid_script . '?' . $eparams->get('storeID', 1003) . '&data_platform=joomla"></script>';
 
 			// split up the body after the body tag			
 			$matches = preg_split('/(<body.*?>)/i', $body, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
