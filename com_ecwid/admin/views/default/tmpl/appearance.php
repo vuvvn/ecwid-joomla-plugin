@@ -68,7 +68,7 @@
 	<div class="ecwid-pb-view-size grid active" tabindex="1">
 		<div class="title"><?php echo JText::_('Grid view'); ?></div>
 		<div class="main-area">
-			<?php $this->embed_svg('grid'); ?>
+			<?php $this->embedSvg('grid'); ?>
 		</div>
 		<div class="right">
 			<div class="ruler"></div>
@@ -83,7 +83,7 @@
 	<div class="ecwid-pb-view-size list" tabindex="1">
 		<div class="title"><?php echo JText::_('List view'); ?></div>
 		<div class="main-area">
-			<?php $this->embed_svg('list'); ?>
+			<?php $this->embedSvg('list'); ?>
 		</div>
 		<div class="right">
 			<div class="ruler"></div>
@@ -95,7 +95,7 @@
 	<div class="ecwid-pb-view-size table" tabindex="1">
 		<div class="title"><?php echo JText::_('Table view'); ?></div>
 		<div class="main-area">
-			<?php $this->embed_svg('table'); ?>
+			<?php $this->embedSvg('table'); ?>
 		</div>
 		<div class="right">
 			<div class="ruler"></div>
