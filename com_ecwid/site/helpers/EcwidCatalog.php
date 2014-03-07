@@ -94,14 +94,14 @@ class EcwidCatalog
 					}
 					if ($product_options["type"] == "SELECT")
 					{
-						$return .= '<select name='. $product_options["name"].'>';
+						$return .= '<select name="' . htmlspecialchars($product_options["name"]) . '">';
 						foreach ($product_options["choices"] as $options_param) 
 						{ 
 							$return .= sprintf(
 								'<option value="%s">%s (%s)</option>',
 								htmlspecialchars($options_param['text']),
-								$options_param['text'],
-								$options_param['priceModifier']
+								htmlspecialchars($options_param['text']),
+								htmlspecialchars($options_param['priceModifier'])
 							);
 						}
 						$return .= '</select>';
