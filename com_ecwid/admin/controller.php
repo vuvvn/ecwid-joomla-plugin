@@ -18,6 +18,12 @@
 defined('_JEXEC') or die('Restricted access');
 
 jimport('joomla.application.component.controller');
+JLoader::register(
+	'EcwidProductAPI',
+	JPATH_COMPONENT_SITE . DIRECTORY_SEPARATOR .
+	'helpers' . DIRECTORY_SEPARATOR .
+	'ecwid_product_api.php'
+);
 
 /**
  * ecwid Controller

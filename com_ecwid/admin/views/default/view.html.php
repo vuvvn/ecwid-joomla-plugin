@@ -33,6 +33,11 @@ include_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/legacy_class.php');
 
 class EcwidViewDefault extends EcwidLegacyJView
 {
+
+	protected $storeID;
+
+	protected $api;
+
 	/**
 	 * Display the view
 	 */
@@ -54,7 +59,7 @@ class EcwidViewDefault extends EcwidLegacyJView
 		$this->form = $this->getForm();
 
 		if ($this->_layout == 'default') {
-			$storeID = JComponentHelper::getParams('com_ecwid')->get('storeID');
+			$storeID = $this->getStoreID();
 			if ($storeID && $storeID != 1003) {
 				$this->setLayout('general');
 			} else {
@@ -98,7 +103,32 @@ class EcwidViewDefault extends EcwidLegacyJView
 		JToolBarHelper::divider();
 	}
 
-	protected function embed_svg($name)
+	protected function isPaidAccount()
+	{
+		$api = $this->getProductAPI();
+
+		return $this->getStoreID() != 1003 && $api->is_api_enabled();
+	}
+
+	protected function getProductAPI()
+	{
+		if (is_null($this->api)) {
+			$this->api = new EcwidProductApi($this->getStoreID());
+		}
+
+		return $this->api;
+	}
+
+	protected function getStoreID()
+	{
+		if (is_null($this->storeID)) {
+			$this->storeID = JComponentHelper::getParams('com_ecwid')->get('storeID');
+		}
+
+		return $this->storeID;
+	}
+
+	protected function embedSvg($name)
 	{
 		$code = file_get_contents(JPATH_COMPONENT_ADMINISTRATOR . '/assets/svg/' . $name . '.svg');
 

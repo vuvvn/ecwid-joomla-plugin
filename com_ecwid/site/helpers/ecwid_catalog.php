@@ -173,10 +173,21 @@ function show_ecwid($params) {
         $ecwid_element_id = $params['ecwid_element_id'];
     }
 
+	$additional_widgets = '';
+	if ($params['display_search']) {
+		$additional_widgets .= '<script type="text/javascript"> xSearchPanel(); </script>';
+	}
+
+	if ($params['display_categories']) {
+		$additional_widgets .= '<script type="text/javascript"> xCategories(); </script>';
+	}
+
        $integration_code .= <<<EOT
-<div id="$ecwid_element_id">$noscript</div>	
+$additional_widgets
+<div id="$ecwid_element_id">$noscript</div>
 <div>
-<script type="text/javascript"> xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productspercolumn_grid,$ecwid_pb_productsperrow_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str,"id=$ecwid_element_id");</script>
+<script type="text/javascript">
+xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productsperrow_grid,$ecwid_pb_productspercolumn_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str,"id=$ecwid_element_id");</script>
 </div>
 <noscript>$noscript</noscript>
 $ecwid_open_product

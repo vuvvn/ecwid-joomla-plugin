@@ -1,5 +1,6 @@
 <div class="wrap">
-<form class="pure-form pure-form-aligned ecwid-settings appearance-settings"
+
+	<form class="pure-form pure-form-aligned ecwid-settings appearance-settings"
 	  id="adminForm"
 	  method="POST"
 	  action="<?php echo JRoute::_('index.php?option=com_ecwid'); ?>"
@@ -12,11 +13,11 @@
 <div class="pure-control-group small-input">
 	<div class="input">
 		<div>
-			<?php $this->renderElement('displaySearchBox'); ?>
+			<?php $this->renderElement('displaySearch'); ?>
 		</div>
 	</div>
 	<div class="label">
-		<?php $this->renderLabel('displaySearchBox'); ?>
+		<?php $this->renderLabel('displaySearch'); ?>
 	</div>
 	<div class="note">
 		<?php echo JText::_(
@@ -45,20 +46,6 @@
 	</div>
 </div>
 
-
-<div class="pure-control-group small-input">
-	<div class="input">
-		<div>
-			<?php $this->renderElement('displayMinicart'); ?>
-		</div>
-	</div>
-	<div class="label">
-		<?php $this->renderLabel('displayMinicart'); ?>
-	</div>
-	<div class="note">
-		<?php echo JText::_("You should disable this option, if you added minicart to your website's&nbsp;sidebar."); ?>
-	</div>
-</div>
 
 <div class="pure-control-group small-input">
 	<div class="input">

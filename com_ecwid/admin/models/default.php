@@ -114,12 +114,39 @@ class EcwidModelDefault extends JModelForm
 	public function getAdvancedForm($data = array(), $loadData = true)
 	{
 		// Get the form.
+		static $form = null;
+
+		if (!is_null($form)) {
+			return $form;
+		}
+
 		$form = $this->loadForm('com_ecwid.advanced', 'advanced', array('control'  => 'jform',
 																			'load_data' => $loadData
 		));
 		if (empty($form)) {
 			return false;
 		}
+
+		$api = new EcwidProductApi($this->getParams()->get('storeID'));
+
+		if ($api->is_api_enabled()) {
+			$xml = '<field name="defaultCategory" type="list" label="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_LABEL" required="false" labelclass="control-label">';
+			$xml .= '<option value="">COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ROOT</option>';
+
+			$cats = $api->get_all_categories();
+			foreach($cats as $cat) {
+				$xml .= '<option value="' . $cat['id'] . '">' . htmlentities($cat['name']) . '</option>';
+			}
+
+			$xml .= '</field>';
+			$list = new \SimpleXMLElement($xml);
+			$form->setField($list);
+		} else {
+			$xml = '<field name="source" type="text" label="Source" required="false" labelclass="control-label" />';
+			$text = new \SimpleXMLElement($xml);
+			$form->setField($text);
+		}
+
 
 		return $form;
 	}

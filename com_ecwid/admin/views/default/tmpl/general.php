@@ -1,5 +1,3 @@
-<?php function ecwid_is_paid_account() {return false;} function ecwid_is_api_enabled($id) {return false; }; ?>
-
 <div class="wrap">
 
 	<form class="pure-form ecwid-settings general-settings"
@@ -45,7 +43,7 @@
 							<?php echo JText::_('Account status'); ?>:
 							<strong>
 								<?php
-								if (ecwid_is_paid_account()) {
+								if ($this->isPaidAccount()) {
 									echo JText::_('Paid');
 								} else {
 									echo JText::_('Free');
@@ -55,7 +53,7 @@
 					</span>
 					<div class="secondary-info">
 						<?php
-						if (ecwid_is_paid_account())
+						if ($this->isPaidAccount())
 							echo JText::_('Thank you for supporting Ecwid!');
 						else
 							echo JText::_('Upgrade to get access to cool premium features.');
@@ -64,7 +62,7 @@
 				</div>
 
 				<div class="right">
-					<?php if (ecwid_is_paid_account()): ?>
+					<?php if ($this->isPaidAccount()): ?>
 						<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/CP.html#profile=Billing&t2=My_Profile">
 							<?php echo JText::_('Billing and plans'); ?>
 						</a>

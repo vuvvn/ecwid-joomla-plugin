@@ -2,13 +2,8 @@
 <form>
     <fieldset name="params">
 
-		  	<field name="ssoSecretKey" type="text"
-				  		 default="" label="COM_ECWID_ADVANCED_SSO_KEY_LABEL"
-  						 description="COM_ECWID_ADVANCED_SSO_KEY_DESC" />
-
         <field name="defaultCategory" type="ecwidDefaultCategory"
-               default="1" label="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_LABEL"
-							 description="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_DESC"/>
+               default="1" label="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_LABEL" />
 
     </fieldset>
 </form>
