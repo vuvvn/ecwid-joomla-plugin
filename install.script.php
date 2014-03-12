@@ -58,7 +58,6 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			jimport('joomla.filesystem.file');
 			jimport('joomla.filesystem.folder');
 
-
 			$retval = true;
 			$buffer = '';
 
@@ -66,7 +65,6 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			$buffer .= ob_get_clean();
 
 			$run_installer = true;
-
 
 			// Cycle through cogs and install each
 
@@ -77,6 +75,12 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 					}
 
 					foreach ($this->manifest->cogs->children() as $cog) {
+
+						if (trim($cog) == 'com_rokecwid') {
+							$component = JComponentHelper::getComponent('com_rokecwid', true);
+							if (!isset($component->id)) continue;
+						}
+
 						$folder_found = false;
 						$folder = $this->sourcedir . '/' . trim($cog);
 
@@ -124,6 +128,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 					$parent->getParent()->abort(JText::sprintf('JLIB_INSTALLER_ABORT_PACK_INSTALL_NO_FILES', JText::_('JLIB_INSTALLER_' . strtoupper($this->route))));
 				}
 			}
+
 			return $retval;
 		}
 
@@ -184,6 +189,153 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			$conf = JFactory::getConfig();
 			$conf->set('debug', false);
 			$parent->getParent()->abort();
+
+			$rokEcwid = JComponentHelper::getComponent('com_rokecwid', true);
+			$rokEcwidExists = isset($rokEcwid->id);
+			$ecwidParams = JComponentHelper::getParams('com_ecwid');
+			$ecwidExisted = !is_null($ecwidParams->get('storeID'));
+			if ($rokEcwidExists && !$ecwidExisted) {
+
+				$this->migrateComponentSettings();
+				$this->migrateModules();
+			}
+		}
+
+		protected function migrateComponentSettings()
+		{
+			$rokEcwidParams = JComponentHelper::getParams('com_rokecwid');
+			$ecwidParams = JComponentHelper::getParams('com_ecwid');
+
+			$copyParams = array(
+				'storeID',
+				'categoriesPerRow',
+				'categoryView',
+				'searchView',
+				'list',
+				'table',
+				'defaultCategory'
+			);
+
+			foreach ($copyParams as $param) {
+				$ecwidParams->set($param, $rokEcwidParams->get($param));
+			}
+
+			$ecwidParams->set('displaySearch', false);
+			$ecwidParams->set('displayCategories', false);
+
+			list ($rows, $cols) = explode(',', $rokEcwidParams->get('grid'));
+			$ecwidParams->set('gridRows', intval($rows));
+			$ecwidParams->set('gridColumns', intval($cols));
+
+			$table  = JTable::getInstance('extension');
+			$result = $table->find(array('element' => 'com_ecwid'));
+			$table->load($result);
+
+			$table->params = $ecwidParams->__toString();
+
+			$table->store();
+		}
+
+		protected function migrateModules()
+		{
+			foreach (
+				array(
+					'categories' => 'RokEcwid Categories Module',
+					'minicart' => 'RokEcwid Mini-cart Module',
+					'search' => 'RokEcwid Search Module'
+				) as $name => $old_title
+			) {
+				$old_name = 'mod_rokecwid_' . $name;
+				$new_name = 'mod_ecwid_' . $name;
+
+				$db = JFactory::getDbo();
+
+				$query = "SELECT * FROM #__modules WHERE module='$new_name'";
+				$db->setQuery($query);
+				$new_module = $db->loadObject();
+
+				$query = "SELECT * FROM #__modules WHERE module='$old_name'";
+				$db->setQuery($query);
+				$old_modules = $db->loadObjectList();
+
+				foreach ($old_modules as $module) {
+					$module->title = str_replace($old_title, $new_module->title, $module->title);
+					$module->module = $new_module->module;
+
+					$db->updateObject('#__modules', $module, 'id');
+
+					$query = "SELECT * FROM #__assets WHERE id='$module->asset_id'";
+					$db->setQuery($query);
+					$asset = $db->loadObject();
+					$asset->title = $new_module->title;
+
+					$db->updateObject('#__assets', $asset, 'id');
+				}
+
+				$query = $db->getQuery(true);
+				$query->delete($db->quoteName('#__modules'));
+				$query->where(array($db->quoteName('id') . '="' . $new_module->id . '"'));
+
+				$db->setQuery($query);
+
+				$db->query();
+			}
+		}
+
+		protected function migrateModule($old_module_data, $new_module_data) {
+
+			$new = JTable::getInstance('module');
+			$new->load(array('id' => $new_module_data->id));
+
+			$toCopy = array(
+				'params',
+				'published',
+				'publish_up',
+				'publish_down',
+				'showtitle',
+				'access',
+				'ordering',
+				'language',
+				'note',
+				'position'
+			);
+			foreach ($toCopy as $param) {
+				$new->set($param, $old_module_data->$param);
+			}
+			$new->store();
+		}
+
+		protected function migrateModuleMenu($old_module_data, $new_module_data) {
+
+			$db = JFactory::getDbo();
+
+			$query = "SELECT menu FROM #__modules_menu WHERE module_id='" . $old_module_data->id . "'";
+			$db->setQuery($query);
+			$result = $db->loadResultArray();
+
+			foreach ($result as $menu_id) {
+				$new = new stdObject;
+				$new->module_id = $new_module_data->id;
+				$new->menu_id = $menu_id;
+
+				$db->insertObject('#__modules_menu', $new);
+			}
+		}
+
+		protected function migrateModuleAssets($old_module_data, $new_module_data) {
+
+			$db = JFactory::getDbo();
+			$query = "SELECT * FROM #__assets WHERE id='" . $old_module_data->asset_id . "'";
+			$db->setQuery($query);
+			$old_data = $db->loadObject();
+
+			$query = "SELECT * FROM #__assets WHERE id='" . $old_module_data->asset_id . "'";
+			$db->setQuery($query);
+			$new_data = $db->loadObject();
+
+			$new_data->rules = $old_data->rules;
+			$db->updateObject('#__assets', $new_data, 'id');
+
 		}
 
 		/**

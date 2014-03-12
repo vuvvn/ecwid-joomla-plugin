@@ -14,6 +14,12 @@
         <filename plugin="ecwid_installer">installer.php</filename>
     </files>
     <cogs>
+
+        <cog type="component" client="administrator" access="0" enabled="true" protected="false" legacy="true">
+            com_rokecwid
+            <name>Ecwid Legacy Component</name>
+            <description>Ecwid Legacy Component that maintains deprecated links</description>
+        </cog>
         <cog type="component" client="administrator" access="0" enabled="true" protected="false">
             com_ecwid
             <name>Ecwid Component</name>
