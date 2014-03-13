@@ -57,7 +57,6 @@ class EcwidViewDefault extends EcwidLegacyJView
 		$document->addStyleSheet('components/' . $option . '/assets/css/ecwid.css');
 		$document->addStyleSheet('components/' . $option . '/assets/css/pure-min.css');
 		$document->addStyleSheet('components/' . $option . '/assets/css/' . $this->getLayout() . '.css');
-		$document->addScript('components/' . $option . '/assets/ecwid.js');
 
 		$this->params = $this->get('params');
 
@@ -96,8 +95,7 @@ class EcwidViewDefault extends EcwidLegacyJView
 	protected function addToolbar()
 	{
 		JToolBarHelper::title(JText::_('COM_ECWID_CONFIGURATION'));
-        JToolBarHelper::save('default.save' . $this->getLayout(), 'COM_ECWID_SAVE');
-        JToolBarHelper::cancel('default.cancel', 'COM_ECWID_RESET');
+        JToolBarHelper::apply('default.save' . $this->getLayout(), 'COM_ECWID_SAVE');
 
 		JToolBarHelper::divider();
 	}

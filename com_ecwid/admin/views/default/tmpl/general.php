@@ -21,8 +21,15 @@
 
 				<div class="messages-container">
 
-					<div class="main-message"><?php echo JText::_('Greetings!'); ?></div>
-					<div class="secondary-message"?><?php echo JText::_('Your Ecwid store is connected to your WordPress website.'); ?></div>
+					<div class="main-message">
+						<?php echo
+							!is_null(JFactory::getApplication()->input->getWord('saved'))
+							? JText::_('COM_ECWID_GENERAL_CONGRATULATIONS')
+							: JText::_('COM_ECWID_GENERAL_GREETINGS');
+						?>
+
+					</div>
+					<div class="secondary-message"?><?php echo JText::_('COM_ECWID_GENERAL_STORE_CONNECTED'); ?></div>
 				</div>
 
 			</div>
@@ -30,12 +37,12 @@
 			<div class="section">
 				<div class="left">
 					<span class="main-info">
-							<?php echo JText::_('Store ID'); ?>: <strong><? echo JComponentHelper::getParams('com_ecwid')->get('storeID'); ?></strong>
+							<?php echo JText::_('COM_ECWID_GENERAL_STORE_ID'); ?>: <strong><? echo JComponentHelper::getParams('com_ecwid')->get('storeID'); ?></strong>
 					</span>
 				</div>
 				<div class="right two-buttons">
 					<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard">
-						<?php echo JText::_('Control panel'); ?>
+						<?php echo JText::_('COM_ECWID_GENERAL_CONTROL_PANEL'); ?>
 					</a>
 				</div>
 			</div>
@@ -43,13 +50,13 @@
 			<div class="section">
 				<div class="left">
 					<span class="main-info">
-							<?php echo JText::_('Account status'); ?>:
+							<?php echo JText::_('COM_ECWID_GENERAL_ACCOUNT_STATUS'); ?>:
 							<strong>
 								<?php
 								if ($this->isPaidAccount()) {
-									echo JText::_('Paid');
+									echo JText::_('COM_ECWID_GENERAL_PAID');
 								} else {
-									echo JText::_('Free');
+									echo JText::_('COM_ECWID_GENERAL_FREE');
 								}
 								?>
 							</strong>
@@ -57,9 +64,9 @@
 					<div class="secondary-info">
 						<?php
 						if ($this->isPaidAccount())
-							echo JText::_('Thank you for supporting Ecwid!');
+							echo JText::_('COM_ECWID_GENERAL_THANKS_FOR_SUPPORTING_ECWID');
 						else
-							echo JText::_('Upgrade to get access to cool premium features.');
+							echo JText::_('COM_ECWID_GENERAL_UPGRADE_TO_GET_FEATURES');
 						?>
 					</div>
 				</div>
@@ -67,11 +74,11 @@
 				<div class="right">
 					<?php if ($this->isPaidAccount()): ?>
 						<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/CP.html#profile=Billing&t2=My_Profile">
-							<?php echo JText::_('Billing and plans'); ?>
+							<?php echo JText::_('COM_ECWID_GENERAL_BILLING_AND_PLANS'); ?>
 						</a>
 					<?php else: ?>
-						<a class="<?php echo ECWID_MAIN_BUTTON_CLASS; ?>" target="_blank" href="http://www.ecwid.com/plans-and-pricing.html">
-							<?php echo JText::_('Upgrade'); ?>
+						<a class="pure-button pure-button-primary" target="_blank" href="http://www.ecwid.com/plans-and-pricing.html">
+							<?php echo JText::_('COM_ECWID_GENERAL_UPGRAGE'); ?>
 						</a>
 					<?php endif; ?>
 				</div>
@@ -80,7 +87,7 @@
 			<div class="note grayed-links">
 				<?php
 				echo JText::sprintf(
-					'If you want to connect another Ecwid store, you can <a %s>disconnect the current one and change Store ID</a>.',
+					'COM_ECWID_GENERAL_CHANGE_STORE_ID',
 					'href="' . JRoute::_('index.php?option=com_ecwid&task=default.resetStoreID') . '"'
 				);
 				?>
@@ -88,7 +95,7 @@
 			</div>
 
 			<hr />
-			<p><?php echo JText::_('Questions? Visit <a href="http://help.ecwid.com/?source=wporg">Ecwid support center</a>.'); ?></p>
+			<p><?php echo JText::_('COM_ECWID_VISIT_HELP_CENTER'); ?></p>
 		</fieldset>
 	</form>
 </div>

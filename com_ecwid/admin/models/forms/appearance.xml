@@ -2,50 +2,43 @@
 <form>
     <fieldset name="params">
 
-		  	<field name="displaySearch" type="checkbox"
-				  		 default="1" label="COM_ECWID_APPEARANCE_DISPLAY_SEARCH_LABEL" />
+	    <field name="displaySearch" type="checkbox"
+               default="1" label="COM_ECWID_APPEARANCE_DISPLAY_SEARCH_LABEL" />
 
         <field name="displayCategories" type="checkbox"
-						 default="1" label="COM_ECWID_APPEARANCE_DISPLAY_CATEGORIES_LABEL" />
+               default="1" label="COM_ECWID_APPEARANCE_DISPLAY_CATEGORIES_LABEL" />
 
         <field name="categoriesPerRow" type="text"
-               default="3" label="COM_ECWID_FORM_DEFAULT_CATEGORIESPERROW_LABEL"
-							 class="small-input" />
-
-        <field name="defaultCategory" type="text"
-               default="" label="COM_ECWID_FORM_DEFAULT_DEFAULTCATEGORYID_LABEL"
-               description="COM_ECWID_FORM_DEFAULT_DEFAULTCATEGORYID_DESC"/>
-
-        <field name="categoryView" type="list" default="grid" label="COM_ECWID_FORM_DEFAULT_CATEGORYVIEW_LABEL">
-            <option value="grid">COM_ECWID_GRID</option>
-            <option value="list">COM_ECWID_LIST</option>
-            <option value="table">COM_ECWID_TABLE</option>
-        </field>
-
-        <field name="searchView" type="list" default="list" label="COM_ECWID_FORM_DEFAULT_SEARCHVIEW_LABEL">
-            <option value="grid">COM_ECWID_GRID</option>
-            <option value="list">COM_ECWID_LIST</option>
-            <option value="table">COM_ECWID_TABLE</option>
-        </field>
+               default="3" label="COM_ECWID_APPEARANCE_CATEGORIESPERROW_LABEL"
+               class="small-input" />
 
         <field name="gridRows" type="text"
-               default="3" label="COM_ECWID_FORM_DEFAULT_GRID_ROWS_LABEL"
-               description="COM_ECWID_FORM_DEFAULT_GRID_ROWS_DESC"
-							 class="small-input" />
+               default="3" label="COM_ECWID_APPEARANCE_GRID_ROWS_LABEL"
+               class="small-input" />
 
-  			<field name="gridColumns" type="text"
-						 default="3" label="COM_ECWID_FORM_DEFAULT_GRID_ROWS_LABEL"
-						 description="COM_ECWID_FORM_DEFAULT_GRID_ROWS_DESC"
-						 class="small-input" />
+
+        <field name="gridColumns" type="text"
+               default="3" label="COM_ECWID_APPEARANCE_GRID_COLUMNS_LABEL"
+               class="small-input" />
 
         <field name="list" type="text"
-               default="10" label="COM_ECWID_FORM_DEFAULT_LIST_LABEL"
-               description="COM_ECWID_FORM_DEFAULT_LIST_DESC"
-							 class="small-input" />
+               default="10" label="COM_ECWID_APPEARANCE_LIST_LABEL"
+               class="small-input" />
 
         <field name="table" type="text"
-               default="20" label="COM_ECWID_FORM_DEFAULT_TABLE_LABEL"
-               description="COM_ECWID_FORM_DEFAULT_TABLE_DESC"
-							 class="small-input" />
+               default="20" label="COM_ECWID_APPEARANCE_TABLE_LABEL"
+               class="small-input" />
+            
+        <field name="categoryView" type="list" default="grid" label="COM_ECWID_APPEARANCE_CATEGORYVIEW_LABEL">
+            <option value="grid">COM_ECWID_APPEARANCE_GRID</option>
+            <option value="list">COM_ECWID_APPEARANCE_LIST</option>
+            <option value="table">COM_ECWID_APPEARANCE_TABLE</option>
+        </field>
+
+        <field name="searchView" type="list" default="list" label="COM_ECWID_APPEARANCE_SEARCHVIEW_LABEL">
+            <option value="grid">COM_ECWID_APPEARANCE_GRID</option>
+            <option value="list">COM_ECWID_APPEARANCE_LIST</option>
+            <option value="table">COM_ECWID_APPEARANCE_TABLE</option>
+        </field>
     </fieldset>
 </form>

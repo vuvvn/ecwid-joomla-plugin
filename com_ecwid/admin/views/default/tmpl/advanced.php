@@ -20,7 +20,7 @@
 		<?php $this->renderElement('defaultCategory'); ?>
 	</div>
 	<div class="note">
-		<?php echo JText::_('Default category description');
+		<?php echo JText::_('COM_ECWID_ADVANCED_DEFAULT_CATEGORY_NOTE');
 		?>
 	</div>
 </div>

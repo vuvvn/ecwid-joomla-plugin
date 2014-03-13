@@ -23,8 +23,8 @@
 		<?php $this->renderLabel('displaySearch'); ?>
 	</div>
 	<div class="note">
-		<?php echo JText::_(
-			'Search box via module note',
+		<?php echo JText::sprintf(
+			'COM_ECWID_APPEARANCE_DISPLAY_SEARCH_MODULE_NOTE',
 			JRoute::_('index.php?option=com_modules&filter_search=ecwid%20search')
 		);
 		?>
@@ -41,8 +41,8 @@
 		<?php $this->renderLabel('displayCategories'); ?>
 	</div>
 	<div class="note">
-		<?php echo JText::_(
-			'Categories via module note',
+		<?php echo JText::sprintf(
+			'COM_ECWID_APPEARANCE_DISPLAY_CATEGORIES_MODULE_NOTE',
 			JRoute::_('index.php?option=com_modules&filter_search=ecwid%20categories')
 		);
 		?>
@@ -67,9 +67,9 @@
 
 
 <div class="pure-control-group">
-	<label class="products-per-page-label"><?php echo JText::_('Number of products per page'); ?></label>
+	<label class="products-per-page-label"><?php echo JText::_('COM_ECWID_APPEARANCE_PRODUCTS_PER_PAGE'); ?></label>
 	<div class="ecwid-pb-view-size grid active" tabindex="1">
-		<div class="title"><?php echo JText::_('Grid view'); ?></div>
+		<div class="title"><?php echo JText::_('COM_ECWID_APPEARANCE_GRID_VIEW'); ?></div>
 		<div class="main-area">
 			<?php $this->embedSvg('grid'); ?>
 		</div>
@@ -84,7 +84,7 @@
 	</div>
 
 	<div class="ecwid-pb-view-size list" tabindex="1">
-		<div class="title"><?php echo JText::_('List view'); ?></div>
+		<div class="title"><?php echo JText::_('COM_ECWID_APPEARANCE_LIST_VIEW'); ?></div>
 		<div class="main-area">
 			<?php $this->embedSvg('list'); ?>
 		</div>
@@ -96,7 +96,7 @@
 
 
 	<div class="ecwid-pb-view-size table" tabindex="1">
-		<div class="title"><?php echo JText::_('Table view'); ?></div>
+		<div class="title"><?php echo JText::_('COM_ECWID_APPEARANCE_TABLE_VIEW'); ?></div>
 		<div class="main-area">
 			<?php $this->embedSvg('table'); ?>
 		</div>
@@ -105,7 +105,7 @@
 			<?php $this->renderElement('table'); ?>
 		</div>
 	</div>
-	<p class="note pb-note"><?php echo JText::_('Here you can control how many products will be displayed per page. These options define maximum values. If there is not enough space to show all product columns, Ecwid will adapt the number of columns to hold all products.'); ?></p>
+	<p class="note pb-note"><?php echo JText::_('COM_ECWID_APPEARANCE_PRODUCTS_PER_PAGE_NOTE'); ?></p>
 </div>
 
 <hr />

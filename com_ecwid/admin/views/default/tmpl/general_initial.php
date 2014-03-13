@@ -21,10 +21,10 @@
 				<div class="messages-container">
 					<div class="main-message">
 
-						<?php echo JText::_('Thank you for choosing Ecwid to build your online store.'); ?>
+						<?php echo JText::_('COM_ECWID_INITIAL_THANKS_FOR_CHOOSING_ECWID'); ?>
 					</div>
 					<div class="secondary-message">
-						<?php echo JText::_('The first step towards opening your online business: <br />Let’s get started and add a store to your WordPress website in <strong>3</strong> simple steps.'); ?>
+						<?php echo JText::_('COM_ECWID_INITIAL_LETS_GET_STARTED'); ?>
 					</div>
 				</div>
 
@@ -33,42 +33,44 @@
 
 			<ol>
 				<li>
-					<h4><?php echo JText::_('Register at Ecwid'); ?></h4>
+					<h4><?php echo JText::_('COM_ECWID_INITIAL_REGISTER_AT_ECWID'); ?></h4>
 					<div>
-						<?php echo JText::_('Create a new Ecwid account which you will use to manage your store and inventory. The registration is free.'); ?>
+						<?php echo JText::_('COM_ECWID_INITIAL_REGISTER_AT_ECWID_NOTE'); ?>
 					</div>
 					<div class="ecwid-account-buttons">
 						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register">
-							<?php echo JText::_('Create new Ecwid account'); ?>
+							<?php echo JText::_('COM_ECWID_INITIAL_CREATE_NEW_ACCOUNT'); ?>
 						</a>
 						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard">
-							<?php echo JText::_('I already have Ecwid account, sign in'); ?>
+							<?php echo JText::_('COM_ECWID_INITIAL_SIGN_IN'); ?>
 						</a>
 					</div>
 					<div class="note">
-						<?php echo JText::_('You will be able to sign up through your existing Google, Facebook or PayPal profiles as well.'); ?>
+						<?php echo JText::_('COM_ECWID_INITIAL_SIGN_UP_NOTE'); ?>
 					</div>
 				</li>
 				<li>
-					<h4><?php echo JText::_('Find your Store ID'); ?></h4>
+					<h4><?php echo JText::_('COM_ECWID_INITIAL_FIND_STORE_ID'); ?></h4>
 					<div>
-						<?php echo JText::_('Store ID is a unique identifier of any Ecwid store, it consists of several digits. You can find it on the "Dashboard" page of Ecwid control panel. Also the Store ID will be sent in the Welcome email after the registration.'); ?>
+						<?php echo JText::_('COM_ECWID_INITIAL_FIND_STORE_ID_NOTE'); ?>
 					</div>
 				</li>
 				<li>
 					<h4>
-						<?php echo JText::_('Enter your Store ID'); ?>
+						<?php echo JText::_('COM_ECWID_INITIAL_ENTER_STORE_ID'); ?>
 					</h4>
-					<div><label for="ecwid_store_id"><?php echo JText::_('Enter your Store ID here:'); ?></label></div>
+					<div><label for="ecwid_store_id"><?php echo JText::_('COM_ECWID_INITIAL_STORE_ID_LABEL'); ?>:</label></div>
 					<div class="pure-control-group store-id">
 						<?php $this->renderElement('storeID'); ?>
-						<button type="submit" class="<?php echo ECWID_MAIN_BUTTON_CLASS; ?>"><?php echo JText::_('Save and connect your Ecwid store to the site'); ?></button>
+						<button type="submit" class="pure-button pure-button-primary">
+							<?php echo JText::_('COM_ECWID_INITIAL_SAVE_STORE_ID'); ?>
+						</button>
 					</div>
 
 				</li>
 			</ol>
 			<hr />
-			<p><?php echo JText::_('Questions? Visit <a href="http://help.ecwid.com/?source=wporg">Ecwid support center</a>.'); ?></p>
+			<p><?php echo JText::_('COM_ECWID_VISIT_HELP_CENTER'); ?></p>
 		</fieldset>
 	</form>
 </div>
