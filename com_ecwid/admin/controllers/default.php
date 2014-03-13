@@ -57,7 +57,7 @@ class EcwidControllerDefault extends JControllerForm
 	{
 		$result = $this->save($this->getModel()->getForm());
 		// Redirect to the list screen.
-		$this->setRedirect(JRoute::_('index.php?option=' . $this->option, false));
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&saved', false));
 
 		return $result;
 	}
