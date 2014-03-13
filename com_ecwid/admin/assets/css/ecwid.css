@@ -51,6 +51,10 @@
 	box-shadow: none;
 }
 
+.pure-form.ecwid-settings a:hover {
+    text-decoration: none;
+}
+
 .pure-control-group.small-input > div {
 	display: table-cell;
 	vertical-align: middle;
@@ -118,23 +122,17 @@
 	margin-right: 5px;
 }
 
-.ecwid-settings.general-settings button {
-	position: relative;
-	top: 2px;
-	padding: 5px 31px 5px 31px;
-	margin-left: 5px;
-}
-
-.ecwid-settings.general-settings hr {
-	margin-bottom: 6px;
-}
-
 .ecwid-settings .warning {
 	background: #FFF797;
 	font-size: 12px;
 	padding: 8px 14px 8px 14px;
 	font-weight: bold;
 	color: #444444;
+}
+
+.pure-form.ecwid-settings input,
+.pure-form.ecwid-settings select {
+    margin-bottom: 0px;
 }
 
 .ecwid-settings.appearance-settings h3 {

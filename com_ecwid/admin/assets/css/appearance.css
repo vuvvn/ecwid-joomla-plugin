@@ -9,7 +9,7 @@
 	margin-left: 7px;
 }
 
-.ecwid-pb-view-size {
+.ecwid-settings .ecwid-pb-view-size {
 	display: inline-block;
 	position: relative;
 	width: 153px;
@@ -21,6 +21,12 @@
 .ecwid-settings .ecwid-pb-view-size input {
 	width: 27px;
 	text-align: center;
+}
+
+.appearance-settings .small-input {
+    height: auto;
+    line-height: normal;
+    margin-bottom: inherit;
 }
 
 .ecwid-pb-view-size .title {
@@ -73,10 +79,6 @@
 
 .ecwid-pb-view-size .table-image {
 	background-image: url(../images/table.png);
-}
-
-.ecwid-pb-view-size.table {
-	width: auto;
 }
 
 .ecwid-pb-view-size .right {
