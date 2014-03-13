@@ -1,6 +1,9 @@
-<div class="wrap">
+<div id="j-sidebar-container" class="span2">
+	<?php echo $this->sidebar; ?>
+</div>
+<div id="j-main-container" class="wrap span10">
 
-	<form class="pure-form pure-form-aligned ecwid-settings appearance-settings"
+<form class="pure-form pure-form-aligned ecwid-settings appearance-settings"
 	  id="adminForm"
 	  method="POST"
 	  action="<?php echo JRoute::_('index.php?option=com_ecwid'); ?>"

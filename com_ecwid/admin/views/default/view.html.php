@@ -43,6 +43,15 @@ class EcwidViewDefault extends EcwidLegacyJView
 	 */
 	public function display($tpl = null)
 	{
+		if ($this->_layout == 'default') {
+			$storeID = $this->getStoreID();
+			if ($storeID && $storeID != 1003) {
+				$this->setLayout('general');
+			} else {
+				$this->setLayout('general_initial');
+			}
+		}
+
 		$option   = JFactory::getApplication()->input->getWord('option', 'com_ecwid');
 		$document = JFactory::getDocument();
 		$document->addStyleSheet('components/' . $option . '/assets/css/ecwid.css');
@@ -52,20 +61,10 @@ class EcwidViewDefault extends EcwidLegacyJView
 
 		$this->params = $this->get('params');
 
-		$document = JFactory::getDocument();
-		// Set toolbar items for the page
 		$this->addToolbar();
+		$this->addSidebar();
 
 		$this->form = $this->getForm();
-
-		if ($this->_layout == 'default') {
-			$storeID = $this->getStoreID();
-			if ($storeID && $storeID != 1003) {
-				$this->setLayout('general');
-			} else {
-				$this->setLayout('general_initial');
-			}
-		}
 
 		$document = JFactory::getDocument();
 		$document->setTitle(JText::_('Ecwid Edit Configuration'));
@@ -101,6 +100,29 @@ class EcwidViewDefault extends EcwidLegacyJView
         JToolBarHelper::cancel('default.cancel', 'COM_ECWID_RESET');
 
 		JToolBarHelper::divider();
+	}
+
+	protected function addSidebar()
+	{
+		JHtmlSidebar::addEntry(
+			JText::_('COM_ECWID_GENERAL_SETTINGS'),
+			JRoute::_('index.php?option=com_ecwid'),
+			in_array($this->_layout, array('general', 'general_initial'))
+		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('COM_ECWID_APPEARANCE_SETTINGS'),
+			JRoute::_('index.php?option=com_ecwid&layout=appearance'),
+			$this->_layout == 'appearance'
+		);
+
+		JHtmlSidebar::addEntry(
+			JText::_('COM_ECWID_ADVANCED_SETTINGS'),
+			JRoute::_('index.php?option=com_ecwid&layout=advanced'),
+			$this->_layout == 'advanced'
+		);
+
+		$this->sidebar = JHtmlSidebar::render();
 	}
 
 	protected function isPaidAccount()
