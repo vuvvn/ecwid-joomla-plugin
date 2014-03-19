@@ -36,8 +36,7 @@ function mb_wordwrap($str, $width = 75, $break = "\n", $cut = false, $charset = 
 
 function show_ecwid($params) {
 	$store_id = $params['store_id'];
-	$ecwid_open_product = '';
-	
+
 	if (empty($store_id)) {
 	  $store_id = '1003'; //demo mode
 	}
@@ -141,10 +140,6 @@ function show_ecwid($params) {
             $doc = JFactory::getDocument();
             $doc->addCustomTag('<meta name="fragment" content="!" />');
         }
-        if ($ajaxIndexingContent) {
-            $noscript = $ajaxIndexingContent;
-        }
-
 	}
 	
 	if (empty($noscript)) {
@@ -175,7 +170,7 @@ function show_ecwid($params) {
 
 	$additional_widgets = '';
 	if ($params['display_search']) {
-		$additional_widgets .= '<script type="text/javascript"> xSearchPanel(); </script>';
+		$additional_widgets .= '<div class="ecwid-product-browser-search"><script type="text/javascript"> xSearchPanel(); </script></div>';
 	}
 
 	if ($params['display_categories']) {
@@ -184,13 +179,13 @@ function show_ecwid($params) {
 
        $integration_code .= <<<EOT
 $additional_widgets
-<div id="$ecwid_element_id">$noscript</div>
+<div id="$ecwid_element_id">$ajaxIndexingContent
 <div>
 <script type="text/javascript">
 xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productsperrow_grid,$ecwid_pb_productspercolumn_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str,"id=$ecwid_element_id");</script>
 </div>
 <noscript>$noscript</noscript>
-$ecwid_open_product
+</div>
 EOT;
 
 	return $integration_code;

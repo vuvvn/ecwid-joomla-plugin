@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <extension client="site" method="upgrade" type="module" version="2.5">
     <name>Ecwid Mini-cart Module</name>
-    <creationDate>December 5, 2013</creationDate>
+    <creationDate>February 20, 2014</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
     <authorUrl>http://www.ecwid.com</authorUrl>
-    <copyright>(C) 2009 - 2013 Ecwid, Inc.(C)</copyright>
+    <copyright>(C) 2009 - 2014 Ecwid, Inc.(C)</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-    <version>1.5</version>
-    <description>Module to show the ECWID mini-cart</description>
+    <version>2.0</version>
+    <description>Module to show the Ecwid mini-cart</description>
     <files>
         <filename module="mod_ecwid_minicart">mod_ecwid_minicart.php</filename>
         <filename>index.html</filename>

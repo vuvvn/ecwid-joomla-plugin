@@ -1,9 +1,11 @@
+<?php if ($this->submenu): ?>
 <div id="j-sidebar-container" class="span2">
-	<?php echo $this->sidebar; ?>
+	<?php echo $this->submenu; ?>
 </div>
-<div id="j-main-container" class="wrap span10">
+<? endif; ?>
+<div id="j-main-container" class="wrap span8">
 
-<form class="pure-form ecwid-settings general-settings"
+<form class="pure-form ecwid-settings general-settings<?php if (!$this->isStoreIdSet()) echo 'initial'; ?>"
 		  id="adminForm"
 		  method="POST"
 		  action="<?php echo JRoute::_('index.php?option=com_ecwid'); ?>"
@@ -41,7 +43,7 @@
 					</span>
 				</div>
 				<div class="right two-buttons">
-					<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard">
+					<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#t1=&t2=Dashboard">
 						<?php echo JText::_('COM_ECWID_GENERAL_CONTROL_PANEL'); ?>
 					</a>
 				</div>
@@ -73,11 +75,11 @@
 
 				<div class="right">
 					<?php if ($this->isPaidAccount()): ?>
-						<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/CP.html#profile=Billing&t2=My_Profile">
+						<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#profile=Billing&t2=My_Profile">
 							<?php echo JText::_('COM_ECWID_GENERAL_BILLING_AND_PLANS'); ?>
 						</a>
 					<?php else: ?>
-						<a class="pure-button pure-button-primary" target="_blank" href="http://www.ecwid.com/plans-and-pricing.html">
+						<a class="pure-button pure-button-primary" target="_blank" href="http://www.ecwid.com/plans-and-pricing.html?source=joomla">
 							<?php echo JText::_('COM_ECWID_GENERAL_UPGRAGE'); ?>
 						</a>
 					<?php endif; ?>
@@ -95,7 +97,8 @@
 			</div>
 
 			<hr />
-			<p><?php echo JText::_('COM_ECWID_VISIT_HELP_CENTER'); ?></p>
-		</fieldset>
+            <p class="credits"><?php echo JText::_('COM_ECWID_THANKS_FOR_CONTRIBUTION'); ?></p>
+            <p class="help"><?php echo JText::_('COM_ECWID_VISIT_HELP_CENTER'); ?></p>
+        </fieldset>
 	</form>
 </div>

@@ -23,18 +23,18 @@ include_once (JPATH_SITE . '/components/com_ecwid/helpers/ecwid_catalog.php');
 $options = array(
 	'store_id'                        => $params->get('storeID', 1003),
 	'list_of_views'                   => array('list', 'grid', 'table'),
-	'ecwid_pb_categoriesperrow'       => $params->get('categoriesPerRow'),
-	'ecwid_pb_productspercolumn_grid' => $params->get('gridColumns'),
-	'ecwid_pb_productsperrow_grid'    => $params->get('gridRows'),
-	'ecwid_pb_productsperpage_list'   => $params->get('list'),
-	'ecwid_pb_productsperpage_table'  => $params->get('table'),
-	'ecwid_pb_defaultview'            => $params->get('categoryView'),
-	'ecwid_pb_searchview'             => $params->get('searchView'),
+	'ecwid_pb_categoriesperrow'       => $params->get('categoriesPerRow', 3),
+	'ecwid_pb_productspercolumn_grid' => $params->get('gridColumns', 3),
+	'ecwid_pb_productsperrow_grid'    => $params->get('gridRows', 3),
+	'ecwid_pb_productsperpage_list'   => $params->get('list', 10),
+	'ecwid_pb_productsperpage_table'  => $params->get('table', 20),
+	'ecwid_pb_defaultview'            => $params->get('categoryView', 'grid'),
+	'ecwid_pb_searchview'             => $params->get('searchView', 'list'),
 	'ecwid_mobile_catalog_link'       => '',
 	'ecwid_default_category_id'       => $params->get('defaultCategory'),
 	'ecwid_is_secure_page'            => '',
-	'display_categories'			  => $params->get('displayCategories'),
-	'display_search'			      => $params->get('displaySearch')
+	'display_categories'			  => $params->get('displayCategories', 1),
+	'display_search'			      => $params->get('displaySearch', 1)
 );
 ?>
 <div id="ecwid_jwrapper">

@@ -1,14 +1,11 @@
-<div id="j-sidebar-container" class="span2">
-	<?php echo $this->sidebar; ?>
-</div>
-<div id="j-main-container" class="wrap span10">
+<div id="j-main-container" class="wrap span8">
 
 <form class="pure-form ecwid-settings general-settings"
 		  id="adminForm"
 		  method="POST"
 		  action="<?php echo JRoute::_('index.php?option=com_ecwid'); ?>"
 		>
-		<input type="hidden" name="task" value="default.saveDefault" />
+		<input type="hidden" name="task" value="default.saveGeneral" />
 		<?php echo JHtml::_('form.token'); ?>
 		<fieldset>
 
@@ -38,10 +35,10 @@
 						<?php echo JText::_('COM_ECWID_INITIAL_REGISTER_AT_ECWID_NOTE'); ?>
 					</div>
 					<div class="ecwid-account-buttons">
-						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#register">
+						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#register">
 							<?php echo JText::_('COM_ECWID_INITIAL_CREATE_NEW_ACCOUNT'); ?>
 						</a>
-						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=wporg#t1=&t2=Dashboard">
+						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#t1=&t2=Dashboard">
 							<?php echo JText::_('COM_ECWID_INITIAL_SIGN_IN'); ?>
 						</a>
 					</div>
@@ -70,7 +67,9 @@
 				</li>
 			</ol>
 			<hr />
-			<p><?php echo JText::_('COM_ECWID_VISIT_HELP_CENTER'); ?></p>
+            <p class="credits"><?php echo JText::_('COM_ECWID_THANKS_FOR_CONTRIBUTION'); ?></p>
+			<p class="help"><?php echo JText::_('COM_ECWID_VISIT_HELP_CENTER'); ?></p>
+
 		</fieldset>
 	</form>
 </div>

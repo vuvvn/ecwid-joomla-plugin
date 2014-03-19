@@ -8,3 +8,7 @@
 .ecwid-settings.general-settings hr {
     margin-bottom: 6px;
 }
+
+.general-settings p.note {
+    margin-top: 10px;
+}

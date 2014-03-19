@@ -3,7 +3,7 @@
     <fieldset name="params">
 
         <field name="defaultCategory" type="ecwidDefaultCategory"
-               default="1" label="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_LABEL" />
+               label="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_LABEL" />
 
     </fieldset>
 </form>

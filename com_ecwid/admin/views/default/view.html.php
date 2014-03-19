@@ -21,6 +21,7 @@ jimport('joomla.application.component.view');
 jimport('joomla.application.component.helper');
 JHtml::_("behavior.framework");
 include_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/legacy_class.php');
+include_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/view_helper.php');
 
 /**
  * HTML View class for the Rokdownloads component
@@ -44,8 +45,7 @@ class EcwidViewDefault extends EcwidLegacyJView
 	public function display($tpl = null)
 	{
 		if ($this->_layout == 'default') {
-			$storeID = $this->getStoreID();
-			if ($storeID && $storeID != 1003) {
+			if ($this->isStoreIdSet()) {
 				$this->setLayout('general');
 			} else {
 				$this->setLayout('general_initial');
@@ -54,14 +54,14 @@ class EcwidViewDefault extends EcwidLegacyJView
 
 		$option   = JFactory::getApplication()->input->getWord('option', 'com_ecwid');
 		$document = JFactory::getDocument();
-		$document->addStyleSheet('components/' . $option . '/assets/css/ecwid.css');
 		$document->addStyleSheet('components/' . $option . '/assets/css/pure-min.css');
+        $document->addStyleSheet('components/' . $option . '/assets/css/ecwid.css');
 		$document->addStyleSheet('components/' . $option . '/assets/css/' . $this->getLayout() . '.css');
 
 		$this->params = $this->get('params');
 
 		$this->addToolbar();
-		$this->addSidebar();
+		$this->addSubmenu();
 
 		$this->form = $this->getForm();
 
@@ -87,6 +87,11 @@ class EcwidViewDefault extends EcwidLegacyJView
 		return $this->form = $form;
 	}
 
+    protected function getPage()
+    {
+        return in_array($this->getLayout(), array('general', 'general_initial')) ? 'general' : $this->getLayout();
+    }
+
 	/**
 	 * Add the page title and toolbar.
 	 *
@@ -95,32 +100,33 @@ class EcwidViewDefault extends EcwidLegacyJView
 	protected function addToolbar()
 	{
 		JToolBarHelper::title(JText::_('COM_ECWID_CONFIGURATION'));
-        JToolBarHelper::apply('default.save' . $this->getLayout(), 'COM_ECWID_SAVE');
+        JToolBarHelper::apply('default.save' . ($this->getPage()), 'COM_ECWID_SAVE');
 
 		JToolBarHelper::divider();
 	}
 
-	protected function addSidebar()
+	protected function addSubmenu()
 	{
-		JHtmlSidebar::addEntry(
-			JText::_('COM_ECWID_GENERAL_SETTINGS'),
-			JRoute::_('index.php?option=com_ecwid'),
-			in_array($this->_layout, array('general', 'general_initial'))
-		);
+        $submenu = array(
+            array(
+                'name'   => JText::_('COM_ECWID_GENERAL_SETTINGS'),
+                'link'   => JRoute::_('index.php?option=com_ecwid'),
+                'active' => $this->getPage() == 'general'
+            ),
+            array(
+                'name'   => JText::_('COM_ECWID_APPEARANCE_SETTINGS'),
+                'link'   => JRoute::_('index.php?option=com_ecwid&layout=appearance'),
+                'active' => $this->getPage() == 'appearance'
+            ),
+            array(
+                'name'   => JText::_('COM_ECWID_ADVANCED_SETTINGS'),
+                'link'   => JRoute::_('index.php?option=com_ecwid&layout=advanced'),
+                'active' => $this->getPage() == 'advanced'
+            )
+        );
 
-		JHtmlSidebar::addEntry(
-			JText::_('COM_ECWID_APPEARANCE_SETTINGS'),
-			JRoute::_('index.php?option=com_ecwid&layout=appearance'),
-			$this->_layout == 'appearance'
-		);
-
-		JHtmlSidebar::addEntry(
-			JText::_('COM_ECWID_ADVANCED_SETTINGS'),
-			JRoute::_('index.php?option=com_ecwid&layout=advanced'),
-			$this->_layout == 'advanced'
-		);
-
-		$this->sidebar = JHtmlSidebar::render();
+        EcwidViewHelper::buildSubmenu($submenu);
+		$this->submenu = EcwidViewHelper::renderSubmenu();
 	}
 
 	protected function isPaidAccount()
@@ -138,6 +144,13 @@ class EcwidViewDefault extends EcwidLegacyJView
 
 		return $this->api;
 	}
+
+    protected function isStoreIdSet()
+    {
+        $storeID = $this->getStoreID();
+
+        return !empty($storeID) && $storeID != 1003;
+    }
 
 	protected function getStoreID()
 	{
@@ -163,65 +176,5 @@ class EcwidViewDefault extends EcwidLegacyJView
 	protected function renderLabel($name)
 	{
 		echo $this->getForm()->getField($name)->label;
-	}
-
-	protected function render()
-	{
-		if (!isset($this->form)) {
-			return false;
-		}
-
-		$html   = array();
-		$html[] = '<div id="ecwid-paramslist">';
-
-		//		if ($description = $self->_xml[$group]->attributes('description')) {
-		//			// add the params description to the display
-		//			$desc	= JText::_($description);
-		//			$html[]	= '<div id="ecwid-params-description>'.$desc.'</div>';
-		//		}
-
-		$fields = $this->form->getFieldset('params');
-
-		$i = 0;
-		foreach ($fields as $field) {
-			$class = '';
-
-			if (!$i) {
-				$html[] = '<div class="left-column column">';
-				$class  = ' first';
-			}
-			if ($i == round(count($fields) / 2) - 1) {
-				$class = ' last';
-			}
-			if ($i == round(count($fields) / 2)) {
-				$html[] = '</div><div class="right-column column">';
-				$class  = ' first';
-			}
-			if ($i >= count($fields) - 1) {
-				$class = ' last';
-			}
-
-			$html[] = '<div class="ecwid-row' . $class . '">';
-
-			if ($field->label != '') {
-				$html[] = '<div class="label"><span>' . $field->label . '</span></div>';
-				$html[] = '<div class="value">' . $field->input . '</div>';
-			} else {
-				$html[] = '<div class="value">' . $field->input . '</div>';
-			}
-
-			$html[] = '</div>';
-
-			if ($i >= count($fields) - 1) $html[] = '</div>';
-			$i++;
-		}
-
-		if (count($fields) < 1) {
-			$html[] = "<div class='notice'>" . JText::_('There are no Parameters for this item') . "</div>";
-		}
-
-		$html[] = '</div>';
-
-		return implode("\n", $html);
 	}
 }

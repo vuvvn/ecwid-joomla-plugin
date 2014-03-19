@@ -37,6 +37,9 @@ class EcwidViewEcwid extends EcwidLegacyJView {
         $app        = JFactory::getApplication();
         $params     = $app->getParams();
 
+        $document = JFactory::getDocument();
+        $document->addStyleSheet('components/com_ecwid/assets/frontend.css');
+
         if ($params->get('menu-meta_description'))
         {
             $this->document->setDescription($params->get('menu-meta_description'));

@@ -26,7 +26,9 @@ jimport('joomla.application.component.controller');
 class RokEcwidController extends EcwidLegacyJController {
 	function display($cachable = false, $urlparams = array()) {
 		$app = JFactory::getApplication();
-                $app->redirect(str_replace('com_rokecwid', 'com_ecwid', JURI::getInstance()), '', 'message', 301);
+        if (strpos(JURI::getInstance(), 'rokecwid') !== false) {
+            $app->redirect(str_replace('rokecwid', 'ecwid', JURI::getInstance()), '', 'message', 301);
+        }
 	}
 }
 ?>

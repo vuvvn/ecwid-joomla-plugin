@@ -135,18 +135,18 @@ class EcwidModelDefault extends JModelForm
 
 			$cats = $api->get_all_categories();
 			foreach($cats as $cat) {
-				$xml .= '<option value="' . $cat['id'] . '">' . htmlentities($cat['name']) . '</option>';
+				$xml .= '<option value="' . $cat['id'] . '">' . htmlspecialchars($cat['name'], ENT_NOQUOTES, 'UTF-8') . '</option>';
 			}
 
 			$xml .= '</field>';
 			$list = new \SimpleXMLElement($xml);
+
 			$form->setField($list);
 		} else {
 			$xml = '<field name="source" type="text" label="Source" required="false" labelclass="control-label" />';
 			$text = new \SimpleXMLElement($xml);
 			$form->setField($text);
 		}
-
 
 		return $form;
 	}

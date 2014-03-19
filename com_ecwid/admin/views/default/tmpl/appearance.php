@@ -1,8 +1,13 @@
-<div id="j-sidebar-container" class="span2">
-	<?php echo $this->sidebar; ?>
-</div>
-<div id="j-main-container" class="wrap span10">
+<?php if ($this->submenu): ?>
+    <div id="j-sidebar-container" class="span2">
+        <?php echo $this->submenu; ?>
+    </div>
+<? endif; ?>
 
+
+<div id="j-main-container" class="wrap span8">
+
+<h2><?php echo JText::_('COM_ECWID_APPEARANCE_SETTINGS'); ?></h2>
 <form class="pure-form pure-form-aligned ecwid-settings appearance-settings"
 	  id="adminForm"
 	  method="POST"

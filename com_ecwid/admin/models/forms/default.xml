@@ -3,7 +3,7 @@
     <fieldset name="params">
 
         <field name="storeID" type="text"
-               default="1003" label="COM_ECWID_FORM_DEFAULT_STOREID_LABEL"
+               default="" label="COM_ECWID_FORM_DEFAULT_STOREID_LABEL"
                description="COM_ECWID_FORM_DEFAULT_STOREID_DESC"/>
     </fieldset>
 </form>

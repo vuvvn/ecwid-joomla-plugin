@@ -169,6 +169,7 @@ class EcwidCatalog
 
 		$batch_result = $this->ecwid_api->get_batch_request($params);
 
+        $return = '';
 		if ($id > 0) {
 			$category 	= $batch_result["category"];
 

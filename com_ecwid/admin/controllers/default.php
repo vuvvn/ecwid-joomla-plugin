@@ -40,8 +40,7 @@ class EcwidControllerDefault extends JControllerForm
 		$data = array_merge(
 			array(
 				'displayCategories' => 0,
-				'displaySearchBox' => 0,
-				'displayMinicart' => 0,
+				'displaySearch' => 0,
 			),
 			$data
 		);
@@ -53,7 +52,7 @@ class EcwidControllerDefault extends JControllerForm
 		return $result;
 	}
 
-	public function saveDefault()
+	public function saveGeneral()
 	{
 		$result = $this->save($this->getModel()->getForm());
 		// Redirect to the list screen.
@@ -74,7 +73,11 @@ class EcwidControllerDefault extends JControllerForm
 	public function save($form, $data = null)
 	{
 		// Check for request forgeries.
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+		if (method_exists(JSession, 'checkToken')) {
+            JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        } elseif (method_exists(JRequest, 'checkToken')) { // for joomla 1.7
+            JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        }
 
 		// Initialise variables.
 		$app   = JFactory::getApplication();
@@ -134,7 +137,7 @@ class EcwidControllerDefault extends JControllerForm
 			return false;
 		}
 
-		$this->setMessage(JText::_(($lang->hasKey($this->text_prefix . ($app->isSite() ? '_SUBMIT' : '') . '_SAVE_SUCCESS') ? $this->text_prefix : 'JLIB_APPLICATION') . ($app->isSite() ? '_SUBMIT' : '') . '_SAVE_SUCCESS'));
+		$this->setMessage(JText::_('COM_ECWID_SAVE_SUCCESS'));
 
 		// Invoke the postSave method to allow for the child class to access the model.
 		$this->postSaveHook($model, $validData);

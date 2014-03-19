@@ -17,13 +17,16 @@
 defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 if (!defined('ECWID_SCRIPT')) define('ECWID_SCRIPT',1);
 
-require_once JPATH_SITE
-        . DIRECTORY_SEPARATOR . 'components'
-        . DIRECTORY_SEPARATOR . 'com_ecwid'
-        . DIRECTORY_SEPARATOR . 'helpers'
-        . DIRECTORY_SEPARATOR . 'common.php';
+JFactory::getDocument()->addStyleSheet(JURI::base() . 'components/com_ecwid/assets/frontend.css');
 
-        echo EcwidCommon::getProductBrowserJS();
+
+require_once JPATH_SITE
+    . DIRECTORY_SEPARATOR . 'components'
+    . DIRECTORY_SEPARATOR . 'com_ecwid'
+    . DIRECTORY_SEPARATOR . 'helpers'
+    . DIRECTORY_SEPARATOR . 'common.php';
+
+echo EcwidCommon::getProductBrowserJS();
 ?>
 
 <div id="ecwid_search_module_wrapper">

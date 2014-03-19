@@ -9,7 +9,7 @@
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
     <version>2.0</version>
     <description>
-        Ecwid offers the performance and flexibility you need, with none of the hassles you don't.
+        Ecwid Legacy component.
     </description>
     
     <!-- user part -->
@@ -18,10 +18,5 @@
         <filename>index.html</filename>
         <filename>rokecwid.php</filename>
     </files>
-	<administration>
-        <files folder="admin">
-            <folder>helpers</folder>
-	</files>
-	</administration>
-
+    <administration></administration>
 </extension>
