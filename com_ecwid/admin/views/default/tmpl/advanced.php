@@ -22,7 +22,7 @@ defined('_JEXEC') or die('Restricted access');
     <div id="j-sidebar-container" class="span2">
         <?php echo $this->submenu; ?>
     </div>
-<? endif; ?>
+<?php endif; ?>
 
 <div id="j-main-container" class="wrap span8">
 

@@ -22,7 +22,8 @@ defined('_JEXEC') or die('Restricted access');
 <div id="j-sidebar-container" class="span2">
 	<?php echo $this->submenu; ?>
 </div>
-<? endif; ?>
+<?php endif; ?>
+
 <div id="j-main-container" class="wrap span8">
 
 <form class="pure-form ecwid-settings general-settings<?php if (!$this->isStoreIdSet()) echo 'initial'; ?>"
@@ -59,7 +60,7 @@ defined('_JEXEC') or die('Restricted access');
 			<div class="section">
 				<div class="left">
 					<span class="main-info">
-							<?php echo JText::_('COM_ECWID_GENERAL_STORE_ID'); ?>: <strong><? echo JComponentHelper::getParams('com_ecwid')->get('storeID'); ?></strong>
+							<?php echo JText::_('COM_ECWID_GENERAL_STORE_ID'); ?>: <strong><?php echo JComponentHelper::getParams('com_ecwid')->get('storeID'); ?></strong>
 					</span>
 				</div>
 				<div class="right two-buttons">
