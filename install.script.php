@@ -1,10 +1,21 @@
 <?php
 /**
- * @version   $Id: install.script.php 15086 2013-10-31 16:59:30Z btowles $
- * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
- * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ *
+ * Contributors:
+ * @author     Rick Blalock
+ * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ *
  */
+
+// Check to ensure this file is included in Joomla!
+defined('_JEXEC') or die('Restricted access');
+
 if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 
 	/**

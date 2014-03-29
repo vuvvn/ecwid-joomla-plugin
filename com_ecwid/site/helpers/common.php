@@ -1,22 +1,19 @@
 <?php
 /**
- * @version   $Id: common.php 11282 2013-06-06 13:23:58Z steph $
- * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
- * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * Based on work by
- * @author Rick Blalock
- * @package Joomla
- * @subpackage ecwid
- * @license GNU/GPL
+ * Contributors:
+ * @author     Rick Blalock
+ * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * ECWID.com e-commerce wrapper
  */
 
-// no direct access
-defined('_JEXEC') or die('Restricted access');
-
+defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 /**
  * ecwid Common Helper

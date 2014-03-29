@@ -1,17 +1,16 @@
 <?php
 /**
- * @version   $Id: controller.php 10387 2013-05-17 12:33:14Z steph $
- * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
- * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * Based on work by
- * @author Rick Blalock
- * @package Joomla
- * @subpackage ecwid
- * @license GNU/GPL
+ * Contributors:
+ * @author     Rick Blalock
+ * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * ECWID.com e-commerce wrapper
  */
 
 // no direct access

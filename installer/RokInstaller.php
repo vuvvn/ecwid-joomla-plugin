@@ -1,13 +1,18 @@
 <?php
 /**
- * @package   Installer Bundle Framework - RocketTheme
- * @version   2.0.2 November 5, 2013
- * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
- * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * Installer uses the Joomla Framework (http://www.joomla.org), a GNU/GPLv2 content management system
+ * Contributors:
+ * @author     Rick Blalock
+ * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ *
  */
+
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die();
 

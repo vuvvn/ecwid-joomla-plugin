@@ -1,18 +1,19 @@
 <?php
 /**
- * @version    $Id: default.php 10727 2013-05-28 12:51:00Z steph $
- * @author     RocketTheme http://www.rockettheme.com
- * @copyright  Copyright (C) 2007 - 2013 RocketTheme, LLC
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * Based on work by
+ * Contributors:
  * @author     Rick Blalock
- * @package    Joomla
- * @subpackage ecwid
  * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * ECWID.com e-commerce wrapper
  */
+
+defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 jimport('joomla.application.component.controllerform');
 

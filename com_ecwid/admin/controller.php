@@ -1,21 +1,19 @@
 <?php
 /**
- * @version    $Id: controller.php 6867 2013-01-28 23:08:31Z btowles $
- * @author     RocketTheme http://www.rockettheme.com
- * @copyright  Copyright (C) 2007 - 2013 RocketTheme, LLC
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * Based on work by
+ * Contributors:
  * @author     Rick Blalock
- * @package    Joomla
- * @subpackage ecwid
  * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * ECWID.com e-commerce wrapper
  */
 
-// no direct access
-defined('_JEXEC') or die('Restricted access');
+defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 jimport('joomla.application.component.controller');
 JLoader::register(

@@ -1,18 +1,19 @@
 <?php
 /**
- * @version   $Id: ecwid_catalog.php 6867 2013-01-28 23:08:31Z btowles $
- * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
- * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * Based on work by
- * @author Rick Blalock
- * @package Joomla
- * @subpackage ecwid
- * @license GNU/GPL
+ * Contributors:
+ * @author     Rick Blalock
+ * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * ECWID.com e-commerce wrapper
  */
+
+defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 include_once "ecwid_product_api.php";
 include_once "EcwidCatalog.php";

@@ -1,4 +1,20 @@
 <?php
+/**
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ *
+ * Contributors:
+ * @author     Rick Blalock
+ * @license    GNU/GPL
+ * and
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ *
+ */
+
+// Check to ensure this file is included in Joomla!
+defined('_JEXEC') or die('Restricted access');
 
 class EcwidProductApi {
 	var $store_id = '';
@@ -20,13 +36,8 @@ class EcwidProductApi {
 	}
 
 	function internal_parse_json($json) {
-    if(version_compare(PHP_VERSION,"5.2.0",">=")) {
-      return json_decode($json, true);
-     }
-		include_once('JSON.php');
-		$json_parser = new Services_JSON(SERVICES_JSON_LOOSE_TYPE);
-		return $json_parser->decode($json);
-	}
+        return json_decode($json, true);
+    }
 
 	function internal_fetch_url_libcurl($url) {
 		$timeout = 90;
