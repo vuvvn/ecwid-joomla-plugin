@@ -1,3 +1,4 @@
+<!-- Ecwid Shopping Cart extension v2.1 -->
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
@@ -24,7 +25,7 @@ require_once JPATH_SITE
 
         echo EcwidCommon::getProductBrowserJS();
 ?>
-
 <div id="ecwid_categories_module_wrapper">
         <script type="text/javascript"> <?php echo $params->get('categoryLayout'); ?>("style="); </script>
 </div>
+<!-- END Ecwid Shopping Cart extension v2.1 -->
