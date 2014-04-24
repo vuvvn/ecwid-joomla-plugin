@@ -106,42 +106,91 @@ function show_ecwid($params) {
     if ($api_enabled) {
 
         if (isset($_GET['_escaped_fragment_'])) {
+
+            $api = new EcwidProductApi($store_id);
+
+            $found = false;
             $fragment = $_GET['_escaped_fragment_'];
+
+            $title = '';
+            $description = '';
+
             if (preg_match('!/~/(product|category)/.*id=([\d+]*)!', $fragment, $matches)) {
                 $type = $matches[1];
                 $id = $matches[2];
 
                 if ($api_enabled && $type && $id) {
+
                     if ($type == 'product') {
                         $ajaxIndexingContent = $c->get_product($id);
-
-                        $api = new EcwidProductApi($store_id);
                         $product = $api->get_product($id);
-                        $document = JFactory::getDocument();
-                        $document->setTitle($product['name'] . ' | ' . $document->getTitle());
 
-                        $description = $product['description'];
-                        $description = strip_tags($description);
-                        $description = html_entity_decode($description, ENT_NOQUOTES, 'UTF-8');
-                        $description = trim($description, " \t\xA0\n\r");// Space, tab, non-breaking space, newline, carriage return
-                        $description = mb_substr($description, 0, 160);
-                        $document->setDescription($description);
+                        if ($product) {
+                            $found = true;
 
-                        $integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "!/~/product/id='. intval($id) .'";</script>';
+                            $title = $product['name'];
+                            $description = $product['description'];
+
+                            $integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "!/~/product/id='. intval($id) .'";</script>';
+                        }
 
                     } elseif ($type == 'category') {
-                        $ajaxIndexingContent = $c->get_category($id);
-                        $ecwid_default_category_id = $id;
+
+                        $cat = $api->get_category($id);
+
+                        if ($cat) {
+                            $found = true;
+
+                            $ajaxIndexingContent = $c->get_category($id);
+                            $ecwid_default_category_id = $id;
+
+                            $title = $cat['name'];
+                            $description = $cat['description'];
+                        }
                     }
-                } 
+                }
             } else {
+                $found = true; // We are in the store root
                 $ajaxIndexingContent = $c->get_category($ecwid_default_category_id);
+
+                $category = $api->get_category($ecwid_default_category_id);
+                $title = $category['name'];
+                $description = $category['description'];
+            }
+
+            $document = JFactory::getDocument();
+
+            if ($title) {
+                $document->setTitle($title . ' | ' . $document->getTitle());
+            }
+
+            if ($description) {
+                $description = strip_tags($description);
+                $description = html_entity_decode($description, ENT_NOQUOTES, 'UTF-8');
+                $description = trim($description, " \t\xA0\n\r");// Space, tab, non-breaking space, newline, carriage return
+                $description = mb_substr($description, 0, 160);
+                $document->setDescription($description);
+            }
+
+
+            if (!$found) {
+                JResponse::setHeader('Status', '404 Not Found', true);
             }
         } else {
             $doc = JFactory::getDocument();
             $doc->addCustomTag('<meta name="fragment" content="!" />');
         }
 	}
+
+    $api = new EcwidProductApi($store_id);
+
+    $profile = $api->get_profile();
+
+    if ($profile['closed']) {
+        JResponse::setHeader('Status', '503 Service Temporarily Unavailable', true);
+        return;
+    }
+
 	
 	if (empty($noscript)) {
 		$noscript = "Your browser does not support JavaScript.<a href=\"{$ecwid_mobile_catalog_link}\">HTML version of this store</a>";
@@ -179,6 +228,7 @@ function show_ecwid($params) {
 	}
 
        $integration_code .= <<<EOT
+<!-- Ecwid Shopping Cart extension v2.1 -->
 $additional_widgets
 <div id="$ecwid_element_id">$ajaxIndexingContent
 <div>
@@ -187,6 +237,7 @@ xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid
 </div>
 <noscript>$noscript</noscript>
 </div>
+<!-- END Ecwid Shopping Cart extension v2.1 -->
 EOT;
 
 	return $integration_code;
