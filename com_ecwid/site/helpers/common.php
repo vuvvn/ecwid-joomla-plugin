@@ -69,6 +69,20 @@ class EcwidCommon  {
 		return $code;
 	}
 
+    function isPaidAccount($storeId = null)
+    {
+        include_once "ecwid_product_api.php";
+
+        if (is_null($storeId)) {
+            $eparams = JComponentHelper::getParams( 'com_ecwid' );
+
+            $storeId = $eparams->get('storeID');
+        }
+        $api = new EcwidProductApi($storeId);
+
+        return $api->is_api_enabled() && is_numeric($storeId) && $storeId != 1003;
+    }
+
 	
 }
 ?>
