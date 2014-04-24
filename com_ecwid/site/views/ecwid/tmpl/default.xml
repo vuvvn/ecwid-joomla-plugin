@@ -42,6 +42,9 @@
             <field name="table" type="text"
                    label="COM_ECWID_APPEARANCE_TABLE" />
 
+            <field name="ssoKey" type="text"
+                   label="COM_ECWID_ADVANCED_SSO_KEY_LABEL" />
+
         </fieldset>
     </fields>
 </metadata>

@@ -37,19 +37,32 @@ defined('_JEXEC') or die('Restricted access');
 
 <fieldset>
 
-<div class="pure-control-group">
-	<div class="label">
-		<?php $this->renderLabel('defaultCategory'); ?>
-	</div>
-	<div class="input">
-		<?php $this->renderElement('defaultCategory'); ?>
-	</div>
-	<div class="note">
-		<?php echo JText::_('COM_ECWID_ADVANCED_DEFAULT_CATEGORY_NOTE');
-		?>
-	</div>
-</div>
+    <div class="pure-control-group">
+        <div class="label">
+            <?php $this->renderLabel('defaultCategory'); ?>
+        </div>
+        <div class="input">
+            <?php $this->renderElement('defaultCategory'); ?>
+        </div>
+        <div class="note">
+            <?php echo JText::_('COM_ECWID_ADVANCED_DEFAULT_CATEGORY_NOTE');
+            ?>
+        </div>
+    </div>
 
+
+    <div class="pure-control-group">
+        <div class="label">
+            <?php $this->renderLabel('ssoKey'); ?>
+        </div>
+        <div class="input">
+            <?php $this->renderElement('ssoKey'); ?>
+        </div>
+        <div class="note">
+            <?php echo JText::_('COM_ECWID_ADVANCED_SSO_KEY_NOTE');
+            ?>
+        </div>
+    </div>
 </fieldset>
 </form>
 

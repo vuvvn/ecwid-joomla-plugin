@@ -22,7 +22,12 @@ JLoader::register(
 	'helpers' . DIRECTORY_SEPARATOR .
 	'ecwid_product_api.php'
 );
-
+JLoader::register(
+    'EcwidCommon',
+    JPATH_COMPONENT_SITE . DIRECTORY_SEPARATOR .
+    'helpers' . DIRECTORY_SEPARATOR .
+    'common.php'
+);
 /**
  * ecwid Controller
  *
