@@ -129,7 +129,7 @@ class EcwidModelDefault extends JModelForm
 
 		$api = new EcwidProductApi($this->getParams()->get('storeID'));
 
-		if ($api->is_api_enabled()) {
+		if (EcwidCommon::isPaidAccount($this->getParams()->get('storeID'))) {
 			$xml = '<field name="defaultCategory" type="list" label="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_LABEL" required="false" labelclass="control-label">';
 			$xml .= '<option value="">COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ROOT</option>';
 
@@ -148,7 +148,7 @@ class EcwidModelDefault extends JModelForm
 			$form->setField($text);
 		}
 
-		return $form;
+        return $form;
 	}
 	/**
 	 * Method to save the form data.
@@ -162,11 +162,8 @@ class EcwidModelDefault extends JModelForm
 		// Initialise variables;
 		$dispatcher = JDispatcher::getInstance();
 
-
-		$input = new JRegistry();
-		$input->loadArray($data);
 		$params = $this->getParams();
-		$params->merge($input);
+        $params->loadArray($data);
 
 		$params->set("storeID", trim($params->get("storeID")));
 

@@ -74,10 +74,10 @@ class EcwidControllerDefault extends JControllerForm
 	public function save($form, $data = null)
 	{
 		// Check for request forgeries.
-		if (method_exists(JSession, 'checkToken')) {
+		if (class_exists('JSession') && method_exists(JSession, 'checkToken')) {
             JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-        } elseif (method_exists(JRequest, 'checkToken')) { // for joomla 1.7
-            JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+        } elseif (class_exists('JRequest') && method_exists(JRequest, 'checkToken')) { // for joomla 1.7
+            JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
         }
 
 		// Initialise variables.
@@ -125,7 +125,7 @@ class EcwidControllerDefault extends JControllerForm
 			return false;
 		}
 
-		// Attempt to save the data.
+        // Attempt to save the data.
 		if (!$model->save($validData)) {
 			// Save the data in the session.
 			$app->setUserState($context . '.data', $validData);
