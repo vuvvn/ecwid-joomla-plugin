@@ -44,7 +44,7 @@ class EcwidCommon  {
 
 
 	// Returns ecwid_ProductBrowserURL javascript code that provides modules with a product browser url to link to
-	function getProductBrowserJS() {
+	static function getProductBrowserJS() {
 		global $ecwid_itemid, $Itemid, $option;
 
 		if ($option == 'com_ecwid') {
@@ -69,7 +69,7 @@ class EcwidCommon  {
 		return $code;
 	}
 
-    function isPaidAccount($storeId = null)
+    static function isPaidAccount($storeId = null)
     {
         include_once "ecwid_product_api.php";
 
