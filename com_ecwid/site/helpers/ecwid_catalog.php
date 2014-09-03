@@ -105,6 +105,14 @@ function show_ecwid($params) {
 
     if ($api_enabled) {
 
+        $document = JFactory::getDocument();
+
+        foreach ($document->_links as $key => $link) {
+            if ($link['relation'] == 'canonical') {
+                unset($document->_links[$key]);
+            }
+        }
+
         if (isset($_GET['_escaped_fragment_'])) {
 
             $api = new EcwidProductApi($store_id);
@@ -132,8 +140,8 @@ function show_ecwid($params) {
                             $description = $product['description'];
 
                             $integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "!/~/product/id='. intval($id) .'";</script>';
+                            $document->addHeadLink(EcwidController::buildEcwidUrl('#!/~/product/id=' . $id), 'canonical', 'rel', '');
                         }
-
                     } elseif ($type == 'category') {
 
                         $cat = $api->get_category($id);
@@ -146,6 +154,8 @@ function show_ecwid($params) {
 
                             $title = $cat['name'];
                             $description = $cat['description'];
+
+                            $document->addHeadLink(EcwidController::buildEcwidUrl('#!/~/category/id=' . $id), 'canonical', 'rel', '');
                         }
                     }
                 }
@@ -157,8 +167,6 @@ function show_ecwid($params) {
                 $title = $category['name'];
                 $description = $category['description'];
             }
-
-            $document = JFactory::getDocument();
 
             if ($title) {
                 $document->setTitle($title . ' | ' . $document->getTitle());
@@ -177,10 +185,9 @@ function show_ecwid($params) {
                 JResponse::setHeader('Status', '404 Not Found', true);
             }
         } else {
-            $doc = JFactory::getDocument();
-            $doc->addCustomTag('<meta name="fragment" content="!" />');
+            $document->addCustomTag('<meta name="fragment" content="!" />');
         }
-	}
+  	}
 
     $api = new EcwidProductApi($store_id);
 

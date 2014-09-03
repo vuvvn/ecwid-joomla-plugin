@@ -54,14 +54,6 @@ class plgSystemEcwid extends JPlugin
             $doc->addCustomTag('<link rel="dns-prefetch" href="//images-cdn.ecwid.com/">');
             $doc->addCustomTag('<link rel="dns-prefetch" href="//images.ecwid.com/">');
             $doc->addCustomTag('<link rel="dns-prefetch" href="//app.ecwid.com/">');
-
-		if (isset($_GET['_escaped_fragment_'])) {
-			foreach ($doc->_links as $key => $link) {
-				if ($link['relation'] == 'canonical') {
-					unset($doc->_links[$key]);
-				}
-			}
-		}
         }
     }
 
