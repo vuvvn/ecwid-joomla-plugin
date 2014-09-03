@@ -26,3 +26,11 @@
     margin-top: 15px;
 }
 
+.ecwid-settings.advanced-settings .note a {
+    color: #A0A0A0;
+    text-decoration: underline;
+}
+
+.ecwid-settings.advanced-settings .note a:hover {
+    color: #005580;
+}
