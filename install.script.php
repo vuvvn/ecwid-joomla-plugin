@@ -143,8 +143,9 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 				}
 			}
 
-			return $retval;
-		}
+            // Create package in the database if none existed before
+            $this->createPackageInDb();
+    	}
 
 		/**
 		 * @param $parent
@@ -213,6 +214,121 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
                 $this->hideLegacyComponentMenuItem();
 			}
 		}
+
+        protected function createPackageInDb()
+        {
+
+            $manifest_path = $this->sourcedir . '/pkg_ecwid/pkg_ecwid.xml';
+            $element = 'pkg_ecwid';
+            $installer = new JInstaller();
+            $installer->setPath('manifest', $manifest_path);
+
+            $manifest = $installer->isManifest($manifest_path);
+
+            $row = JTable::getInstance('extension');
+            $eid = $row->find(array('element' => $element, 'type' => 'package'));
+
+            if ($eid)
+            {
+                $row->load($eid);
+            }
+            else
+            {
+                $row->name = $manifest->name;
+                $row->type = 'package';
+                $row->element = $element;
+                $row->folder = '';
+                $row->enabled = 1;
+                $row->protected = 0;
+                $row->access = 1;
+                $row->client_id = 0;
+                $row->custom_data = '';
+                $row->params = $installer->getParams();
+            }
+
+            // Update the manifest cache for the entry
+            $row->manifest_cache = $installer->generateManifestCache();
+
+            if (!$row->store())
+            {
+                // Install failed, roll back changes
+                $this->parent->abort(JText::sprintf('JLIB_INSTALLER_ABORT_PACK_INSTALL_ROLLBACK', $row->getError()));
+            }
+
+            // Lastly, we will copy the manifest file to its appropriate place.
+            $copy = array();
+            $copy['src'] = $manifest_path;
+            $copy['dest'] = JPATH_MANIFESTS . '/packages/pkg_ecwid.xml';
+
+            if (!$installer->copyFiles(array($copy), true))
+            {
+                // Install failed, rollback changes
+                $this->parent->abort(
+                    JText::sprintf('JLIB_INSTALLER_ABORT_PACK_INSTALL_COPY_SETUP', JText::_('JLIB_INSTALLER_ABORT_PACK_INSTALL_NO_FILES'))
+                );
+
+                return false;
+            }
+
+
+            $children = $manifest->updateservers->children();
+            foreach ($children as $child)
+            {
+                $attrs = $child->attributes();
+                $this->addUpdateSite($row->get($row->getKeyName()), $attrs['name'], $attrs['type'], trim($child), true);
+            }
+        }
+
+        protected function addUpdateSite($eid, $name, $type, $location, $enabled)
+        {
+            $db = JFactory::getDbo();
+
+            // Look if the location is used already; doesn't matter what type you can't have two types at the same address, doesn't make sense
+            $query = $db->getQuery(true)
+                ->select('update_site_id')
+                ->from('#__update_sites')
+                ->where('location = ' . $db->quote($location));
+            $db->setQuery($query);
+            $update_site_id = (int) $db->loadResult();
+
+            // If it doesn't exist, add it!
+            if (!$update_site_id)
+            {
+                $query->clear()
+                    ->insert('#__update_sites')
+                    ->columns(array($db->quoteName('name'), $db->quoteName('type'), $db->quoteName('location'), $db->quoteName('enabled')))
+                    ->values($db->quote($name) . ', ' . $db->quote($type) . ', ' . $db->quote($location) . ', ' . (int) $enabled);
+                $db->setQuery($query);
+                if ($db->execute())
+                {
+                    // Link up this extension to the update site
+                    $update_site_id = $db->insertid();
+                }
+            }
+
+            // Check if it has an update site id (creation might have faileD)
+            if ($update_site_id)
+            {
+                // Look for an update site entry that exists
+                $query->clear()
+                    ->select('update_site_id')
+                    ->from('#__update_sites_extensions')
+                    ->where('update_site_id = ' . $update_site_id)
+                    ->where('extension_id = ' . $eid);
+                $db->setQuery($query);
+                $tmpid = (int) $db->loadResult();
+                if (!$tmpid)
+                {
+                    // Link this extension to the relevant update site
+                    $query->clear()
+                        ->insert('#__update_sites_extensions')
+                        ->columns(array($db->quoteName('update_site_id'), $db->quoteName('extension_id')))
+                        ->values($update_site_id . ', ' . $eid);
+                    $db->setQuery($query);
+                    $db->execute();
+                }
+            }
+        }
 
         protected function hideLegacyComponentMenuItem()
         {
@@ -350,7 +466,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 				array(
                     'search' => 'RokEcwid Search Module',
 					'categories' => 'RokEcwid Categories Module',
-					'minicart' => 'RokEcwid Mini-cart Module',
+                    'minicart' => 'RokEcwid Mini-cart Module',
 
 				) as $name => $old_title
 			) {
@@ -369,19 +485,21 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 
                 if ($old_modules) {
                     foreach ($old_modules as $module) {
-                        if (!is_object($module) || !isset($module->title) || !isset($module->module) || !isset($module->asset_id)) continue;
+                        if (!is_object($module) || !isset($module->title) || !isset($module->module)) continue;
                         $module->title = str_replace($old_title, $new_module->name, $module->title);
                         $module->module = $new_module->element;
 
                         $db->updateObject('#__modules', $module, 'id');
 
-                        $query = "SELECT * FROM #__assets WHERE id='$module->asset_id'";
-                        $db->setQuery($query);
-                        $asset = $db->loadObject();
-                        if (is_object($asset) && isset($asset->title) && isset($asset->id)) {
-                            $asset->title = $new_module->name;
+                        if (isset($module->asset_id)) {
+                            $query = "SELECT * FROM #__assets WHERE id='$module->asset_id'";
+                            $db->setQuery($query);
+                            $asset = $db->loadObject();
+                            if (is_object($asset) && isset($asset->title) && isset($asset->id)) {
+                                $asset->title = $new_module->name;
 
-                            $db->updateObject('#__assets', $asset, 'id');
+                                $db->updateObject('#__assets', $asset, 'id');
+                            }
                         }
                     }
                 }
