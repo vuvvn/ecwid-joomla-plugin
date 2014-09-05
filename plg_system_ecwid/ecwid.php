@@ -137,26 +137,27 @@ class plgSystemEcwid extends JPlugin
             $sso_profile = "$user_data $hmac $time";
         }
 
-        $signin_url = JRoute::_('index.php?option=com_users&view=login');
-        $signout_url = JRoute::_('index.php?option=com_user&task=logout');
+        $pb_url = EcwidCommon::getProductBrowserURL();
+
+        $signin_url = JRoute::_('index.php?option=com_users&view=login&return=' . base64_encode($pb_url), false);
         $sign_in_out_urls = <<<JS
 window.Ecwid.OnAPILoaded.add(function() {
-                window.Ecwid.setSignInUrls({
-        signInUrl: '$signin_url',
-        signOutUrl: '$signout_url' // signOutUrl is optional
+    window.Ecwid.setSignInUrls({
+        signInUrl: '$signin_url'
     });
 });
-  window.Ecwid.setSignInProvider({
-    addSignInLinkToPB: function() { return true; },
-    canSignOut: function() { return true; },
-  });
+window.Ecwid.setSignInProvider({
+    addSignInLinkToPB: function() { return true; }
+});
 JS;
 
-        return '<script type="text/javascript"> var ecwid_sso_profile="'
-            . $sso_profile
-            . '";'
-            . $sign_in_out_urls
-            . '</script>';
+        return <<<JS
 
+<script type="text/javascript">
+var ecwid_sso_profile="$sso_profile";
+$sign_in_out_urls
+</script>;
+
+JS;
     }
 }
