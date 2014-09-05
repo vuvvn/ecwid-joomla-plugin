@@ -46,7 +46,7 @@ class EcwidControllerDefault extends JControllerForm
 			$data
 		);
 
-		$result = $this->save($this->getModel()->getAppearanceForm(), $data);
+		$result = $this->saveForm($this->getModel()->getAppearanceForm(), $data);
 		// Redirect to the list screen.
 		$this->setRedirect(JRoute::_('index.php?option=' . $this->option. '&layout=appearance', false));
 
@@ -55,7 +55,7 @@ class EcwidControllerDefault extends JControllerForm
 
 	public function saveGeneral()
 	{
-		$result = $this->save($this->getModel()->getForm());
+		$result = $this->saveForm($this->getModel()->getForm());
 		// Redirect to the list screen.
 		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&saved', false));
 
@@ -64,19 +64,19 @@ class EcwidControllerDefault extends JControllerForm
 
 	public function saveAdvanced()
 	{
-		$result = $this->save($this->getModel()->getAdvancedForm());
+		$result = $this->saveForm($this->getModel()->getAdvancedForm());
 		// Redirect to the list screen.
 		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&layout=advanced', false));
 
 		return $result;
 	}
 
-	public function save($form, $data = null)
+	public function saveForm($form, $data = null)
 	{
 		// Check for request forgeries.
-		if (class_exists('JSession') && method_exists(JSession, 'checkToken')) {
+		if (class_exists('JSession') && method_exists('JSession', 'checkToken')) {
             JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
-        } elseif (class_exists('JRequest') && method_exists(JRequest, 'checkToken')) { // for joomla 1.7
+        } elseif (class_exists('JRequest') && method_exists('JRequest', 'checkToken')) { // for joomla 1.7
             JRequest::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
         }
 

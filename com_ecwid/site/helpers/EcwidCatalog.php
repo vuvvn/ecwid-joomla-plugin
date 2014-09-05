@@ -66,7 +66,7 @@ class EcwidCatalog
 				);
 			}
 			
-			if(is_array($product["categories"]))
+			if (array_key_exists('categories', $product) && is_array($product["categories"]))
 			{
 				foreach ($product["categories"] as $ecwid_category) 
 				{

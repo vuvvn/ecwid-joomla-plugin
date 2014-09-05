@@ -181,7 +181,8 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 				require_once($event_handler_file);
 				$dispatcher = JDispatcher::getInstance();
 				$plugin = new RokInstallerEvents($dispatcher);
-				$plugin->setTopInstaller($this->parent->getParent());
+                $parent = $this->parent->getParent();
+				$plugin->setTopInstaller($parent);
 			}
 
 			if (is_file(dirname(__FILE__) . '/requirements.php')) {
