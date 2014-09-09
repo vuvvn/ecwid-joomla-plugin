@@ -125,7 +125,12 @@ function show_ecwid($params) {
             if (preg_match('!/~/(product|category)/.*id=([\d+]*)!', $fragment, $matches)) {
                 $type = $matches[1];
                 $id = $matches[2];
+            } else if (preg_match('!.*/(p|c)/([\d+]*)!', $fragment, $matches)) {
+                $type = $matches[1] == 'p' ? 'product' : 'category';
+                $id = $matches[2];
+            }
 
+            if ($type && $id) {
                 if ($api_enabled && $type && $id) {
 
                     if ($type == 'product') {
@@ -139,7 +144,8 @@ function show_ecwid($params) {
                             $description = $product['description'];
 
                             $integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "!/~/product/id='. intval($id) .'";</script>';
-                            $document->addHeadLink(EcwidController::buildEcwidUrl('#!/~/product/id=' . $id), 'canonical', 'rel', '');
+
+                            $document->addHeadLink(EcwidController::buildEcwidUrl(substr($product['url'], strpos($product['url'], '#'))), 'canonical', 'rel', '');
                         }
                     } elseif ($type == 'category') {
 
@@ -153,9 +159,10 @@ function show_ecwid($params) {
 
                             $title = $cat['name'];
                             $description = $cat['description'];
+                            $document->addHeadLink(EcwidController::buildEcwidUrl(substr($cat['url'], strpos($cat['url'], '#'))), 'canonical', 'rel', '');
 
-                            $document->addHeadLink(EcwidController::buildEcwidUrl('#!/~/category/id=' . $id), 'canonical', 'rel', '');
                         }
+
                     }
                 }
             } else {
