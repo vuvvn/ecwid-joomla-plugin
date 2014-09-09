@@ -143,7 +143,8 @@ class plgSystemEcwid extends JPlugin
         $sign_in_out_urls = <<<JS
 window.Ecwid.OnAPILoaded.add(function() {
     window.Ecwid.setSignInUrls({
-        signInUrl: '$signin_url'
+        signInUrl: '$signin_url',
+        signOutUrl: '$signin_url'
     });
 });
 window.Ecwid.setSignInProvider({
@@ -156,7 +157,7 @@ JS;
 <script type="text/javascript">
 var ecwid_sso_profile="$sso_profile";
 $sign_in_out_urls
-</script>;
+</script>
 
 JS;
     }
