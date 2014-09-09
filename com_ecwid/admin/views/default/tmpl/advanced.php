@@ -30,7 +30,7 @@ defined('_JEXEC') or die('Restricted access');
 <form class="pure-form pure-form-aligned ecwid-settings advanced-settings"
   id="adminForm"
   method="POST"
-  action="<?php echo JRoute::_('index.php?option=com_ecwid'); ?>"
+  action="<?php echo JRoute::_('index.php?option=com_ecwid&layout=advanced'); ?>"
 >
 <input type="hidden" name="task" />
 <?php echo JHtml::_('form.token'); ?>
