@@ -33,7 +33,7 @@ defined('_JEXEC') or die('Restricted access');
 	  method="POST"
 	  action="<?php echo JRoute::_('index.php?option=com_ecwid&layout=appearance'); ?>"
 	>
-	<input type="hidden" name="task" />
+	<input type="hidden" name="task" value="default.saveAppearance" />
 <?php echo JHtml::_('form.token'); ?>
 
 <fieldset>
@@ -150,6 +150,9 @@ defined('_JEXEC') or die('Restricted access');
 </div>
 
 </fieldset>
+
+<input type="submit" style="visibility: hidden" />
+
 </form>
 
 </div>
