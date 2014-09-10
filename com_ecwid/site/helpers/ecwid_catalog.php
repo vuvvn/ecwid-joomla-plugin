@@ -121,6 +121,8 @@ function show_ecwid($params) {
 
             $title = '';
             $description = '';
+            $type = '';
+            $id = '';
 
             if (preg_match('!/~/(product|category)/.*id=([\d+]*)!', $fragment, $matches)) {
                 $type = $matches[1];
@@ -133,6 +135,8 @@ function show_ecwid($params) {
             if ($type && $id) {
                 if ($api_enabled && $type && $id) {
 
+
+                    $hash = '';
                     if ($type == 'product') {
                         $ajaxIndexingContent = $c->get_product($id);
                         $product = $api->get_product($id);
@@ -143,9 +147,8 @@ function show_ecwid($params) {
                             $title = $product['name'];
                             $description = $product['description'];
 
-                            $integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "!/~/product/id='. intval($id) .'";</script>';
+                            $hash = substr($product['url'], strpos($product['url'], '#'));
 
-                            $document->addHeadLink(EcwidController::buildEcwidUrl(substr($product['url'], strpos($product['url'], '#'))), 'canonical', 'rel', '');
                         }
                     } elseif ($type == 'category') {
 
@@ -159,11 +162,16 @@ function show_ecwid($params) {
 
                             $title = $cat['name'];
                             $description = $cat['description'];
-                            $document->addHeadLink(EcwidController::buildEcwidUrl(substr($cat['url'], strpos($cat['url'], '#'))), 'canonical', 'rel', '');
 
+                            $hash = substr($cat['url'], strpos($cat['url'], '#'));
                         }
-
                     }
+
+                    if ($hash) {
+                        $integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "' . $hash . '";</script>';
+                        $document->addHeadLink(EcwidController::buildEcwidUrl($hash), 'canonical', 'rel', '');
+                    }
+
                 }
             } else {
                 $found = true; // We are in the store root
