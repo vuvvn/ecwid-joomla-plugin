@@ -97,11 +97,11 @@ class EcwidCatalog
 
                 foreach ($product['attributes'] as $attribute) {
                     if (trim($attribute['value']) != '') {
-                        $return .= '<div class="ecwid_catalog_product_attributes">' . $attribute['name'] . ':';
+                        $return .= '<div class="ecwid_catalog_product_attributes">' . htmlspecialchars($attribute['name']) . ':';
                         if (isset($attribute['internalName']) && $attribute['internalName'] == 'Brand') {
-                            $return .= '<span itemprop="brand">' . $attribute['value'] . '</span>';
+                            $return .= '<span itemprop="brand">' . htmlspecialchars($attribute['value']) . '</span>';
                         } else {
-                            $return .= $attribute['value'];
+                            $return .= $value;
                         }
  						$return .= '</div>';
  					}
@@ -235,8 +235,7 @@ class EcwidCatalog
 		{
 			foreach ($products as $product) 
 			{
-				$product_url = $this->store_base_url . "#!/~/product/category=" . $id . "&id=" . $product["id"];
-				$this->build_url($product["url"]);
+				$product_url = $this->build_url($product["url"]);
 				$product_name = $product["name"];
 				$product_price = $product["price"] . "&nbsp;" . $profile["currency"];
 				$return .= "<div>";
