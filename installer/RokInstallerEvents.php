@@ -142,13 +142,12 @@ class RokInstallerEvents extends JPlugin
 		$lang = JFactory::getLanguage();
 		$lang->load((self::$install_type == 'update' ? 'update' : 'install') . '_override', dirname(__FILE__), $lang->getTag(), true);
 		$msg = JText::_('COM_INSTALLER_INSTALL_SUCCESS');
-
 	}
 
 	public function onExtensionAfterInstall($installer, $eid)
 	{
 		$lang = JFactory::getLanguage();
-		$lang->load('install_override', dirname(__FILE__), $lang->getTag(), true);
+		$lang->load((self::$install_type == 'update' ? 'update' : 'install') . '_override', dirname(__FILE__), $lang->getTag(), true);
 		$this->toplevel_installer->set('extension_message', $this->getMessages());
 	}
 
