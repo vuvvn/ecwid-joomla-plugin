@@ -96,10 +96,11 @@ class EcwidCatalog
             if (is_array($product['attributes']) && !empty($product['attributes'])) {
 
                 foreach ($product['attributes'] as $attribute) {
-                    if (trim($attribute['value']) != '') {
+					$value = htmlspecialchars(trim($attribute['value']));
+                    if ($value != '') {
                         $return .= '<div class="ecwid_catalog_product_attributes">' . htmlspecialchars($attribute['name']) . ':';
                         if (isset($attribute['internalName']) && $attribute['internalName'] == 'Brand') {
-                            $return .= '<span itemprop="brand">' . htmlspecialchars($attribute['value']) . '</span>';
+                            $return .= '<span itemprop="brand">' . $value . '</span>';
                         } else {
                             $return .= $value;
                         }
