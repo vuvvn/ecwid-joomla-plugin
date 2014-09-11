@@ -9,8 +9,8 @@
     <!-- Based on work by Rick Blalock -->
     <copyright>(C) 2009 - 2014 Ecwid, Inc.(C)</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-    <version>2.1.2</version>
-    <description>Ecwid for Joomla! v2.1.2</description>
+    <version>2.2</version>
+    <description>Ecwid for Joomla! v2.2</description>
     <scriptfile>install.script.php</scriptfile>
     <files>
         <filename plugin="ecwid_installer">installer.php</filename>

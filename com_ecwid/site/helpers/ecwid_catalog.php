@@ -247,7 +247,7 @@ function show_ecwid($params) {
 	}
 
        $integration_code .= <<<EOT
-<!-- Ecwid Shopping Cart extension v2.1 -->
+<!-- Ecwid Shopping Cart extension v2.2 -->
 $additional_widgets
 <div id="$ecwid_element_id">$ajaxIndexingContent
 <div>
@@ -255,7 +255,7 @@ $additional_widgets
 xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productsperrow_grid,$ecwid_pb_productspercolumn_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str,"id=$ecwid_element_id");</script>
 </div>
 </div>
-<!-- END Ecwid Shopping Cart extension v2.1 -->
+<!-- END Ecwid Shopping Cart extension v2.2 -->
 EOT;
 
 	return $integration_code;
