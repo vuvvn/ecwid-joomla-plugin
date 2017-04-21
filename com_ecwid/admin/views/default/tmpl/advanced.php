@@ -63,6 +63,10 @@ defined('_JEXEC') or die('Restricted access');
             ?>
         </div>
     </div>
+
+    <hr />
+    <p class="help"><?php echo JText::_('COM_ECWID_FIND_MORE_TOOLS_APPMARKET'); ?></p>
+
 </fieldset>
 
 <input type="submit" style="visibility: hidden" />

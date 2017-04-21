@@ -64,7 +64,7 @@ defined('_JEXEC') or die('Restricted access');
 					</span>
 				</div>
 				<div class="right two-buttons">
-					<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#t1=&t2=Dashboard">
+					<a class="pure-button" target="_blank" href="https://my.ecwid.com/?source=joomla#dashboard">
 						<?php echo JText::_('COM_ECWID_GENERAL_CONTROL_PANEL'); ?>
 					</a>
 				</div>
@@ -96,7 +96,7 @@ defined('_JEXEC') or die('Restricted access');
 
 				<div class="right">
 					<?php if ($this->isPaidAccount()): ?>
-						<a class="pure-button" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#profile=Billing&t2=My_Profile">
+						<a class="pure-button" target="_blank" href="https://my.ecwid.com/?source=joomla#billing">
 							<?php echo JText::_('COM_ECWID_GENERAL_BILLING_AND_PLANS'); ?>
 						</a>
 					<?php else: ?>

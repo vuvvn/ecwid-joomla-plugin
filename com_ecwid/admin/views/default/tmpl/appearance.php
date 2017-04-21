@@ -167,6 +167,9 @@ defined('_JEXEC') or die('Restricted access');
 </div>
 <?php endif; ?>
 
+<hr />
+<p class="help"><?php echo JText::_('COM_ECWID_FIND_MORE_DESIGN_TOOLS'); ?></p>
+
 
 </fieldset>
 
