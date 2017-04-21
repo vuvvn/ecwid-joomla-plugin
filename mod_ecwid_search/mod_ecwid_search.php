@@ -1,8 +1,8 @@
-<!-- Ecwid Shopping Cart extension v2.2 -->
+<!-- Ecwid Shopping Cart extension v2.3 -->
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @copyright  (C) 2009 - 2016 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Contributors:
@@ -31,6 +31,6 @@ echo EcwidCommon::getProductBrowserJS();
 ?>
 
 <div id="ecwid_search_module_wrapper">
-	<script type="text/javascript"> xSearchPanel("style="); </script>
+	<script type="text/javascript"> xSearch("style="); </script>
 </div>
-<!-- END Ecwid Shopping Cart extension v2.2 -->
+<!-- END Ecwid Shopping Cart extension v2.3 -->

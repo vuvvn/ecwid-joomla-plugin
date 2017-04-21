@@ -1,9 +1,9 @@
 <?php
 /**
  * @package   Installer Bundle Framework - RocketTheme
- * @version   2.0.2 November 5, 2013
+ * @version   2.30 February 25, 2015
  * @author    RocketTheme http://www.rockettheme.com
- * @copyright Copyright (C) 2007 - 2013 RocketTheme, LLC
+ * @copyright Copyright (C) 2007 - 2015 RocketTheme, LLC
  * @license   http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Installer uses the Joomla Framework (http://www.joomla.org), a GNU/GPLv2 content management system
@@ -12,19 +12,31 @@
 // Check to ensure this file is within the rest of the framework
 defined('JPATH_BASE') or die();
 
-if (!class_exists("JInstallerFile"))
-{
-    @include_once(JPATH_LIBRARIES . '/joomla/installer/adapters/file.php');
-}
-/**
- * Component installer
- *
- * @package        Joomla.Framework
- * @subpackage    Installer
- * @since        1.5
- */
 class RokInstallerFile extends JInstallerFile
 {
+    protected $installtype = 'install';
+
+    public function update()
+    {
+        $this->installtype = 'update';
+
+        return parent::update();
+    }
+
+    public function getInstallType()
+    {
+        if (version_compare(JVERSION, '3.4', '<'))
+        {
+            return $this->installtype;
+        }
+        else
+        {
+            return $this->route;
+        }
+    }
+
+    // Move this code to RokInstallerAdapterTrait (keep identical in all adapters!)
+
     protected $access;
     protected $enabled;
     protected $client;
@@ -39,7 +51,6 @@ class RokInstallerFile extends JInstallerFile
     const DEFAULT_ORDERING = 0;
     const DEFAULT_PARAMS = null;
 
-
     public function setAccess($access)
     {
         $this->access = $access;
@@ -52,7 +63,7 @@ class RokInstallerFile extends JInstallerFile
 
     public function setClient($client)
     {
-        switch ($client)
+        switch (strtolower($client))
         {
             case 'site':
                 $client = 0;
@@ -61,7 +72,7 @@ class RokInstallerFile extends JInstallerFile
                 $client = 1;
                 break;
             default:
-                $client = (int)$client;
+                $client = (int) $client;
                 break;
         }
         $this->client = $client;
@@ -83,7 +94,7 @@ class RokInstallerFile extends JInstallerFile
                 $enabled = 0;
                 break;
             default:
-                $enabled = (int)$enabled;
+                $enabled = (int) $enabled;
                 break;
         }
         $this->enabled = $enabled;
@@ -115,7 +126,7 @@ class RokInstallerFile extends JInstallerFile
                 $protected = 0;
                 break;
             default:
-                $protected = (int)$protected;
+                $protected = (int) $protected;
                 break;
         }
         $this->protected = $protected;
@@ -136,7 +147,7 @@ class RokInstallerFile extends JInstallerFile
         return $this->params;
     }
 
-    protected function updateExtension(&$extension)
+    protected function updateExtension($extension)
     {
         if ($extension)
         {
@@ -150,9 +161,20 @@ class RokInstallerFile extends JInstallerFile
         }
     }
 
+    public function install()
+    {
+        $result = parent::install();
+
+        if ($result !== false)
+    {
+            $this->postInstall($result);
+        }
+
+        return $result;
+    }
+
     public function postInstall($extensionId)
     {
-
         $coginfo = $this->parent->getCogInfo();
 
         $this->setAccess(($coginfo['access']) ? (int)$coginfo['access'] : self::DEFAULT_ACCESS);
@@ -162,29 +184,27 @@ class RokInstallerFile extends JInstallerFile
         $this->setParams(($coginfo->params) ? (string)$coginfo->params : self::DEFAULT_PARAMS);
         $this->setOrdering(($coginfo['ordering']) ? (int)$coginfo['ordering'] : self::DEFAULT_ORDERING);
 
-        $extention = $this->loadExtension($extensionId);
+        $extension = $this->loadExtension($extensionId);
 
         // update the extension info
-        $this->updateExtension($extention);
+        $this->updateExtension($extension);
+
+        $this->localPostInstall($extension, $coginfo);
     }
 
-    protected function &loadExtension($eid)
+    protected function localPostInstall($extension, $coginfo)
+    {
+    }
+
+    protected function loadExtension($extensionId)
     {
         $row = JTable::getInstance('extension');
-        $row->load($eid);
+        $row->load($extensionId);
+
+        if (!$row->extension_id) {
+            throw new RuntimeException("Internal error in Joomla installer: extension {$extensionId} not found!");
+    }
+
         return $row;
-    }
-
-    protected $installtype = 'install';
-
-    public function getInstallType()
-    {
-        return $this->installtype;
-    }
-
-    public function update()
-    {
-        $this->installtype = 'update';
-        return parent::update();
     }
 }

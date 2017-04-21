@@ -1,15 +1,15 @@
 <?php
 /**
- * @author	 Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2014 Ecwid, Inc.
- * @license	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @author     Ecwid, Inc http://www.ecwid.com
+ * @copyright  (C) 2009 - 2016 Ecwid, Inc.
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Contributors:
- * @author	 Rick Blalock
- * @license	GNU/GPL
+ * @author     Rick Blalock
+ * @license    GNU/GPL
  * and
- * @author	 RocketTheme http://www.rockettheme.com
- * @license	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @author     RocketTheme http://www.rockettheme.com
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  */
 
@@ -45,16 +45,16 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 		 */
 		protected $parent;
 
-		protected $needMigration;
+        protected $needMigration;
 
 		/**
 		 * @param $parent
 		 */
 		protected function setup($parent)
 		{
-			$this->parent	   = $parent;
-			$this->sourcedir	= $parent->getParent()->getPath('source');
-			$this->manifest	 = $parent->getParent()->getManifest();
+			$this->parent       = $parent;
+			$this->sourcedir    = $parent->getParent()->getPath('source');
+			$this->manifest     = $parent->getParent()->getManifest();
 			$this->installerdir = $this->sourcedir . '/' . 'installer';
 		}
 
@@ -82,7 +82,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			// Cycle through cogs and install each
 
 			if ($run_installer) {
-				$this->needMigration = $this->componentExists('com_rokecwid') && !$this->componentExists('com_ecwid');
+                $this->needMigration = $this->componentExists('com_rokecwid') && !$this->componentExists('com_ecwid');
 
 				if (count($this->manifest->cogs->children())) {
 					if (!class_exists('RokInstaller')) {
@@ -101,15 +101,15 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 						jimport('joomla.installer.helper');
 						if (is_dir($folder)) {
 							// if its actually a directory then fill it up
-							$package				= Array();
-							$package['dir']		 = $folder;
-							$package['type']		= JInstallerHelper::detectType($folder);
+							$package                = Array();
+							$package['dir']         = $folder;
+							$package['type']        = JInstallerHelper::detectType($folder);
 							$package['installer']   = new RokInstaller();
-							$package['name']		= (string)$cog->name;
-							$package['state']	   = 'Success';
+							$package['name']        = (string)$cog->name;
+							$package['state']       = 'Success';
 							$package['description'] = (string)$cog->description;
-							$package['msg']		 = '';
-							$package['type']		= ucfirst((string)$cog['type']);
+							$package['msg']         = '';
+							$package['type']        = ucfirst((string)$cog['type']);
 
 							$package['installer']->setCogInfo($cog);
 							// add installer to static for possible rollback
@@ -130,13 +130,13 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 								RokInstallerEvents::addMessage($package, RokInstallerEvents::STATUS_UPDATED);
 							}
 						} else {
-							$package				= Array();
-							$package['dir']		 = $folder;
-							$package['name']		= (string)$cog->name;
-							$package['state']	   = 'Failed';
+							$package                = Array();
+							$package['dir']         = $folder;
+							$package['name']        = (string)$cog->name;
+							$package['state']       = 'Failed';
 							$package['description'] = (string)$cog->description;
-							$package['msg']		 = '';
-							$package['type']		= ucfirst((string)$cog['type']);
+							$package['msg']         = '';
+							$package['type']        = ucfirst((string)$cog['type']);
 							RokInstallerEvents::addMessage($package, RokInstallerEvents::STATUS_ERROR, JText::_('JLIB_INSTALLER_ABORT_NOINSTALLPATH'));
 							break;
 						}
@@ -205,17 +205,17 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 		 */
 		public function postflight($type, $parent)
 		{
-			$conf = JFactory::getConfig();
-			$conf->set('debug', false);
-			$parent->getParent()->abort();
+            $conf = JFactory::getConfig();
+            $conf->set('debug', false);
+            $parent->getParent()->abort();
 
-			if ($this->needMigration && $this->componentExists('com_rokecwid')) {
+            if ($this->needMigration && $this->componentExists('com_rokecwid')) {
 
 				$this->migrateComponentSettings();
-				$this->migrateComponentMenu();
+                $this->migrateComponentMenu();
 				$this->migrateModules();
-				$this->uninstallOldExtensions();
-				$this->hideLegacyComponentMenuItem();
+                $this->uninstallOldExtensions();
+                $this->hideLegacyComponentMenuItem();
 			}
 		}
 
@@ -267,7 +267,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			if (!$installer->copyFiles(array($copy), true))
 			{
 				// Install failed, rollback changes
-				$this->parent->abort(
+				$this->abort(
 					JText::sprintf('JLIB_INSTALLER_ABORT_PACK_INSTALL_COPY_SETUP', JText::_('JLIB_INSTALLER_ABORT_PACK_INSTALL_NO_FILES'))
 				);
 
@@ -334,70 +334,70 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			}
 		}
 
-		protected function hideLegacyComponentMenuItem()
-		{
-			$db 		= JFactory::getDbo();
-			$query 		= $db->getQuery(true);
-			$table 		= JTable::getInstance('menu');
+        protected function hideLegacyComponentMenuItem()
+        {
+            $db 		= JFactory::getDbo();
+            $query 		= $db->getQuery(true);
+            $table 		= JTable::getInstance('menu');
 
-			// Get component id
-			$component = JComponentHelper::getComponent('com_rokecwid');
-			if (!isset($component->id)) return;
+            // Get component id
+            $component = JComponentHelper::getComponent('com_rokecwid');
+            if (!isset($component->id)) return;
 
-			$id		   = $component->id;
-			// Get the ids of the menu items
-			$query->select('id')
-				->from('#__menu')
-				->where($db->qn('client_id') . ' = ' . $db->q(1))
-				->where($db->qn('component_id') . ' = ' . $id)
-			;
+            $id	       = $component->id;
+            // Get the ids of the menu items
+            $query->select('id')
+                ->from('#__menu')
+                ->where($db->qn('client_id') . ' = ' . $db->q(1))
+                ->where($db->qn('component_id') . ' = ' . $id)
+            ;
 
-			$db->setQuery($query);
+            $db->setQuery($query);
 
-			$ids = $db->loadColumn();
+            $ids = $db->loadColumn();
 
-			if (!empty($ids))
-			{
-				foreach ($ids as $menuid)
-				{
-					if (!$table->delete($menuid));
-				}
+            if (!empty($ids))
+            {
+                foreach ($ids as $menuid)
+                {
+                    if (!$table->delete($menuid));
+                }
 
-				// Rebuild the whole tree
-				$table->rebuild();
-			}
-		}
+                // Rebuild the whole tree
+                $table->rebuild();
+            }
+        }
 
-		protected function uninstallOldExtensions()
-		{
-			$installer = JInstaller::getInstance();
-			$db = JFactory::getDbo();
+        protected function uninstallOldExtensions()
+        {
+            $installer = JInstaller::getInstance();
+            $db = JFactory::getDbo();
 
-			$extensions = array(
-				'mod_rokecwid_categories' => 'module',
-				'mod_rokecwid_search' => 'module',
-				'mod_rokecwid_minicart' => 'module',
-				'rokecwid' => 'plugin');
+            $extensions = array(
+                'mod_rokecwid_categories' => 'module',
+                'mod_rokecwid_search' => 'module',
+                'mod_rokecwid_minicart' => 'module',
+                'rokecwid' => 'plugin');
 
-			foreach ($extensions as $extension => $type) {
-				$query = "SELECT * FROM #__extensions WHERE element='$extension' and type='$type'";
-				$db->setQuery($query);
-				$obj = $db->loadObject();
-				if (is_object($obj) && isset($obj->type) && isset($obj->extension_id)) {
-					$installer->uninstall($obj->type, $obj->extension_id);
-				}
-			}
-		}
+            foreach ($extensions as $extension => $type) {
+                $query = "SELECT * FROM #__extensions WHERE element='$extension' and type='$type'";
+                $db->setQuery($query);
+                $obj = $db->loadObject();
+                if (is_object($obj) && isset($obj->type) && isset($obj->extension_id)) {
+                    $installer->uninstall($obj->type, $obj->extension_id);
+                }
+            }
+        }
 
-		protected function componentExists($name)
-		{
-			$db = JFactory::getDbo();
+        protected function componentExists($name)
+        {
+            $db = JFactory::getDbo();
 
-			$db->setQuery("SELECT element FROM #__extensions WHERE element='$name'");
-			$result = $db->loadResult();
+            $db->setQuery("SELECT element FROM #__extensions WHERE element='$name'");
+            $result = $db->loadResult();
 
-			return !is_null($result);
-		}
+            return !is_null($result);
+        }
 
 		protected function migrateComponentSettings()
 		{
@@ -421,9 +421,9 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			$ecwidParams->set('displaySearch', false);
 			$ecwidParams->set('displayCategories', false);
 
-			$grid = $rokEcwidParams->get('grid');
-			if (is_null($grid))
-				$grid = '3,3';
+            $grid = $rokEcwidParams->get('grid');
+            if (is_null($grid))
+                $grid = '3,3';
 			list ($rows, $cols) = explode(',', $grid);
 			$ecwidParams->set('gridRows', intval($rows));
 			$ecwidParams->set('gridColumns', intval($cols));
@@ -437,40 +437,40 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			$table->store();
 		}
 
-		protected function migrateComponentMenu()
-		{
-			$db = JFactory::getDbo();
+        protected function migrateComponentMenu()
+        {
+            $db = JFactory::getDbo();
 
-			$rokEcwid = JComponentHelper::getComponent('com_rokecwid', true);
-			$ecwid = JComponentHelper::getComponent('com_ecwid', true);
+            $rokEcwid = JComponentHelper::getComponent('com_rokecwid', true);
+            $ecwid = JComponentHelper::getComponent('com_ecwid', true);
 
-			if (empty($rokEcwid) || empty($ecwid)) return;
+            if (empty($rokEcwid) || empty($ecwid)) return;
 
-			$query = "SELECT #__menu.* FROM #__menu JOIN #__menu_types ON (#__menu.menutype=#__menu_types.menutype) WHERE type='component' AND component_id='$rokEcwid->id'";
-			$db->setQuery($query);
-			$pages = $db->loadObjectList();
+            $query = "SELECT #__menu.* FROM #__menu JOIN #__menu_types ON (#__menu.menutype=#__menu_types.menutype) WHERE type='component' AND component_id='$rokEcwid->id'";
+            $db->setQuery($query);
+            $pages = $db->loadObjectList();
 
-			if (!is_array($pages) || empty($pages))
-				return;
+            if (!is_array($pages) || empty($pages))
+                return;
 
-			foreach ($pages as $page) {
-				if (!is_object($page) || !isset($page->link) || !isset($page->component_id))
-					return;
-				$page->link = str_replace('com_rokecwid', 'com_ecwid', $page->link);
-				$page->component_id = $ecwid->id;
+            foreach ($pages as $page) {
+                if (!is_object($page) || !isset($page->link) || !isset($page->component_id))
+                    return;
+                $page->link = str_replace('com_rokecwid', 'com_ecwid', $page->link);
+                $page->component_id = $ecwid->id;
 
-				$db->updateObject('#__menu', $page, 'id');
-			}
+                $db->updateObject('#__menu', $page, 'id');
+            }
 
-		}
+        }
 
 		protected function migrateModules()
 		{
 			foreach (
 				array(
-					'search'     => 'RokEcwid Search Module',
+                    'search' => 'RokEcwid Search Module',
 					'categories' => 'RokEcwid Categories Module',
-					'minicart'   => 'RokEcwid Mini-cart Module',
+					'minicart' => 'RokEcwid Mini-cart Module',
 
 				) as $name => $old_title
 			) {
@@ -487,27 +487,27 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 				$db->setQuery($query);
 				$old_modules = $db->loadObjectList();
 
-				if ($old_modules) {
-					foreach ($old_modules as $module) {
+                if ($old_modules) {
+                    foreach ($old_modules as $module) {
 						if (!is_object($module) || !isset($module->title) || !isset($module->module)) continue;
-						$module->title = str_replace($old_title, $new_module->name, $module->title);
-						$module->module = $new_module->element;
+                        $module->title = str_replace($old_title, $new_module->name, $module->title);
+                        $module->module = $new_module->element;
 
-						$db->updateObject('#__modules', $module, 'id');
+                        $db->updateObject('#__modules', $module, 'id');
 
 						if (isset($module->asset_id)) {
-							$query = "SELECT * FROM #__assets WHERE id='$module->asset_id'";
-							$db->setQuery($query);
-							$asset = $db->loadObject();
-							if (is_object($asset) && isset($asset->title) && isset($asset->id)) {
-								$asset->title = $new_module->name;
+                        $query = "SELECT * FROM #__assets WHERE id='$module->asset_id'";
+                        $db->setQuery($query);
+                        $asset = $db->loadObject();
+                        if (is_object($asset) && isset($asset->title) && isset($asset->id)) {
+                            $asset->title = $new_module->name;
 
-								$db->updateObject('#__assets', $asset, 'id');
-							}
-						}
-					}
-				}
+                            $db->updateObject('#__assets', $asset, 'id');
+                        }
+                    }
+                }
 			}
+		}
 		}
 
 		protected function migrateModule($old_module_data, $new_module_data) {
@@ -541,7 +541,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			$db->setQuery($query);
 			$result = $db->loadResultArray();
 
-			if (!$result) return;
+            if (!$result) return;
 
 			foreach ($result as $menu_id) {
 				$new = new stdObject;
@@ -563,7 +563,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 			$db->setQuery($query);
 			$new_data = $db->loadObject();
 
-			if (!$old_data || !$new_data) return;
+            if (!$old_data || !$new_data) return;
 
 			$new_data->rules = $old_data->rules;
 			$db->updateObject('#__assets', $new_data, 'id');
@@ -601,7 +601,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 
 			$app               = new RokInstallerJAdministratorWrapper(JFactory::getApplication());
 			$enqueued_messages = $app->getMessageQueue();
-			$other_messages	   = array();
+			$other_messages    = array();
 			if (!empty($enqueued_messages) && is_array($enqueued_messages)) {
 				foreach ($enqueued_messages as $enqueued_message) {
 					if (!($enqueued_message['message'] == JText::_('JLIB_INSTALLER_ERROR_NOTFINDXMLSETUPFILE') && $enqueued_message['type']) == 'error') {

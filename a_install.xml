@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="1.6.0" type="plugin" group="system" method="upgrade">
     <name>Installer</name>
-    <creationDate>Apr 30, 2014</creationDate>
+    <creationDate>Nov 2, 2016</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
     <authorUrl>http://www.ecwid.com</authorUrl>
     <!-- Based on RokEcwid extension by RocketTheme http://rockettheme.com -->
     <!-- Based on work by Rick Blalock -->
-    <copyright>(C) 2009 - 2014 Ecwid, Inc.(C)</copyright>
+    <copyright>(C) 2009 - 2016 Ecwid, Inc.(C)</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-    <version>2.2</version>
-    <description>Ecwid for Joomla! v2.2</description>
+    <version>2.3</version>
+    <description>Ecwid for Joomla! v2.3</description>
     <scriptfile>install.script.php</scriptfile>
     <files>
         <filename plugin="ecwid_installer">installer.php</filename>

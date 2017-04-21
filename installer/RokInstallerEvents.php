@@ -1,45 +1,39 @@
 <?php
 /**
- * @author	 Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2014 Ecwid, Inc.
- * @license	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
+ * @package   Installer Bundle Framework - RocketTheme
+ * @version   2.30 February 25, 2015
+ * @author     RocketTheme http://www.rockettheme.com
+ * @copyright Copyright (C) 2007 - 2015 RocketTheme, LLC
+ * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
- * Contributors:
- * @author	 Rick Blalock
- * @license	GNU/GPL
- * and
- * @author	 RocketTheme http://www.rockettheme.com
- * @license	http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
- *
+ * Installer uses the Joomla Framework (http://www.joomla.org), a GNU/GPLv2 content management system
  */
 
-// Check to ensure this file is included in Joomla!
-defined('_JEXEC') or die('Restricted access');
+// Check to ensure this file is within the rest of the framework
+defined('JPATH_BASE') or die();
 
 class RokInstallerEvents extends JPlugin
 {
-
-	const STATUS_ERROR	 = 'error';
+	const STATUS_ERROR     = 'error';
 	const STATUS_INSTALLED = 'installed';
 	const STATUS_UPDATED   = 'updated';
 
-	public static $install_type;
-
 	protected static $messages = array();
+
+    public static $install_type;
 
 	/**
 	 * @var JInstaller
 	 */
 	protected $toplevel_installer;
 
-	public function setTopInstaller(&$installer)
+    public function setTopInstaller($installer)
 	{
 		$this->toplevel_installer = $installer;
 	}
 
 	public function __construct(&$subject, $config = array())
 	{
-
 		parent::__construct($subject, $config);
 
 		jimport('joomla.filesystem.file');
@@ -47,21 +41,20 @@ class RokInstallerEvents extends JPlugin
 
 		$install_html_file = dirname(__FILE__) . '/../install.html';
 		$install_css_file  = dirname(__FILE__) . '/../install.css';
-		$tmp_path		  = JPATH_ROOT . '/tmp';
-		if (JFolder::exists($tmp_path)) {
+		$tmp_path          = JPATH_ROOT . '/tmp';
+
+        if (JFolder::exists($tmp_path))
+        {
 			// Copy install.css to tmp dir for inclusion
 			JFile::copy($install_css_file, $tmp_path . '/install.css');
 			JFile::copy($install_html_file, $tmp_path . '/install.html');
 		}
-
 	}
 
 	public static function addMessage($package, $status, $message = '')
 	{
 		self::$messages[] = call_user_func_array(array('RokInstallerEvents', $status), array($package, $message));
 	}
-
-
 
 	/**
 	 * @return string
@@ -70,14 +63,16 @@ class RokInstallerEvents extends JPlugin
 	{
 		jimport('joomla.filesystem.file');
 		jimport('joomla.filesystem.folder');
-		$buffer			= '';
+		$buffer            = '';
+
 		// Drop out Style
-		if (file_exists( JPATH_ROOT . '/tmp/install.html')) {
+        if (file_exists( JPATH_ROOT . '/tmp/install.html'))
+        {
 			$buffer .= JFile::read(JPATH_ROOT . '/tmp/install.html');
 		}
+
 		return $buffer;
 	}
-
 
 	/**
 	 * @param $package
@@ -89,15 +84,16 @@ class RokInstallerEvents extends JPlugin
 	{
 		ob_start();
 		?>
-	<li class="rokinstall-failure">
+    <li class="rokinstall-failure">
 		<span class="rokinstall-icon"><span></span></span>
-		<span class="rokinstall-row"><?php echo $package['name'];?> installation failed</span>
-		<span class="rokinstall-errormsg">
-			<?php echo $msg; ?>
-		</span>
-	</li>
+        <span class="rokinstall-row"><?php echo ucfirst(trim($package['name'] . ' installation failed'));?></span>
+        <span class="rokinstall-errormsg">
+            <?php echo $msg; ?>
+        </span>
+    </li>
 	<?php
 		$out = ob_get_clean();
+
 		return $out;
 	}
 
@@ -110,11 +106,12 @@ class RokInstallerEvents extends JPlugin
 	{
 		ob_start();
 		?>
-	<li class="rokinstall-success">
-		<span class="rokinstall-icon"><span></span></span>
-		<span class="rokinstall-row"><?php echo $package['name'];?> installation was successful</span></li>
+    <li class="rokinstall-success">
+    	<span class="rokinstall-icon"><span></span></span>
+        <span class="rokinstall-row"><?php echo ucfirst(trim($package['name']. ' installation was successful'));?></span></li>
 	<?php
 		$out = ob_get_clean();
+
 		return $out;
 	}
 
@@ -127,27 +124,22 @@ class RokInstallerEvents extends JPlugin
 	{
 		ob_start();
 		?>
-	<li class="rokinstall-update">
-		<span class="rokinstall-icon"><span></span></span>
-		<span class="rokinstall-row"><?php echo $package['name'];?> update was successful</span>
-	</li>
+    <li class="rokinstall-update">
+    	<span class="rokinstall-icon"><span></span></span>
+        <span class="rokinstall-row"><?php echo ucfirst(trim($package['name'] . ' update was successful'));?></span>
+    </li>
 	<?php
 		$out = ob_get_clean();
+
+		self::_doOnUpdate();
+
 		return $out;
-	}
-
-
-	public function onInstallerAfterInstaller($model, &$package, $installer, &$result, &$msg)
-	{
-		$lang = JFactory::getLanguage();
-		$lang->load((self::$install_type == 'update' ? 'update' : 'install') . '_override', dirname(__FILE__), $lang->getTag(), true);
-		$msg = JText::_('COM_INSTALLER_INSTALL_SUCCESS');
 	}
 
 	public function onExtensionAfterInstall($installer, $eid)
 	{
 		$lang = JFactory::getLanguage();
-		$lang->load((self::$install_type == 'update' ? 'update' : 'install') . '_override', dirname(__FILE__), $lang->getTag(), true);
+		$lang->load('install_override', dirname(__FILE__), $lang->getTag(), true);
 		$this->toplevel_installer->set('extension_message', $this->getMessages());
 	}
 
@@ -156,6 +148,7 @@ class RokInstallerEvents extends JPlugin
 		$lang = JFactory::getLanguage();
 		$lang->load('install_override', dirname(__FILE__), $lang->getTag(), true);
 		$this->toplevel_installer->set('extension_message', $this->getMessages());
+
 	}
 
 	protected function getMessages()
@@ -167,8 +160,43 @@ class RokInstallerEvents extends JPlugin
 		$buffer .= '</ul>';
 		$buffer .= '<i class="rokinstall-logo"></i>';
 		$buffer .= '</div>';
+
 		return $buffer;
 	}
 
+	protected static function _doOnUpdate() {
+		static $fired = false;
+
+		if ($fired || !class_exists(EcwidCommon)) {
+			return;
+		}
+
+		$params = JComponentHelper::getParams('com_ecwid');
+		$storedVersion = $params->get('componentVersion');
+		$actualVersion = EcwidCommon::fetchComponentVersion();
+		if (!$storedVersion) {
+			$storedVersion = '0';
+		}
+
+		if (version_compare($storedVersion, $actualVersion) < 0) {
+			self::doUpgrade($storedVersion, $actualVersion);
+		}
+		EcwidCommon::setParam('componentVersion', $actualVersion);
+
+		$params = JComponentHelper::getParams('com_ecwid');
+
+		$fired = true;
+	}
+
+	static function doUpgrade($originalVersion, $currentVersion) {
+
+		if (version_compare($originalVersion, '2.2.2') < 0 && version_compare('2.2.2', $currentVersion) < 0) {
+			self::doMigration223();
+		}
+	}
+
+	static function doMigration223() {
+		EcwidCommon::setParam('enableChameleon', 0);
+	}
 
 }

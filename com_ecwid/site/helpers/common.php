@@ -105,6 +105,34 @@ class EcwidCommon  {
         return $api->is_api_enabled() && is_numeric($storeId) && $storeId != 1003;
     }
 
-	
+
+    public static function setParam($param, $value) {
+
+        $params = new JRegistry();
+        $table  = JTable::getInstance('extension');
+        $result = $table->find(array('element' => 'com_ecwid'));
+        $table->load($result);
+        $params->loadString($table->params);
+
+        $params->set($param, $value);
+
+        $table  = JTable::getInstance('extension');
+        $result = $table->find(array('element' => 'com_ecwid'));
+        $table->load($result);
+
+        $table->params = $params->__toString();
+
+        $table->store();
+    }
+
+	public static function fetchComponentVersion() {
+		$params = new JRegistry();
+		$table  = JTable::getInstance('extension');
+		$result = $table->find(array('element' => 'com_ecwid'));
+		$table->load($result);
+		$params->loadString($table->manifest_cache);
+
+		return $params->get('version');
+	}
 }
 ?>

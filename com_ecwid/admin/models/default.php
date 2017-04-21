@@ -163,6 +163,15 @@ class EcwidModelDefault extends JModelForm
 		$dispatcher = JDispatcher::getInstance();
 
 		$params = $this->getParams();
+
+		$to_trim = array('ssoKey', 'categoriesPerRow', 'gridColumns', 'gridRows', 'list', 'table');
+
+		foreach($data as $name => $value) {
+			if (in_array($name, $to_trim)) {
+				$data[$name] = trim($value);
+			}
+		}
+
         $params->loadArray($data);
 
 		$params->set("storeID", trim($params->get("storeID")));

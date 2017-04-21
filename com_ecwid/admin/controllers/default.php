@@ -42,6 +42,7 @@ class EcwidControllerDefault extends JControllerForm
 			array(
 				'displayCategories' => 0,
 				'displaySearch' => 0,
+				'enableChameleon' => 0
 			),
 			$data
 		);

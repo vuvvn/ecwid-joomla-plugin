@@ -8,12 +8,19 @@
         <field name="displayCategories" type="checkbox"
                default="1" value="1" label="COM_ECWID_APPEARANCE_DISPLAY_CATEGORIES_LABEL" />
 
+        <field name="enableChameleon" type="checkbox"
+               default="0" value="0" label="COM_ECWID_APPEARANCE_ENABLE_CHAMELEON_LABEL" />
+
+        <field name="useSeoUrls" type="checkbox"
+               default="1" label="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_DESC" />
+
         <field name="categoriesPerRow" type="text"
                default="3" label="COM_ECWID_APPEARANCE_CATEGORIESPERROW_LABEL"
                class="small-number" />
 
         <field name="gridRows" type="text"
-               default="3" label="COM_ECWID_APPEARANCE_GRID_ROWS_LABEL"
+               default="20" label="COM_ECWID_APPEARANCE_GRID_ROWS_LABEL"
                class="small-number" />
 
 
@@ -26,7 +33,7 @@
                class="small-number" />
 
         <field name="table" type="text"
-               default="20" label="COM_ECWID_APPEARANCE_TABLE_LABEL"
+               default="60" label="COM_ECWID_APPEARANCE_TABLE_LABEL"
                class="small-number" />
             
         <field name="categoryView" type="list" default="grid" label="COM_ECWID_APPEARANCE_CATEGORYVIEW_LABEL">

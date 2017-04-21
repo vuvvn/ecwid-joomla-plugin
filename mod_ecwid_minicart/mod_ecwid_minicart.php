@@ -1,8 +1,8 @@
-<!-- Ecwid Shopping Cart extension v2.2 -->
+<!-- Ecwid Shopping Cart extension v2.3 -->
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @copyright  (C) 2009 - 2016 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Contributors:
@@ -30,4 +30,4 @@ require_once JPATH_SITE
 <div id="ecwid_minicart_module_wrapper">
 	<script type="text/javascript"> xMinicart("style="); </script>
 </div>
-<!-- END Ecwid Shopping Cart extension v2.2 -->
+<!-- END Ecwid Shopping Cart extension v2.3 -->

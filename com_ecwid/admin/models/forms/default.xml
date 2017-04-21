@@ -4,6 +4,10 @@
 
         <field name="storeID" type="text"
                default="" label="COM_ECWID_FORM_DEFAULT_STOREID_LABEL"
-               description="COM_ECWID_FORM_DEFAULT_STOREID_DESC"/>
+               description="COM_ECWID_FORM_DEFAULT_STOREID_DESC" />
+
+        <field name="useSeoUrls" type="checkbox"
+               default="1" label="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_LABEL"
+               description="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_DESC" />
     </fieldset>
 </form>

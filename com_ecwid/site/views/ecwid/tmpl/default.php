@@ -41,7 +41,9 @@ $options = array(
 	'ecwid_default_category_id'       => $params->get('defaultCategory'),
 	'ecwid_is_secure_page'            => '',
 	'display_categories'			  => $params->get('displayCategories', 1),
-	'display_search'			      => $params->get('displaySearch', 1)
+	'display_search'			      => $params->get('displaySearch', 1),
+	'enable_chameleon'				  => $params->get('enableChameleon', 1),
+    'use_seo_links'                   => $params->get('useSeoLinks', 1)
 );
 ?>
 <div id="ecwid_jwrapper">

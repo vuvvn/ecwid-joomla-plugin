@@ -93,13 +93,15 @@ class EcwidController extends EcwidLegacyJController {
         // get params
         $get_params = $_GET;
         $get_params = array_merge($get_params, $additional_get_params);
-        $real_get_params = array();
-        parse_str($_SERVER['QUERY_STRING'], $real_get_params);
-        foreach ($get_params as $name => $value) {
-            if (!array_key_exists($name, $real_get_params)) {
-                unset($get_params[$name]);
-            }   
-        }   
+        if (isset($_SERVER['QUERY_STRING'])) {
+            $real_get_params = array();
+            parse_str($_SERVER['QUERY_STRING'], $real_get_params);
+            foreach ($get_params as $name => $value) {
+                if (!array_key_exists($name, $real_get_params)) {
+                    unset($get_params[$name]);
+                }
+            }
+        }
         unset($get_params['_escaped_fragment_'], $get_params['ecwid_product_id'], $get_params['ecwid_category_id']);
         
         // add GET parameters

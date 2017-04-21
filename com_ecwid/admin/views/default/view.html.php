@@ -176,4 +176,37 @@ class EcwidViewDefault extends EcwidLegacyJView
 	{
 		echo $this->getForm()->getField($name)->label;
 	}
+
+	protected function getRegisterLink()
+	{
+		$link = 'https://my.ecwid.com/cp/?source=joomla&partner=joomla%s#register';
+
+		$user = JFactory::getUser();
+
+		if ($user->get('id')) {
+			$name = $user->get('name');
+			$email = $user->get('email');
+			if ($name == 'Super User') {
+				$name = '';
+			}
+			$data = array(
+				'name' => $name,
+				'nickname' => $name,
+				'email' => $user->get('email')
+			);
+			foreach ($data as $key => $value) {
+				if (trim($value) == '') {
+					unset($data[$key]);
+				}
+			}
+			$user_data = '&' . http_build_query($data);
+		}
+		$link = sprintf($link, $user_data);
+
+		return $link;
+	}
+
+	protected function showChameleon() {
+		return JComponentHelper::getParams('com_ecwid')->get('enableChameleon') > 0;
+	}
 }

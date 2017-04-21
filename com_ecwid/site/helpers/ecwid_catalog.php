@@ -1,7 +1,7 @@
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2014 Ecwid, Inc.
+ * @copyright  (C) 2009 - 2016 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Contributors:
@@ -17,23 +17,6 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 include_once "ecwid_product_api.php";
 include_once "EcwidCatalog.php";
-
-function mb_wordwrap($str, $width = 75, $break = "\n", $cut = false, $charset = null)
-{
-    if ($charset === null) $charset = mb_internal_encoding();
-
-    $pieces = explode($break, $str);
-    $result = array();
-    foreach ($pieces as $piece) {
-      $current = $piece;
-      while ($cut && mb_strlen($current) > $width) {
-        $result[] = mb_substr($current, 0, $width, $charset);
-        $current = mb_substr($current, $width, 2048, $charset);
-      }
-      $result[] = $current;
-    }
-    return implode($break, $result);
-}
 
 function show_ecwid($params) {
 	$store_id = $params['store_id'];
@@ -114,7 +97,14 @@ function show_ecwid($params) {
 
         if (isset($_GET['_escaped_fragment_'])) {
 
-            $api = new EcwidProductApi($store_id);
+			$api = new EcwidProductApi($store_id);
+
+			$profile = $api->get_profile();
+
+			if ($profile['closed']) {
+				JResponse::setHeader('Status', '503 Service Temporarily Unavailable', true);
+				return;
+			}
 
             $found = false;
             $fragment = $_GET['_escaped_fragment_'];
@@ -205,16 +195,7 @@ function show_ecwid($params) {
         } else {
             $document->addCustomTag('<meta name="fragment" content="!" />');
         }
-  	}
-
-    $api = new EcwidProductApi($store_id);
-
-    $profile = $api->get_profile();
-
-    if ($profile['closed']) {
-        JResponse::setHeader('Status', '503 Service Temporarily Unavailable', true);
-        return;
-    }
+	}
 
 	if (empty($ecwid_default_category_id)) {
 		$ecwid_default_category_str = '';
@@ -239,23 +220,63 @@ function show_ecwid($params) {
 
 	$additional_widgets = '';
 	if ($params['display_search']) {
-		$additional_widgets .= '<div class="ecwid-product-browser-search"><script type="text/javascript"> xSearchPanel(); </script></div>';
+		$additional_widgets .= '<div class="ecwid-product-browser-search"><script type="text/javascript"> xSearch(); </script></div>';
 	}
 
 	if ($params['display_categories']) {
-		$additional_widgets .= '<script type="text/javascript"> xCategories(); </script>';
+		$additional_widgets .= '<script type="text/javascript"> xCategoriesV2(); </script>';
 	}
 
+	$chameleon = '';
+	if ($params['enable_chameleon']) {
+		$chameleon = <<<HTML
+<script type="text/javascript">
+window.ec = {
+	config: {
+		chameleon: {
+			colors: 'auto',
+			font: 'auto'
+		}
+	}
+}
+</script>
+HTML;
+	}
+
+	$scripts = <<<HTML
+<script type="text/javascript">
+window.ec.config.enable_canonical_urls = true;
+</script>
+HTML;
+
+	if ($params['use_seo_urls']) {
+		$app = JFactory::getApplication();
+		$menu = $app->getMenu()->getActive()->link;
+		$url = JRoute::_($menu);
+		$scripts .= <<<HTML
+<script type="text/javascript">
+window.ec.config.storefrontUrls = {
+    cleanUrls: true
+};
+window.ec.config.baseUrl = '$url';
+</script>
+HTML;
+
+	}
+
+
        $integration_code .= <<<EOT
-<!-- Ecwid Shopping Cart extension v2.2 -->
+<!-- Ecwid Shopping Cart extension v2.3 -->
+$chameleon
+$scripts
 $additional_widgets
 <div id="$ecwid_element_id">$ajaxIndexingContent
+</div>
 <div>
 <script type="text/javascript">
 xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productsperrow_grid,$ecwid_pb_productspercolumn_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str,"id=$ecwid_element_id");</script>
 </div>
-</div>
-<!-- END Ecwid Shopping Cart extension v2.2 -->
+<!-- END Ecwid Shopping Cart extension v2.3 -->
 EOT;
 
 	return $integration_code;

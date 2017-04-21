@@ -39,4 +39,10 @@ include_once(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/legacy_class.php');
 class EcwidController extends EcwidLegacyJController
 {
 	protected $default_view = 'default';
+
+	public function hide_vote_message() {
+		EcwidCommon::setParam('hideVoteMessage', true);
+		die('success');
+	}
 }
+

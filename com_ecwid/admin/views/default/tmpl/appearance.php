@@ -74,7 +74,6 @@ defined('_JEXEC') or die('Restricted access');
 	</div>
 </div>
 
-
 <div class="pure-control-group small-input">
 	<div class="input">
 		<div>
@@ -148,6 +147,26 @@ defined('_JEXEC') or die('Restricted access');
 	</div>
 	<?php $this->renderElement('searchView'); ?>
 </div>
+
+<?php if ($this->showChameleon()): ?>
+<hr />
+
+<div class="pure-control-group small-input">
+	<div class="input">
+		<div>
+			<?php $this->renderElement('enableChameleon'); ?>
+		</div>
+	</div>
+	<div class="label">
+		<?php $this->renderLabel('enableChameleon'); ?>
+	</div>
+	<div class="note wide-note">
+		<?php echo JText::_('COM_ECWID_APPEARANCE_ENABLE_CHAMELEON_NOTE');
+		?>
+	</div>
+</div>
+<?php endif; ?>
+
 
 </fieldset>
 

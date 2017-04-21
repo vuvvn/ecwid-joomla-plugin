@@ -55,7 +55,7 @@ defined('_JEXEC') or die('Restricted access');
 						<?php echo JText::_('COM_ECWID_INITIAL_REGISTER_AT_ECWID_NOTE'); ?>
 					</div>
 					<div class="ecwid-account-buttons">
-						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#register">
+						<a class="pure-button pure-button-secondary" target="_blank" href="<?php echo $this->getRegisterLink(); ?>">
 							<?php echo JText::_('COM_ECWID_INITIAL_CREATE_NEW_ACCOUNT'); ?>
 						</a>
 						<a class="pure-button pure-button-secondary" target="_blank" href="https://my.ecwid.com/cp/?source=joomla#t1=&t2=Dashboard">
