@@ -18,6 +18,6 @@ class com_ecwidInstallerScript
 			'common.php'
 		);
 
-		EcwidCommon::setParam('enableChameleon', 1345);
+		EcwidCommon::setParam('enableChameleon', 0);
 	}
 }

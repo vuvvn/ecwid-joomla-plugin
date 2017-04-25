@@ -16,6 +16,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
+
 ?>
 
 <?php if ($this->submenu): ?>
@@ -36,6 +37,25 @@ defined('_JEXEC') or die('Restricted access');
 <?php echo JHtml::_('form.token'); ?>
 
 <fieldset>
+
+
+    <div class="pure-control-group">
+        <div class="label">
+			<?php $this->renderLabel('useSeoLinks'); ?>
+        </div>
+        <div class="input">
+            <?php if (!JFactory::getConfig()->get('sef')): ?>
+                <?php echo JText::_('COM_ECWID_ADVANCED_SEO_LINKS_GLOBAL_SEF_NOTE'); ?>
+            <?php else: ?>
+			    <?php $this->renderElement('useSeoLinks'); ?>
+            <?php endif; ?>
+        </div>
+        <?php if (JFactory::getConfig()->get('sef')): ?>
+        <div class="note">
+			<?php echo JText::_('COM_ECWID_ADVANCED_SEO_LINKS_NOTE'); ?>
+        </div>
+        <?php endif; ?>
+    </div>
 
     <div class="pure-control-group">
         <div class="label">

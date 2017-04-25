@@ -126,7 +126,20 @@ HTML;
 
             $ecwid_script = "app.ecwid.com/script.js";
             $protocol = 'https://';
-            $escript  = PHP_EOL . '<script data-cfasync="false" type="text/javascript" src="' . $protocol . $ecwid_script . '?' . $eparams->get('storeID', 1003) . '&data_platform=joomla"></script>';
+
+			$script_params = array(
+				$eparams->get('storeID', 1003),
+				'data_platform=joomla'
+			);
+
+
+			if ($eparams->get('useSeoLinks')) {
+				$script_params[] = 'data_clean_urls=1';
+			}
+
+			$script_params = implode('&', $script_params);
+
+			$escript  = PHP_EOL . '<script data-cfasync="false" type="text/javascript" src="' . $protocol . $ecwid_script . '?' . $script_params . '"></script>';
 
             // split up the body after the body tag
             $matches = preg_split('/(<body.*?>)/i', $body, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);

@@ -1,13 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
     <fieldset name="params">
-
         <field name="storeID" type="text"
                default="" label="COM_ECWID_FORM_DEFAULT_STOREID_LABEL"
                description="COM_ECWID_FORM_DEFAULT_STOREID_DESC" />
-
-        <field name="useSeoUrls" type="checkbox"
-               default="1" label="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_LABEL"
-               description="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_DESC" />
     </fieldset>
 </form>

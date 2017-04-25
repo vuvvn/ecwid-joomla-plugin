@@ -11,10 +11,6 @@
         <field name="enableChameleon" type="checkbox"
                default="0" value="0" label="COM_ECWID_APPEARANCE_ENABLE_CHAMELEON_LABEL" />
 
-        <field name="useSeoUrls" type="checkbox"
-               default="1" label="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_LABEL"
-               description="COM_ECWID_FORM_DEFAULT_USE_SEO_URLS_DESC" />
-
         <field name="categoriesPerRow" type="text"
                default="3" label="COM_ECWID_APPEARANCE_CATEGORIESPERROW_LABEL"
                class="small-number" />
