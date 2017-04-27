@@ -301,8 +301,10 @@ HTML;
 
        $integration_code .= <<<EOT
 <!-- Ecwid Shopping Cart extension v2.3 -->
+<script type="text/javascript">
 window.ec = window.ec || Object();
 window.ec.config = window.ec.config || Object();
+</script>
 $chameleon
 $scripts
 $additional_widgets
