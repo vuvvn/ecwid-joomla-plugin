@@ -128,15 +128,17 @@ function show_ecwid($params) {
 
     $integration_code = '';
 
-    if ($api_enabled) {
+	$document = JFactory::getDocument();
 
-        $document = JFactory::getDocument();
+	if ($api_enabled) {
 
-        foreach ($document->_links as $key => $link) {
-            if ($link['relation'] == 'canonical') {
-                unset($document->_links[$key]);
-            }
-        }
+		if (property_exists($document, '_links')) {
+			foreach ($document->_links as $key => $link) {
+				if ($link['relation'] == 'canonical') {
+					unset($document->_links[$key]);
+				}
+			}
+		}
 
         $catalog_params = false;
 
@@ -198,7 +200,10 @@ function show_ecwid($params) {
 
 			if ($hash) {
 				$integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "' . $hash . '";</script>';
-				$document->addHeadLink(EcwidController::buildEcwidUrl($hash), 'canonical', 'rel', '');
+
+				if (method_exists($document, 'addHeadLink')) {
+					$document->addHeadLink(EcwidController::buildEcwidUrl($hash), 'canonical', 'rel', '');
+				}
 			}
 		} else {
 			$found = true; // We are in the store root
@@ -230,7 +235,7 @@ function show_ecwid($params) {
 			JResponse::setHeader('Status', '404 Not Found', true);
 		}
 	}
-	if ($api_enabled && !$use_seo_links) {
+	if ($api_enabled && !$use_seo_links && method_exists($document, 'addCustomTag')) {
 		$document->addCustomTag('<meta name="fragment" content="!" />');
 	}
 
@@ -238,16 +243,6 @@ function show_ecwid($params) {
 		$ecwid_default_category_str = '';
 	} else {
 		$ecwid_default_category_str = ',"defaultCategoryId='. $ecwid_default_category_id .'"';
-	}
-
-	$ecwid_is_secure_page = $params['ecwid_is_secure_page'];
-	if (empty ($ecwid_is_secure_page)) {
-		$ecwid_is_secure_page = false;
-	}
-
-	$protocol = "http";
-	if ($ecwid_is_secure_page) {
-		$protocol = "https";
 	}
 
     $ecwid_element_id = "ecwid-inline-catalog";
@@ -259,10 +254,10 @@ function show_ecwid($params) {
 	if ($params['display_search']) {
 		$additional_widgets .= '<div class="ecwid-product-browser-search"><script type="text/javascript"> xSearch(); </script></div>';
 	}
-
 	if ($params['display_categories']) {
 		$additional_widgets .= '<script type="text/javascript"> xCategoriesV2(); </script>';
 	}
+
 
 	$chameleon = '';
 	if ($params['enable_chameleon']) {
@@ -286,12 +281,14 @@ window.ec.config.enable_canonical_urls = true;
 </script>
 HTML;
 
+
 	if ($use_seo_links) {
 		$app = JFactory::getApplication();
 		$menu = $app->getMenu()->getActive()->link;
 		$url = JRoute::_($menu);
 		$scripts .= <<<HTML
 <script type="text/javascript">
+
 window.ec.config.storefrontUrls = {
     cleanUrls: true
 };
@@ -304,6 +301,8 @@ HTML;
 
        $integration_code .= <<<EOT
 <!-- Ecwid Shopping Cart extension v2.3 -->
+window.ec = window.ec || Object();
+window.ec.config = window.ec.config || Object();
 $chameleon
 $scripts
 $additional_widgets
