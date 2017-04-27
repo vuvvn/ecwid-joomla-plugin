@@ -43,8 +43,7 @@ function _get_ecwid_catalog_params_from_escaped_fragment()
 function _get_ecwid_catalog_params_from_seo_urls()
 {
 	$pattern = '!.*-(p|c)([0-9]*)!';
-	$menu = JFactory::getApplication()->getMenu()->getActive()->link;
-	$current_url = JRoute::_($menu);
+	$current_url = $_SERVER['REQUEST_URI'];
 
 	$matches = array();
 	if ( !preg_match( $pattern, $current_url, $matches ) ) {
