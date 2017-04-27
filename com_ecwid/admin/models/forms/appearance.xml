@@ -25,7 +25,7 @@
                class="small-number" />
 
         <field name="list" type="text"
-               default="10" label="COM_ECWID_APPEARANCE_LIST_LABEL"
+               default="60" label="COM_ECWID_APPEARANCE_LIST_LABEL"
                class="small-number" />
 
         <field name="table" type="text"
