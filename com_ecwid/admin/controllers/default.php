@@ -65,7 +65,14 @@ class EcwidControllerDefault extends JControllerForm
 
 	public function saveAdvanced()
 	{
-		$result = $this->saveForm($this->getModel()->getAdvancedForm());
+		$data = JFactory::getApplication()->input->get('jform', array(), 'array');
+		$data = array_merge(
+			array(
+				'useSeoLinks' => 0
+			),
+			$data
+		);
+		$result = $this->saveForm($this->getModel()->getAdvancedForm(), $data);
 		// Redirect to the list screen.
 		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&layout=advanced', false));
 
