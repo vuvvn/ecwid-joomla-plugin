@@ -160,10 +160,11 @@ function show_ecwid($params) {
 		$title = '';
 		$description = '';
 
-		$type = $catalog_params['type'];
-		$id = $catalog_params['id'];
+		if ( isset( $catalog_params['type'] ) && isset( $catalog_params['id'] ) ) {
+			$type = $catalog_params['type'];
+			$id = $catalog_params['id'];
 
-		if ($type && $id) {
+
 			$hash = '';
 			if ($type == 'product') {
 				$ajaxIndexingContent = $c->get_product($id);

@@ -167,7 +167,7 @@ class RokInstallerEvents extends JPlugin
 	protected static function _doOnUpdate() {
 		static $fired = false;
 
-		if ($fired || !class_exists(EcwidCommon)) {
+		if ($fired || !class_exists('EcwidCommon')) {
 			return;
 		}
 
