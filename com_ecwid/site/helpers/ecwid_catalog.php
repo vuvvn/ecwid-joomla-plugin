@@ -197,7 +197,7 @@ function show_ecwid($params) {
 				}
 			}
 
-			if ($hash) {
+			if ($hash && !$use_seo_links) {
 				$integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "' . $hash . '";</script>';
 
 				if (method_exists($document, 'addHeadLink')) {
