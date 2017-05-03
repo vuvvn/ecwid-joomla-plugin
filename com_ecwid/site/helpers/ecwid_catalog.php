@@ -148,7 +148,9 @@ function show_ecwid($params) {
 
 		$api = new EcwidProductApi($store_id);
 
-        if (isset($_GET['_escaped_fragment_'])) {
+		$do_escaped_fragment = isset($_GET['_escaped_fragment_']);
+
+        if ($do_escaped_fragment) {
 
 			$profile = $api->get_profile();
 
@@ -174,35 +176,41 @@ function show_ecwid($params) {
 			$hash = '';
 			if ($type == 'product') {
 				$ajaxIndexingContent = $c->get_product($id);
-				$product = $api->get_product($id);
 
-				if ($product) {
-					$found = true;
 
-					$title = $product['name'];
-					$description = $product['description'];
+				if ($do_escaped_fragment) {
+					$product = $api->get_product($id);
 
-					$hash = substr($product['url'], strpos($product['url'], '#'));
+					if ($product) {
+						$found = true;
 
+						$title = $product['name'];
+						$description = $product['description'];
+
+						$hash = substr($product['url'], strpos($product['url'], '#'));
+					}
 				}
 			} elseif ($type == 'category') {
 
-				$cat = $api->get_category($id);
+				$ajaxIndexingContent = $c->get_category($id);
 
-				if ($cat) {
-					$found = true;
+				if ($do_escaped_fragment) {
+					$cat = $api->get_category($id);
 
-					$ajaxIndexingContent = $c->get_category($id);
-					$ecwid_default_category_id = $id;
+					if ($cat) {
+						$found = true;
 
-					$title = $cat['name'];
-					$description = $cat['description'];
+						$ecwid_default_category_id = $id;
 
-					$hash = substr($cat['url'], strpos($cat['url'], '#'));
+						$title = $cat['name'];
+						$description = $cat['description'];
+
+						$hash = substr($cat['url'], strpos($cat['url'], '#'));
+					}
 				}
 			}
 
-			if ($hash && !$use_seo_links) {
+			if ($hash && $do_escaped_fragment) {
 				$integration_code = '<script type="text/javascript"> if (!document.location.hash) document.location.hash = "' . $hash . '";</script>';
 
 				if (method_exists($document, 'addHeadLink')) {
@@ -213,27 +221,30 @@ function show_ecwid($params) {
 			$found = true; // We are in the store root
 			$ajaxIndexingContent = $c->get_category($ecwid_default_category_id);
 
-			$category = $api->get_category($ecwid_default_category_id);
-			$title = $category['name'];
-			$description = $category['description'];
+			if ($do_escaped_fragment) {
+				$category = $api->get_category($ecwid_default_category_id);
+				$title = $category['name'];
+				$description = $category['description'];
+			}
 		}
 
-		if ($title) {
-			$document->setTitle($title . ' | ' . $document->getTitle());
+		if ($do_escaped_fragment) {
+			if ($title) {
+				$document->setTitle($title . ' | ' . $document->getTitle());
+			}
+
+			if ($description) {
+				$description = strip_tags($description);
+				$description = html_entity_decode($description, ENT_NOQUOTES, 'UTF-8');
+
+				$description = preg_replace('![\p{Z}\n\s]{1,}!u', ' ', $description);
+				$description = trim($description, " \t\xA0\n\r"); // Space, tab, non-breaking space, newline, carriage return
+				$description = mb_substr($description, 0, 160);
+				$description = htmlspecialchars($description, ENT_COMPAT, 'UTF-8');
+
+				$document->setDescription($description);
+			}
 		}
-
-		if ($description) {
-			$description = strip_tags($description);
-			$description = html_entity_decode($description, ENT_NOQUOTES, 'UTF-8');
-
-			$description = preg_replace('![\p{Z}\n\s]{1,}!u', ' ', $description);
-			$description = trim($description, " \t\xA0\n\r"); // Space, tab, non-breaking space, newline, carriage return
-			$description = mb_substr($description, 0, 160);
-			$description = htmlspecialchars($description, ENT_COMPAT, 'UTF-8');
-
-			$document->setDescription($description);
-		}
-
 
 		if (!$found) {
 			JResponse::setHeader('Status', '404 Not Found', true);
