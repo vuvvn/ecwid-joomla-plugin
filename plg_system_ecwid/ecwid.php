@@ -60,11 +60,27 @@ class plgSystemEcwid extends JPlugin
     {
         $doc = JFactory::getDocument();
 
-        if ($doc->getType() == 'html') {
-            $doc->addCustomTag('<link rel="dns-prefetch" href="//images-cdn.ecwid.com/">');
+        if ($doc->getType() == 'html' && JFactory::getApplication()->isSite()) {
+			$doc->addCustomTag('<meta http-equiv="x-dns-prefetch-control" content="on">');
+			$doc->addCustomTag('<link rel="dns-prefetch" href="//images-cdn.ecwid.com/">');
             $doc->addCustomTag('<link rel="dns-prefetch" href="//images.ecwid.com/">');
             $doc->addCustomTag('<link rel="dns-prefetch" href="//app.ecwid.com/">');
-        }
+			$doc->addCustomTag('<link rel="dns-prefetch" href="//ecwid-static-ru.r.worldssl.net">');
+			$doc->addCustomTag('<link rel="dns-prefetch" href="//ecwid-images-ru.r.worldssl.net">');
+/*
+			$app = JFactory::getApplication();
+			$menu = $app->getMenu();
+			$id = $menu->getActive()->id;
+			$params = JComponentHelper::getParams('com_ecwid');
+			$lastPbMenuItemId = $params->get('lastPbMenuItemIdForPrefetch');
+
+			if ($id && $lastPbMenuItemId && $id != $lastPbMenuItemId) {
+				$link = JRoute::_($menu->getItem($lastPbMenuItemId)->link);
+				$doc->addCustomTag('<link rel="prefetch" href="' . $link . '">');
+				$doc->addCustomTag('<link rel="prerender" href="' . $link . '">');
+			}
+*/
+		}
 
         if (JFactory::getApplication()->isAdmin()) {
 
@@ -117,35 +133,21 @@ HTML;
         $app = JFactory::getApplication();
 
         if ($app->isSite() && $doc->getType() == 'html') {
-            $eparams = $app->getParams();
-            if ($eparams->get('storeID', null) == null) {
-                $eparams = JComponentHelper::getParams('com_ecwid');
-            }
 
-            $body = method_exists($app, 'getBody') ? $app->getBody() : JResponse::getBody();
+			$script_url = EcwidCommon::getScriptURL();
+			$escript  = PHP_EOL . '<script data-cfasync="false" type="text/javascript" src="' . $script_url . '"></script>';
 
-            $ecwid_script = "app.ecwid.com/script.js";
-            $protocol = 'https://';
-
-			$script_params = array(
-				$eparams->get('storeID', 1003),
-				'data_platform=joomla'
-			);
-
-
-			if ($eparams->get('useSeoLinks')) {
-				$script_params[] = 'data_clean_urls=1';
+			$eparams = $app->getParams();
+			if ($eparams->get('storeID', null) == null) {
+				$eparams = JComponentHelper::getParams('com_ecwid');
 			}
+			$sso = $this->getSSOCode($eparams);
 
-			$script_params = implode('&', $script_params);
+			$body = method_exists($app, 'getBody') ? $app->getBody() : JResponse::getBody();
+			// split up the body after the body tag
+			$matches = preg_split('/(<body.*?>)/i', $body, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
-			$escript  = PHP_EOL . '<script data-cfasync="false" type="text/javascript" src="' . $protocol . $ecwid_script . '?' . $script_params . '"></script>';
-
-            // split up the body after the body tag
-            $matches = preg_split('/(<body.*?>)/i', $body, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
-
-            $sso = $this->getSSOCode($eparams);
-            if (defined('ECWID_SCRIPT')) {
+			if (defined('ECWID_SCRIPT')) {
                 $body = $matches[0] . $matches[1] . $escript . $sso . $matches[2];
             } else {
                 $body = $matches[0] . $matches[1] . $sso . $matches[2];

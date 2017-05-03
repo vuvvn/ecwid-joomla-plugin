@@ -129,6 +129,11 @@ function show_ecwid($params) {
 
 	$document = JFactory::getDocument();
 
+	if (method_exists($document, 'addCustomTag')) {
+		$script = EcwidCommon::getScriptURL();
+		$document->addCustomTag('<link rel="preload" href="' . $script . '" as="script">');
+	}
+
 	if ($api_enabled) {
 
 		if (property_exists($document, '_links')) {
@@ -281,21 +286,25 @@ window.ec.config.enable_canonical_urls = true;
 HTML;
 
 
+	$app = JFactory::getApplication();
+//	EcwidCommon::setParam('lastPbMenuItemIdForPrefetch', $app->getMenu()->getActive()->id);
+
+	$menu = $app->getMenu()->getActive()->link;
+	$current_menu_item_url = JRoute::_($menu);
 	if ($use_seo_links) {
-		$app = JFactory::getApplication();
-		$menu = $app->getMenu()->getActive()->link;
-		$url = JRoute::_($menu);
+
 		$scripts .= <<<HTML
 <script type="text/javascript">
 
 window.ec.config.storefrontUrls = {
     cleanUrls: true
 };
-window.ec.config.baseUrl = '$url';
+window.ec.config.baseUrl = '$current_menu_item_url';
 </script>
 HTML;
 
 	}
+
 
 
        $integration_code .= <<<EOT

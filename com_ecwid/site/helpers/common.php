@@ -40,7 +40,34 @@ class EcwidCommon  {
 		
 	
 	}	
-	
+
+	static function getScriptURL()
+	{
+		$app = JFactory::getApplication();
+		$eparams = $app->getParams();
+		if ($eparams->get('storeID', null) == null) {
+			$eparams = JComponentHelper::getParams('com_ecwid');
+		}
+
+		$ecwid_script = "app.ecwid.com/script.js";
+		$protocol = 'https://';
+
+		$script_params = array(
+			$eparams->get('storeID', 1003),
+			'data_platform=joomla'
+		);
+
+
+		if ($eparams->get('useSeoLinks')) {
+			$script_params[] = 'data_clean_urls=1';
+		}
+
+		$script_params = implode('&', $script_params);
+
+		$script_url = $protocol . $ecwid_script . '?' . $script_params;
+
+		return $script_url;
+	}
 
 
 	// Returns ecwid_ProductBrowserURL javascript code that provides modules with a product browser url to link to
