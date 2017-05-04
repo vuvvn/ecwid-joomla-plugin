@@ -625,7 +625,7 @@ if (!class_exists('PlgSystemecwid_installerInstallerScript')) {
 					$this->app =& $app;
 				}
 
-				public function getMessageQueue()
+				public function getMessageQueue($clear = false)
 				{
 					return $this->app->getMessageQueue();
 				}
