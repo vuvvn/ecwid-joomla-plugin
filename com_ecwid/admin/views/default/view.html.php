@@ -177,6 +177,20 @@ class EcwidViewDefault extends EcwidLegacyJView
 		echo $this->getForm()->getField($name)->label;
 	}
 
+	protected function maybeEnableCheckboxIfDefault($name)
+	{
+		if (JComponentHelper::getParams('com_ecwid')->get($name) === null) {
+			$id = $this->getForm()->getField($name)->id;
+
+			echo <<<HTML
+<script type="text/javascript">
+document.getElementById('$id').checked = true;
+</script>	
+HTML;
+
+		}
+	}
+
 	protected function getRegisterLink()
 	{
 		$link = 'https://my.ecwid.com/cp/?source=joomla&partner=joomla%s#register';

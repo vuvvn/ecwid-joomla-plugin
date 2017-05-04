@@ -42,7 +42,8 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="input">
 		<div>
 			<?php $this->renderElement('displaySearch'); ?>
-		</div>
+			<?php $this->maybeEnableCheckboxIfDefault('displaySearch'); ?>
+        </div>
 	</div>
 	<div class="label">
 		<?php $this->renderLabel('displaySearch'); ?>
@@ -60,7 +61,8 @@ defined('_JEXEC') or die('Restricted access');
 	<div class="input">
 		<div>
 			<?php $this->renderElement('displayCategories'); ?>
-		</div>
+			<?php $this->maybeEnableCheckboxIfDefault('displayCategories'); ?>
+        </div>
 	</div>
 	<div class="label">
 		<?php $this->renderLabel('displayCategories'); ?>

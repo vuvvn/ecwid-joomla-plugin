@@ -48,6 +48,7 @@ defined('_JEXEC') or die('Restricted access');
                 <?php echo JText::_('COM_ECWID_ADVANCED_SEO_LINKS_GLOBAL_SEF_NOTE'); ?>
             <?php else: ?>
 			    <?php $this->renderElement('useSeoLinks'); ?>
+				<?php $this->maybeEnableCheckboxIfDefault('useSeoLinks'); ?>
             <?php endif; ?>
         </div>
         <?php if (JFactory::getConfig()->get('sef')): ?>
