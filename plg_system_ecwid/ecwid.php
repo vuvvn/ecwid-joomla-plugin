@@ -1,7 +1,7 @@
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2016 Ecwid, Inc.
+ * @copyright  (C) 2009 - 2017 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Contributors:

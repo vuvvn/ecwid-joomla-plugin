@@ -1,8 +1,8 @@
-<!-- Ecwid Shopping Cart extension v2.3 -->
+<!-- Ecwid Shopping Cart extension v3.0 -->
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2016 Ecwid, Inc.
+ * @copyright  (C) 2009 - 2017 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Contributors:
@@ -28,4 +28,4 @@ require_once JPATH_SITE
 <div id="ecwid_categories_module_wrapper">
         <script type="text/javascript"> <?php echo $params->get('categoryLayout') == 'xCategories' ? 'xCategoriesV2' : 'xVCategories'; ?>("style="); </script>
 </div>
-<!-- END Ecwid Shopping Cart extension v2.3 -->
+<!-- END Ecwid Shopping Cart extension v3.0 -->

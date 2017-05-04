@@ -1,7 +1,7 @@
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
- * @copyright  (C) 2009 - 2016 Ecwid, Inc.
+ * @copyright  (C) 2009 - 2017 Ecwid, Inc.
  * @license    http://www.gnu.org/licenses/gpl-2.0.html GNU/GPLv2 only
  *
  * Contributors:
@@ -301,7 +301,7 @@ HTML;
 
 
        $integration_code .= <<<EOT
-<!-- Ecwid Shopping Cart extension v2.3 -->
+<!-- Ecwid Shopping Cart extension v3.0 -->
 <script type="text/javascript">
 window.ec = window.ec || Object();
 window.ec.config = window.ec.config || Object();
@@ -314,7 +314,7 @@ $additional_widgets
 <script type="text/javascript">
 xProductBrowser("categoriesPerRow=$ecwid_pb_categoriesperrow","views=grid($ecwid_pb_productsperrow_grid,$ecwid_pb_productspercolumn_grid) list($ecwid_pb_productsperpage_list) table($ecwid_pb_productsperpage_table)","categoryView=$ecwid_pb_defaultview","searchView=$ecwid_pb_searchview","style="$ecwid_default_category_str,"id=$ecwid_element_id");</script>
 </div>
-<!-- END Ecwid Shopping Cart extension v2.3 -->
+<!-- END Ecwid Shopping Cart extension v3.0 -->
 EOT;
 
 	return $integration_code;

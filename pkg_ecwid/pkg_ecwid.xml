@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <extension type="package" version="2.5">
     <name>Ecwid shopping cart package</name>
-    <creationDate>Nov 2, 2016</creationDate>
+    <creationDate>May 4, 2017</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
     <authorUrl>http://www.ecwid.com</authorUrl>
-    <copyright>(C) 2009 - 2016 Ecwid, Inc.</copyright>
+    <copyright>(C) 2009 - 2017 Ecwid, Inc.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-    <version>2.3</version>
+    <version>3.0</version>
     <packagename>ecwid</packagename>
     <packager>Ecwid, Inc</packager>
     <description>Ecwid Shopping Cart Extensions Package</description>
