@@ -273,19 +273,6 @@ function show_ecwid($params) {
 		$additional_widgets .= '<script type="text/javascript"> xCategoriesV2(); </script>';
 	}
 
-
-	$chameleon = '';
-	if ($params['enable_chameleon']) {
-		$chameleon = <<<HTML
-<script type="text/javascript">
-window.ec.config.chameleon = {
-	colors: 'auto',
-	font: 'auto'
-};
-</script>
-HTML;
-	}
-
 	$scripts = <<<HTML
 <script type="text/javascript">
 window.ec.config.enable_canonical_urls = true;
@@ -294,7 +281,6 @@ HTML;
 
 
 	$app = JFactory::getApplication();
-//	EcwidCommon::setParam('lastPbMenuItemIdForPrefetch', $app->getMenu()->getActive()->id);
 
 	$menu = $app->getMenu()->getActive()->link;
 	$current_menu_item_url = JRoute::_($menu);
@@ -320,7 +306,6 @@ HTML;
 window.ec = window.ec || Object();
 window.ec.config = window.ec.config || Object();
 </script>
-$chameleon
 $scripts
 $additional_widgets
 <div id="$ecwid_element_id">$ajaxIndexingContent
