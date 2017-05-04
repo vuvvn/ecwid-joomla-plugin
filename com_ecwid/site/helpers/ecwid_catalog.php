@@ -278,14 +278,10 @@ function show_ecwid($params) {
 	if ($params['enable_chameleon']) {
 		$chameleon = <<<HTML
 <script type="text/javascript">
-window.ec = {
-	config: {
-		chameleon: {
-			colors: 'auto',
-			font: 'auto'
-		}
-	}
-}
+window.ec.config.chameleon = {
+	colors: 'auto',
+	font: 'auto'
+};
 </script>
 HTML;
 	}
