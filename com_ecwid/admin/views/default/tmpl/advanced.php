@@ -35,7 +35,6 @@ defined('_JEXEC') or die('Restricted access');
 >
 <input type="hidden" name="task" value="default.saveAdvanced" />
 <?php echo JHtml::_('form.token'); ?>
-
 <fieldset>
 
 
@@ -66,12 +65,29 @@ defined('_JEXEC') or die('Restricted access');
             <?php $this->renderElement('defaultCategory'); ?>
         </div>
         <div class="note">
-            <?php echo JText::_('COM_ECWID_ADVANCED_DEFAULT_CATEGORY_NOTE');
+            <?php echo JText::_('COM_ECWID_ADVANCED_DEFAULT_CATEGORY_NOTE'); ?>
+        </div>
+    </div>
+
+    <div class="pure-control-group">
+        <div class="label">
+			<?php $this->renderLabel('ssoEnabled'); ?>
+        </div>
+        <div class="input">
+			<?php $this->renderElement('ssoEnabled'); ?>
+			<?php $this->maybeSetCheckboxChecked('ssoEnabled', Ecwid::getSso()->isEnabled()); ?>
+			<?php $this->maybeDisableCheckbox('ssoEnabled', Ecwid::getSso()->isEnabled() || Ecwid::getSso()->isAvailable()); ?>
+        </div>
+        <div class="note">
+			Some sso text
+            <?php 
+                echo Ecwid::getParam('ssoKey');
+			var_dump(Ecwid::getParam('ssoKey'), Ecwid::getSso()->isEnabled(), Ecwid::getApiV3()->getToken(), Ecwid::getApiV3()->hasScope('create_customers'));
             ?>
         </div>
     </div>
 
-
+    
     <div class="pure-control-group">
         <div class="label">
             <?php $this->renderLabel('ssoKey'); ?>

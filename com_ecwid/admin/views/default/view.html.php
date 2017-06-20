@@ -190,7 +190,45 @@ HTML;
 
 		}
 	}
+	
+	protected function maybeSetCheckboxChecked($name, $checked)
+	{
+		$id = $this->getForm()->getField($name)->id;
+		
+		if ($checked) {
+			echo <<<HTML
+<script type="text/javascript">
+document.getElementById('$id').checked = true;
+</script>	
+HTML;
+		} else {
+			echo <<<HTML
+<script type="text/javascript">
+document.getElementById('$id').checked = false;
+</script>	
+HTML;
+		}		
+	}
 
+	protected function maybeDisableCheckbox($name, $enabled)
+	{
+		$id = $this->getForm()->getField($name)->id;
+
+		if ($enabled) {
+			echo <<<HTML
+<script type="text/javascript">
+document.getElementById('$id').disabled = false;
+</script>	
+HTML;
+		} else {
+			echo <<<HTML
+<script type="text/javascript">
+document.getElementById('$id').disabled = true;
+</script>	
+HTML;
+		}
+	}
+	
 	protected function getRegisterLink()
 	{
 		$link = 'https://my.ecwid.com/cp/?source=joomla&partner=joomla%s#register';

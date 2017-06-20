@@ -19,5 +19,6 @@ class com_ecwidInstallerScript
 		);
 
 		EcwidCommon::setParam('enableChameleon', 0);
+		EcwidCommon::setParam('apiV3Token', '');
 	}
 }

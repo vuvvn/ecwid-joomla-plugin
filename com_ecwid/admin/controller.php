@@ -28,6 +28,15 @@ JLoader::register(
     'helpers' . DIRECTORY_SEPARATOR .
     'common.php'
 );
+
+JLoader::register(
+	'Ecwid',
+	JPATH_COMPONENT_SITE . DIRECTORY_SEPARATOR .
+	'helpers' . DIRECTORY_SEPARATOR .
+	'ecwid.php'
+);
+
+
 /**
  * ecwid Controller
  *

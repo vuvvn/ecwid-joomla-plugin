@@ -66,10 +66,14 @@ class EcwidControllerDefault extends JControllerForm
 	public function saveAdvanced()
 	{
 		$data = JFactory::getApplication()->input->get('jform', array(), 'array');
+		
+		$checkboxes = array(
+			'useSeoLinks' => 0,
+			'ssoEnabled' => 0
+		);
+		
 		$data = array_merge(
-			array(
-				'useSeoLinks' => 0
-			),
+			$checkboxes,
 			$data
 		);
 		$result = $this->saveForm($this->getModel()->getAdvancedForm(), $data);
