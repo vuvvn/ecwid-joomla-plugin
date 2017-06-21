@@ -46,7 +46,16 @@ class plgSystemEcwid extends JPlugin
             'helpers' . DIRECTORY_SEPARATOR .
             'common.php'
         );
-    }
+
+		JLoader::register(
+			'Ecwid',
+			JPATH_SITE . DIRECTORY_SEPARATOR .
+			'components' . DIRECTORY_SEPARATOR .
+			'com_ecwid' . DIRECTORY_SEPARATOR .
+			'helpers' . DIRECTORY_SEPARATOR .
+			'ecwid.php'
+		);
+	}
 
     /**
      * onBeforeRender handler
@@ -141,7 +150,7 @@ HTML;
 			if ($eparams->get('storeID', null) == null) {
 				$eparams = JComponentHelper::getParams('com_ecwid');
 			}
-			$sso = $this->getSSOCode($eparams);
+			$sso = Ecwid::getSso()->getSSOCode($eparams);
 
 			$body = method_exists($app, 'getBody') ? $app->getBody() : JResponse::getBody();
 			// split up the body after the body tag
@@ -163,77 +172,5 @@ HTML;
 
     protected function getSSOCode($params)
     {
-        require_once JPATH_SITE
-            . DIRECTORY_SEPARATOR . 'components'
-            . DIRECTORY_SEPARATOR . 'com_ecwid'
-            . DIRECTORY_SEPARATOR . 'helpers'
-            . DIRECTORY_SEPARATOR . 'common.php';
-
-        $key = $params->get('ssoKey');
-
-        if (empty($key) || !EcwidCommon::isPaidAccount($params->get('storeID'))) {
-            return "";
-        }
-
-        global $current_user;
-        $user = JFactory::getUser();
-
-        $sso_profile = '';
-        if ($user->get('id')) {
-
-            $user_data = array(
-                'appId' => "wp_" . $params->get('storeID'),
-                'userId' => $user->get('id'),
-                'profile' => array(
-                    'email' => $user->get('email'),
-                    'billingPerson' => array(
-                        'name' => $user->get('name')
-                    )
-                )
-            );
-
-            $user_data = base64_encode(json_encode($user_data));
-            $time = time();
-            $hmac = hash_hmac('sha1', "$user_data $time", $key);
-
-            $sso_profile = "$user_data $hmac $time";
-        }
-
-        $pb_url = EcwidCommon::getProductBrowserURL();
-
-        $template = JRoute::_('index.php?option=com_users&view=login&return=ECWIDBACKURL', false);
-        $signin_url = str_replace('BACKURL', base64_encode($pb_url), $template);
-        $sign_in_out_urls = <<<JS
-
-
-var ecwidSignInUrlTemplate = '$template';
-
-if (typeof window.btoa != 'undefined') {
-    window.Ecwid.OnPageLoaded.add(function() {
-        var url = ecwidSignInUrlTemplate.replace('ECWIDBACKURL', btoa(location.href));
-        window.Ecwid.setSignInUrls({
-            signInUrl: url,
-            signOutUrl: url
-        });
-    });
-}
-
-window.Ecwid.OnAPILoaded.add(function() {
-    window.Ecwid.setSignInUrls({
-        signInUrl: '$signin_url',
-        signOutUrl: '$signin_url'
-    });
-});
-
-JS;
-
-        return <<<JS
-
-<script type="text/javascript">
-var ecwid_sso_profile="$sso_profile";
-$sign_in_out_urls
-</script>
-
-JS;
     }
 }

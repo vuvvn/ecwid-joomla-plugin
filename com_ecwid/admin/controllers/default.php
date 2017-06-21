@@ -78,6 +78,11 @@ class EcwidControllerDefault extends JControllerForm
 		);
 		$result = $this->saveForm($this->getModel()->getAdvancedForm(), $data);
 		// Redirect to the list screen.
+		
+		if (!$data['ssoEnabled']) {
+			Ecwid::setParam('ssoKey', '');
+		}
+		
 		$this->setRedirect(JRoute::_('index.php?option=' . $this->option . '&layout=advanced', false));
 
 		return $result;

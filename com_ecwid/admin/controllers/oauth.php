@@ -40,8 +40,8 @@ class EcwidControllerOauth extends JControllerAdmin
 
 		$params = array();
 		$params['code'] = $_REQUEST['code'];
-		$params['client_id'] = $this->getClientId();
-		$params['client_secret'] = $this->getClientSecret();
+		$params['client_id'] = Ecwid::getApiV3()->getClientId();
+		$params['client_secret'] = Ecwid::getApiV3()->getClientSecret();
 		$params['redirect_uri'] = $this->getRedirectUri();
 		$params['grant_type'] = 'authorization_code';
 
@@ -83,22 +83,12 @@ class EcwidControllerOauth extends JControllerAdmin
 		
 		$url = sprintf(
 			$pattern,
-			$this->getClientId(),
+			Ecwid::getApiV3()->getClientId(),
 			urlencode($this->getRedirectUri()),
 			urlencode($scope)
 		);
 		
 		return $url;
-	}
-	
-	protected function getClientId()
-	{
-		return 'bmWzQL83eEQBrPkd';
-	}
-	
-	protected function getClientSecret()
-	{
-		return 'X37DpDfXQFYmvhJHjG74HXPfWBBTTZzM';
 	}
 	
 	protected function getRedirectUri()

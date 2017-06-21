@@ -9,10 +9,10 @@
                label="COM_ECWID_ADVANCED_DEFAULT_CATEGORY_ID_LABEL" />
 
         <field name="ssoEnabled" type="checkbox" default=""
-               label="COM_ECWID_ADVANCED_SSO_KEY_LABEL" />
+               label="COM_ECWID_ADVANCED_SSO_LABEL" />
 
         <field name="ssoKey" type="text" default=""
-               label="COM_ECWID_ADVANCED_SSO_KEY_LABEL" />
+               label="COM_ECWID_ADVANCED_SSO_LABEL" />
         
     </fieldset>
 </form>

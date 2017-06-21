@@ -37,6 +37,16 @@ class EcwidApiV3
 		Ecwid::setParam('apiv3scope', $scope);
 	}
 	
+	public function getClientId()
+	{
+		return 'bmWzQL83eEQBrPkd';
+	}
+
+	public function getClientSecret()
+	{
+		return 'X37DpDfXQFYmvhJHjG74HXPfWBBTTZzM';
+	}	
+	
 	public function isPaidAccount()
 	{
 		if (!is_null($this->is_paid_account)) {

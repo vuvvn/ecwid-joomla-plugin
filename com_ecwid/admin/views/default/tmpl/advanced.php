@@ -78,27 +78,25 @@ defined('_JEXEC') or die('Restricted access');
 			<?php $this->maybeSetCheckboxChecked('ssoEnabled', Ecwid::getSso()->isEnabled()); ?>
 			<?php $this->maybeDisableCheckbox('ssoEnabled', Ecwid::getSso()->isEnabled() || Ecwid::getSso()->isAvailable()); ?>
         </div>
+        
         <div class="note">
-			Some sso text
-            <?php 
-                echo Ecwid::getParam('ssoKey');
-			var_dump(Ecwid::getParam('ssoKey'), Ecwid::getSso()->isEnabled(), Ecwid::getApiV3()->getToken(), Ecwid::getApiV3()->hasScope('create_customers'));
+            <?php echo JText::_('COM_ECWID_ADVANCED_SSO_NOTE');
             ?>
         </div>
-    </div>
-
-    
-    <div class="pure-control-group">
-        <div class="label">
-            <?php $this->renderLabel('ssoKey'); ?>
-        </div>
-        <div class="input">
-            <?php $this->renderElement('ssoKey'); ?>
-        </div>
+        
+        <?php if (!Ecwid::isPaidAccount()): ?>
         <div class="note">
-            <?php echo JText::_('COM_ECWID_ADVANCED_SSO_KEY_NOTE');
+			<?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_UPSELL_NOTE', 'https://my.ecwid.com/cp/#billing:feature=sso&plan=ecwid_venture');
+			?>
+        </div>
+        <?php endif; ?>
+		
+        <?php if (Ecwid::isPaidAccount() && !Ecwid::getParam('ssoKey') && !Ecwid::getSso()->isEnabled() && !Ecwid::getApiV3()->hasScope('create_customers')): ?>
+        <div class="note">
+            <?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect', false));
             ?>
         </div>
+		<?php endif; ?>
     </div>
 
     <hr />
