@@ -7,12 +7,7 @@ class Ecwid {
 	public static function getSso()
 	{
 		if (!class_exists('EcwidSSO')) {
-			JLoader::register(
-				'EcwidSSO',
-				JPATH_COMPONENT_SITE . DIRECTORY_SEPARATOR .
-				'helpers' . DIRECTORY_SEPARATOR .
-				'sso.php'
-			);
+			self::registerHelper('EcwidSSO', 'sso.php');
 		}
 		
 		return EcwidSSO::getInstance();
@@ -21,17 +16,26 @@ class Ecwid {
 	public static function getApiV3()
 	{
 		if (!class_exists('EcwidApiV3')) {
-			JLoader::register(
-				'EcwidApiV3',
-				JPATH_COMPONENT_SITE . DIRECTORY_SEPARATOR .
-				'helpers' . DIRECTORY_SEPARATOR .
-				'apiv3.php'
-			);
+			self::registerHelper('EcwidApiV3', 'apiv3.php');
 		}
 
 		return EcwidApiV3::getInstance();
 	}
 
+	protected static function registerHelper($class, $file = null)
+	{
+		if (is_null($file)) {
+			$file = strtolower($class) . '.php';
+		}
+ 		JLoader::register($class,
+			JPATH_SITE . DIRECTORY_SEPARATOR .
+			'components' . DIRECTORY_SEPARATOR .
+			'com_ecwid' . DIRECTORY_SEPARATOR .
+			'helpers' . DIRECTORY_SEPARATOR .
+			$file
+		);
+	}
+	
 	public static function setParam($param, $value) {
 
 		$params = new JRegistry();

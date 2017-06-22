@@ -93,7 +93,8 @@ defined('_JEXEC') or die('Restricted access');
 		
         <?php if (Ecwid::isPaidAccount() && !Ecwid::getParam('ssoKey') && !Ecwid::getSso()->isEnabled() && !Ecwid::getApiV3()->hasScope('create_customers')): ?>
         <div class="note">
-            <?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect', false));
+            <?php 
+            echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect', false));
             ?>
         </div>
 		<?php endif; ?>

@@ -27,14 +27,13 @@ class EcwidControllerOauth extends JControllerAdmin
 
 	public function connect()
 	{
-		$url = $this->buildConnectUrl();	
-		
+		$url = $this->buildConnectUrl();
 		$this->setRedirect($url);
 	}
 	
 	public function processAuthorization()
 	{
-		if ( isset( $_REQUEST['error'] ) || !isset( $_REQUEST['code'] ) ) {
+		if (isset($_REQUEST['error']) || !isset($_REQUEST['code'])) {
 			$this->redirectOnOauthError('request_error');
 		}
 
@@ -103,7 +102,7 @@ class EcwidControllerOauth extends JControllerAdmin
 	
 	protected function redirectOnOauthError($error_type)
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_ecwid&layout=advanced&error=error', false));
+		$this->setRedirect(JRoute::_('index.php?option=com_ecwid&layout=advanced&error=' . $error_type, false));
 	}
 	
 }

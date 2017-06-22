@@ -58,7 +58,6 @@ class EcwidSSO
 		if ($user->get('id')) {
 
 			$user_data = array(
-				'appId' => "wp_" . $params->get('storeID'),
 				'userId' => $user->get('id'),
 				'profile' => array(
 					'email' => $user->get('email'),
@@ -77,11 +76,12 @@ class EcwidSSO
 			}
 
 
-			$user_data = base64_encode(json_encode($user_data));
+			$user_data_encoded = base64_encode(json_encode($user_data));
+			
 			$time = time();
-			$hmac = hash_hmac('sha1', "$user_data $time", $key);
+			$hmac = hash_hmac('sha1', "$user_data_encoded $time", $key);
 
-			$sso_profile = "$user_data $hmac $time";
+			$sso_profile = "$user_data_encoded $hmac $time";
 		}
 
 		$pb_url = EcwidCommon::getProductBrowserURL();
