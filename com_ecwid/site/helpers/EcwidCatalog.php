@@ -78,8 +78,8 @@ class EcwidCatalog
 			}
 			
 			$return .= '<div class="ecwid_catalog_product_price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">';
-			$return .=  'Price : <span itemprop="price">' . htmlspecialchars($product["price"]) . '</span>&nbsp;';
-			$return .= '<span itemprop="priceCurrency">' . htmlspecialchars($profile['currency']) . '</span>';
+			$return .=  'Price : <span itemprop="price" content="' . htmlspecialchars($product['price']) . '">' . htmlspecialchars($product["price"]) . '</span>&nbsp;';
+			$return .= '<span itemprop="priceCurrency" content="' . htmlspecialchars($profile['currency']) . '">' . htmlspecialchars($profile['currency']) . '</span>';
 
 			if (!isset($product['quantity']) || (isset($product['quantity']) && $product['quantity'] > 0))
 			{
