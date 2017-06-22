@@ -43,7 +43,7 @@ $options = array(
 	'display_categories'			  => $params->get('displayCategories', 1),
 	'display_search'			      => $params->get('displaySearch', 1),
 	'enable_chameleon'				  => $params->get('enableChameleon', 1),
-    'use_seo_links'                   => $params->get('useSeoLinks', 1) && JFactory::getConfig()->get('sef')
+    'use_seo_links'                   => $params->get('useSeoLinks', 1) && JFactory::getConfig()->get('sef') && !JFactory::getConfig()->get('sef_suffix') 
 );
 
 ?>
