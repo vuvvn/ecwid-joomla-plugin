@@ -36,7 +36,7 @@ class EcwidSSO
 
 	public function isAvailable()
 	{
-		return Ecwid::isPaidAccount();
+		return Ecwid::isPaidAccount() && Ecwid::getApiV3()->isAvailable();
 	}
 
 	public function getSsoCode($params)

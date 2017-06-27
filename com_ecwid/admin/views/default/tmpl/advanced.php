@@ -16,7 +16,6 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die('Restricted access');
 
-
 ?>
 
 <?php if ($this->submenu): ?>
@@ -91,7 +90,7 @@ defined('_JEXEC') or die('Restricted access');
         </div>
         <?php endif; ?>
 		
-        <?php if (Ecwid::isPaidAccount() && !Ecwid::getParam('ssoKey') && !Ecwid::getSso()->isEnabled() && !Ecwid::getApiV3()->hasScope('create_customers')): ?>
+        <?php if (Ecwid::isPaidAccount() && !Ecwid::getParam('ssoKey') && !Ecwid::getSso()->isEnabled() && (!Ecwid::getApiV3()->getToken() || !Ecwid::getApiV3()->hasScope('create_customers'))): ?>
         <div class="note">
             <?php 
             echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect', false));
