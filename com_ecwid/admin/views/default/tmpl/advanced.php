@@ -43,7 +43,7 @@ defined('_JEXEC') or die('Restricted access');
         </div>
         <div class="input">
             <?php if (!JFactory::getConfig()->get('sef') || JFactory::getConfig()->get('sef_suffix')): ?>
-                <?php echo JText::_('COM_ECWID_ADVANCED_SEO_LINKS_GLOBAL_SEF_NOTE'); ?>
+                <?php echo JText::sprintf('COM_ECWID_ADVANCED_SEO_LINKS_GLOBAL_SEF_NOTE', JRoute::_('index.php?option=com_config', false)); ?>
             <?php else: ?>
 			    <?php $this->renderElement('useSeoLinks'); ?>
 				<?php $this->maybeEnableCheckboxIfDefault('useSeoLinks'); ?>
