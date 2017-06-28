@@ -176,9 +176,8 @@ function show_ecwid($params) {
 			$hash = '';
 			if ($type == 'product') {
 				$ajaxIndexingContent = $c->get_product($id);
-
-
-				if ($do_escaped_fragment) {
+				
+				if ($do_escaped_fragment || $use_seo_links) {
 					$product = $api->get_product($id);
 
 					if ($product) {
@@ -194,7 +193,7 @@ function show_ecwid($params) {
 
 				$ajaxIndexingContent = $c->get_category($id);
 
-				if ($do_escaped_fragment) {
+				if ($do_escaped_fragment  || $use_seo_links) {
 					$cat = $api->get_category($id);
 
 					if ($cat) {
@@ -221,14 +220,14 @@ function show_ecwid($params) {
 			$found = true; // We are in the store root
 			$ajaxIndexingContent = $c->get_category($ecwid_default_category_id);
 
-			if ($do_escaped_fragment) {
+			if ($do_escaped_fragment || $use_seo_links) {
 				$category = $api->get_category($ecwid_default_category_id);
 				$title = $category['name'];
 				$description = $category['description'];
 			}
 		}
 
-		if ($do_escaped_fragment) {
+		if ($do_escaped_fragment || $use_seo_links) {
 			if ($title) {
 				$document->setTitle($title . ' | ' . $document->getTitle());
 			}
