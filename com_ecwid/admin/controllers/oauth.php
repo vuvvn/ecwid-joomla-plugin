@@ -27,6 +27,9 @@ class EcwidControllerOauth extends JControllerAdmin
 
 	public function connect()
 	{
+		if (array_key_exists('purpose', $_GET)) {
+			JFactory::getSession()->set('ecwidOauthPurpose', $_GET['purpose']);
+		}
 		$url = $this->buildConnectUrl();
 		$this->setRedirect($url);
 	}
@@ -75,6 +78,15 @@ class EcwidControllerOauth extends JControllerAdmin
 		
 		Ecwid::getApiV3()->setToken($response_object->access_token);
 		Ecwid::getApiV3()->setScope($response_object->scope);
+		
+		$purpose = JFactory::getSession()->get('ecwidOauthPurpose');
+		if ($purpose) {
+			if ($purpose == 'sso') {
+				Ecwid::setParam('ssoEnabled', true);
+			}
+			
+			JFactory::getSession()->set('ecwidOauthPurpose', null);
+		}
 		
 		$this->setRedirect(JRoute::_('index.php?option=com_ecwid&layout=advanced', false));
 	}

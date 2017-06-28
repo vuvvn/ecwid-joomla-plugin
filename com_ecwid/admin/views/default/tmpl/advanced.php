@@ -96,7 +96,7 @@ if ($error) {
         <div class="input">
 			<?php $this->renderElement('ssoEnabled'); ?>
 			<?php $this->maybeSetCheckboxChecked('ssoEnabled', Ecwid::getSso()->isEnabled()); ?>
-			<?php $this->maybeDisableCheckbox('ssoEnabled', Ecwid::getSso()->isEnabled() || Ecwid::getSso()->isAvailable()); ?>
+			<?php $this->maybeHideCheckbox('ssoEnabled', Ecwid::getSso()->isEnabled() || Ecwid::getSso()->isAvailable()); ?>
 
         </div>
 		<?php if (!Ecwid::isPaidAccount()): ?>
@@ -106,7 +106,7 @@ if ($error) {
 		<?php endif; ?>
 		<?php if (Ecwid::isPaidAccount() && !Ecwid::getParam('ssoKey') && !Ecwid::getSso()->isEnabled() && (!Ecwid::getApiV3()->getToken() || !Ecwid::getApiV3()->hasScope('create_customers'))): ?>
             <div>
-				<?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect', false)); ?>
+				<?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect&purpose=sso', false)); ?>
             </div>
 		<?php endif; ?>
         

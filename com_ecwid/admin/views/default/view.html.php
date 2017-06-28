@@ -210,7 +210,7 @@ HTML;
 		}		
 	}
 
-	protected function maybeDisableCheckbox($name, $enabled)
+	protected function maybeHideCheckbox($name, $enabled)
 	{
 		$id = $this->getForm()->getField($name)->id;
 
@@ -223,6 +223,7 @@ HTML;
 		} else {
 			echo <<<HTML
 <script type="text/javascript">
+document.getElementById('$id').style.display='none';
 document.getElementById('$id').disabled = true;
 </script>	
 HTML;
