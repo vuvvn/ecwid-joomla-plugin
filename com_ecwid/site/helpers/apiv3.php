@@ -77,7 +77,7 @@ class EcwidApiV3
 
 	public function isAvailable()
 	{
-		
+		return (bool)$this->getToken();
 	}
 	
 }
