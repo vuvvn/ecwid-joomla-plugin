@@ -34,7 +34,7 @@ class EcwidControllerOauth extends JControllerAdmin
 	public function processAuthorization()
 	{
 		if (isset($_REQUEST['error']) || !isset($_REQUEST['code'])) {
-			$this->redirectOnOauthError('request_error');
+			return $this->redirectOnOauthError('request_error');
 		}
 
 		$params = array();
@@ -56,7 +56,7 @@ class EcwidControllerOauth extends JControllerAdmin
 		}
 		
 		if (!$response_object) {
-			$this->redirectOnOauthError('token_response_object_error');
+			return $this->redirectOnOauthError('token_response_object_error');
 		}
 		
 		if (
@@ -65,8 +65,13 @@ class EcwidControllerOauth extends JControllerAdmin
 			|| !isset($response_object->access_token)
 			|| ($response_object->token_type != 'Bearer')
 		) {
-			$this->redirectOnOauthError('token_response_contents_error');
+			return $this->redirectOnOauthError('token_response_contents_error');
 		}
+		
+		if ($response_object->store_id != Ecwid::getParam('storeID')) {
+			return $this->redirectOnOauthError('mismatched_store_id_' . $response_object->store_id);
+		}
+		
 		
 		Ecwid::getApiV3()->setToken($response_object->access_token);
 		Ecwid::getApiV3()->setScope($response_object->scope);
@@ -102,7 +107,8 @@ class EcwidControllerOauth extends JControllerAdmin
 	
 	protected function redirectOnOauthError($error_type)
 	{
-		$this->setRedirect(JRoute::_('index.php?option=com_ecwid&layout=advanced&error=' . $error_type, false));
+		JFactory::getSession()->set('ecwidOauthError', $error_type);
+		$this->setRedirect(JRoute::_('index.php?option=com_ecwid&layout=advanced', false));
 	}
 	
 }

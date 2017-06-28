@@ -18,6 +18,27 @@ defined('_JEXEC') or die('Restricted access');
 
 ?>
 
+<?php 
+
+$error = JFactory::getSession()->get('ecwidOauthError');
+
+if ($error) {
+	if (strpos($error, 'mismatched_store_id_') !== false) {
+		$store_id = substr($error, strlen('mismatched_store_id_'));
+		JFactory::getApplication()->enqueueMessage(
+			JText::sprintf('COM_ECWID_ADVANCED_OAUTH_MISMATCHED_STORE_ID', Ecwid::getParam('storeID'), $store_id),
+			'error'
+		);
+    } else {
+		JFactory::getApplication()->enqueueMessage(
+			JText::_('COM_ECWID_ADVANCED_OAUTH_ACCEPT_PERMISSIONS'),
+			'error'
+		);	    
+    }
+
+	JFactory::getSession()->set('ecwidOauthError', null);
+} ?>
+
 <?php if ($this->submenu): ?>
     <div id="j-sidebar-container" class="span2">
         <?php echo $this->submenu; ?>
@@ -76,27 +97,24 @@ defined('_JEXEC') or die('Restricted access');
 			<?php $this->renderElement('ssoEnabled'); ?>
 			<?php $this->maybeSetCheckboxChecked('ssoEnabled', Ecwid::getSso()->isEnabled()); ?>
 			<?php $this->maybeDisableCheckbox('ssoEnabled', Ecwid::getSso()->isEnabled() || Ecwid::getSso()->isAvailable()); ?>
+
         </div>
+		<?php if (!Ecwid::isPaidAccount()): ?>
+            <div>
+				<?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_UPSELL_NOTE', 'https://my.ecwid.com/cp/#billing:feature=sso&plan=ecwid_venture'); ?>
+            </div>
+		<?php endif; ?>
+		<?php if (Ecwid::isPaidAccount() && !Ecwid::getParam('ssoKey') && !Ecwid::getSso()->isEnabled() && (!Ecwid::getApiV3()->getToken() || !Ecwid::getApiV3()->hasScope('create_customers'))): ?>
+            <div>
+				<?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect', false)); ?>
+            </div>
+		<?php endif; ?>
         
         <div class="note">
             <?php echo JText::_('COM_ECWID_ADVANCED_SSO_NOTE');
             ?>
         </div>
         
-        <?php if (!Ecwid::isPaidAccount()): ?>
-        <div class="note">
-			<?php echo JText::sprintf('COM_ECWID_ADVANCED_SSO_UPSELL_NOTE', 'https://my.ecwid.com/cp/#billing:feature=sso&plan=ecwid_venture');
-			?>
-        </div>
-        <?php endif; ?>
-		
-        <?php if (Ecwid::isPaidAccount() && !Ecwid::getParam('ssoKey') && !Ecwid::getSso()->isEnabled() && (!Ecwid::getApiV3()->getToken() || !Ecwid::getApiV3()->hasScope('create_customers'))): ?>
-        <div class="note">
-            <?php 
-            echo JText::sprintf('COM_ECWID_ADVANCED_SSO_RECONNECT_NOTE', JRoute::_('index.php?option=com_ecwid&task=oauth.connect', false));
-            ?>
-        </div>
-		<?php endif; ?>
     </div>
 
     <hr />
