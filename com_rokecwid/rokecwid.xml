@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <extension method="upgrade" type="component" version="2.5">
     <name>RokEcwid</name>
-    <creationDate>Nov 2, 2016</creationDate>
+    <creationDate>Jun 28, 2017</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
     <authorUrl>http://www.ecwid.com</authorUrl>
     <copyright>(C) 2009 - 2016 Ecwid, Inc.</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-    <version>2.3</version>
+    <version>3.1</version>
     <description>
         Ecwid Legacy component.
     </description>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension version="1.6.0" type="plugin" group="system" method="upgrade">
     <name>Installer</name>
-    <creationDate>May 4, 2017</creationDate>
+    <creationDate>Jun 28, 2017</creationDate>
     <author>Ecwid, Inc</author>
     <authorEmail>support@ecwid.com</authorEmail>
     <authorUrl>http://www.ecwid.com</authorUrl>
@@ -9,8 +9,8 @@
     <!-- Based on work by Rick Blalock -->
     <copyright>(C) 2009 - 2017 Ecwid, Inc.(C)</copyright>
     <license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
-    <version>3.0</version>
-    <description>Ecwid for Joomla! v3.0</description>
+    <version>3.1</version>
+    <description>Ecwid for Joomla! v3.1</description>
     <scriptfile>install.script.php</scriptfile>
     <files>
         <filename plugin="ecwid_installer">installer.php</filename>

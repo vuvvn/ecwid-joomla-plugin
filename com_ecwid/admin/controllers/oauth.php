@@ -15,6 +15,8 @@
 
 defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
+jimport('joomla.application.component.controlleradmin');
+
 class EcwidControllerOauth extends JControllerAdmin
 {
 	public function __construct($config = array())

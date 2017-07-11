@@ -1,4 +1,4 @@
-<!-- Ecwid Shopping Cart extension v3.0 -->
+<!-- Ecwid Shopping Cart extension v3.1 -->
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
@@ -28,4 +28,4 @@ require_once JPATH_SITE
 <div id="ecwid_categories_module_wrapper">
         <script type="text/javascript"> <?php echo $params->get('categoryLayout') == 'xCategories' ? 'xCategoriesV2' : 'xVCategories'; ?>("style="); </script>
 </div>
-<!-- END Ecwid Shopping Cart extension v3.0 -->
+<!-- END Ecwid Shopping Cart extension v3.1 -->

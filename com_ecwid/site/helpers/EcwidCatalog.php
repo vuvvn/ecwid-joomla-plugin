@@ -127,7 +127,7 @@ class EcwidCatalog
 					}
 				   	if($product_options["type"] == "TEXTAREA")
 					{
-					 	$return .='<textarea name="' . htmlspecialchars($product_options["name"]) . '></textarea>';
+					 	$return .='<textarea name="' . htmlspecialchars($product_options["name"]) . '"></textarea>';
 					}
 					if ($product_options["type"] == "SELECT")
 					{
