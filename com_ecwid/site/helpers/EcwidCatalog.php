@@ -238,7 +238,7 @@ class EcwidCatalog
 			{
 				$product_url = $this->build_url($product["url"]);
 				$product_name = $product["name"];
-				$product_price = $product["price"] . "&nbsp;" . $profile["currency"];
+				$product_price = $product["price"] . " " . $profile["currency"];
 				$return .= "<div>";
 				$return .= "<span class='ecwid_product_name'><a href='" . htmlspecialchars($product_url) . "'>" . htmlspecialchars($product_name) . "</a></span>";
 				$return .= "&nbsp;&nbsp;<span class='ecwid_product_price'>" . htmlspecialchars($product_price) . "</span>";
