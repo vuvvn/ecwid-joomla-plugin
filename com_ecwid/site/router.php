@@ -27,22 +27,7 @@ function EcwidBuildRoute(&$query) {
 }
 
 function EcwidParseRoute(&$segments) {
-	$vars = array();
-	switch($segments[0])
-	{
-		case 'categories':
-			$vars['view'] = 'categories';
-			break;
-		case 'category':
-			$vars['view'] = 'category';
-			$id = explode(':', $segments[1]);
-			$vars['id'] = (int)$id[0];
-			break;
-		case 'article':
-			$vars['view'] = 'article';
-			$id = explode(':', $segments[1]);
-			$vars['id'] = (int)$id[0];
-			break;
-	}
-	return $vars;
+	return array(
+		'view' => 'ecwid'
+	);
 }
