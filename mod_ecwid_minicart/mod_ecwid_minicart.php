@@ -1,4 +1,4 @@
-<!-- Ecwid Shopping Cart extension v3.1 -->
+<!-- Ecwid Shopping Cart extension v3.2 -->
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
@@ -30,4 +30,4 @@ require_once JPATH_SITE
 <div id="ecwid_minicart_module_wrapper">
 	<script type="text/javascript"> xMinicart("style="); </script>
 </div>
-<!-- END Ecwid Shopping Cart extension v3.1 -->
+<!-- END Ecwid Shopping Cart extension v3.2 -->
