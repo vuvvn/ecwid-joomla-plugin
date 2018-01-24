@@ -168,10 +168,9 @@ function show_ecwid($params) {
 		$title = '';
 		$description = '';
 
-		if ( isset( $catalog_params['type'] ) && isset( $catalog_params['id'] ) ) {
+		if ( isset( $catalog_params['type'] ) && isset( $catalog_params['id'] ) && $catalog_params['id'] ) {
 			$type = $catalog_params['type'];
 			$id = $catalog_params['id'];
-
 
 			$hash = '';
 			if ($type == 'product') {
