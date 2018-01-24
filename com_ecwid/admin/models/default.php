@@ -160,8 +160,6 @@ class EcwidModelDefault extends JModelForm
 	public function save($data)
 	{
 		// Initialise variables;
-		$dispatcher = JDispatcher::getInstance();
-
 		$params = $this->getParams();
 
 		$to_trim = array('ssoKey', 'categoriesPerRow', 'gridColumns', 'gridRows', 'list', 'table');
