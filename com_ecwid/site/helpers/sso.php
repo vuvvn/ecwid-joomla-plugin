@@ -41,6 +41,8 @@ class EcwidSSO
 
 	public function getSsoCode($params)
 	{
+		if (!$this->isEnabled()) return;
+		
 		$useV1 = false;
 		$useV3 = Ecwid::getApiV3()->hasScope('create_customers') && Ecwid::getApiV3()->isPaidAccount();
 
