@@ -68,8 +68,8 @@ function show_ecwid($params) {
 	$list_of_views = $params['list_of_views'];
 
 	$use_seo_links = isset($params['use_seo_links']) && $params['use_seo_links'];
-
-	$c = new EcwidCatalog($store_id, EcwidController::buildEcwidUrl());
+	
+	$c = new EcwidCatalog($store_id, EcwidController::buildEcwidUrl(), $params['with_microdata']);
 
     if (is_array($list_of_views))    
     	foreach ($list_of_views as $k=>$v) {

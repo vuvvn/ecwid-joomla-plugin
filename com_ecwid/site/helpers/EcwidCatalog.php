@@ -19,16 +19,19 @@ defined('_JEXEC') or die('Restricted access');
 
 class EcwidCatalog
 {
-	var $store_id = 0;
-	var $store_base_url = '';
-	var $ecwid_api = null;
-
-	function __construct($store_id, $store_base_url)
+	protected  $store_id = 0;
+	protected $store_base_url = '';
+	protected $ecwid_api = null;
+	protected $with_microdata = true;
+	
+	function __construct($store_id, $store_base_url, $with_microdata = true)
 	{
 		$this->store_id = intval($store_id);
 		$this->store_base_url = $store_base_url;	
 		$this->ecwid_api = new EcwidProductApi($this->store_id);
+		$this->with_microdata = $with_microdata;
 	}
+	
 
 	function EcwidCatalog($store_id)
 	{
@@ -53,14 +56,26 @@ class EcwidCatalog
 		if (is_array($product)) 
 		{
 		
-			$return = '<div itemscope itemtype="http://schema.org/Product">';
-			$return .= '<h2 class="ecwid_catalog_product_name" itemprop="name">' . htmlspecialchars($product["name"]) . '</h2>';
-			$return .= '<p class="ecwid_catalog_product_sku" itemprop="sku">' . htmlspecialchars($product["sku"]) . '</p>';
+			$md_type = $md_name = $md_sku = '';
+			if ($this->with_microdata) {
+				$md_type =  ' itemscope itemtype="http://schema.org/Product"';
+				$md_name =  ' itemprop="name"';
+				$md_sku  = '  itemprop="sku"';
+				$md_image = ' itemprop="image"';
+				$md_offer = '  itemprop="offers" itemscope itemtype="http://schema.org/Offer"';
+				$md_price = ' itemprop="price"';
+				$md_currency = ' itemprop="priceCurrency"';
+			}
+			
+			$return = '<div' . $md_type . '>';
+			$return .= '<h2 class="ecwid_catalog_product_name"' . $md_name . '>' . htmlspecialchars($product["name"]) . '</h2>';
+			$return .= '<p class="ecwid_catalog_product_sku"' . $md_sku . '>' . htmlspecialchars($product["sku"]) . '</p>';
 			
 			if (!empty($product["thumbnailUrl"])) 
 			{
 				$return .= sprintf(
-					'<div class="ecwid_catalog_product_image"><img itemprop="image" src="%s" alt="%s" /></div>',
+					'<div class="ecwid_catalog_product_image"><img%s src="%s" alt="%s" /></div>',
+					$md_image,
 					htmlspecialchars($product['thumbnailUrl']),
 					htmlspecialchars($product['name'] . ' ' . $product['sku'])
 				);
@@ -76,19 +91,28 @@ class EcwidCatalog
 					}
 				}
 			}
-			
-			$return .= '<div class="ecwid_catalog_product_price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">';
-			$return .=  'Price : <span itemprop="price" content="' . htmlspecialchars($product['price']) . '">' . htmlspecialchars($product["price"]) . '</span>&nbsp;';
-			$return .= '<span itemprop="priceCurrency" content="' . htmlspecialchars($profile['currency']) . '">' . htmlspecialchars($profile['currency']) . '</span>';
 
-			if (!isset($product['quantity']) || (isset($product['quantity']) && $product['quantity'] > 0))
+
+			$md_offer = $md_price = $md_currency = $md_descr = '';
+			if ($this->with_microdata) {
+				$md_offer = '  itemprop="offers" itemscope itemtype="http://schema.org/Offer"';
+				$md_price = ' itemprop="price"';
+				$md_currency = ' itemprop="priceCurrency"';
+				$md_descr = ' itemprop="description"';
+			}
+			
+			$return .= '<div class="ecwid_catalog_product_price"' . $md_offer . '>';
+			$return .=  'Price : <span' . $md_price . ' content="' . htmlspecialchars($product['price']) . '">' . htmlspecialchars($product["price"]) . '</span>&nbsp;';
+			$return .= '<span' . $md_currency . ' content="' . htmlspecialchars($profile['currency']) . '">' . htmlspecialchars($profile['currency']) . '</span>';
+
+			if ($this->with_microdata && !isset($product['quantity']) || (isset($product['quantity']) && $product['quantity'] > 0))
 			{
-				$return .= '<div class="ecwid_catalog_quantity" itemprop="availability" itemscope itemtype="http://schema.org/InStock"><span>In Stock</span></div>';
+				$return .= '<link itemprop="availability" href="http://schema.org/InStock" />In stock';
 			}
 
             $return .= '</div>';
 
-            $return .= '<div class="ecwid_catalog_product_description" itemprop="description">'
+            $return .= '<div class="ecwid_catalog_product_description"' . $md_descr . '>'
 				. $product['description']
 				. '</div>';
 
@@ -99,7 +123,7 @@ class EcwidCatalog
 					$value = htmlspecialchars(trim($attribute['value']));
                     if ($value != '') {
                         $return .= '<div class="ecwid_catalog_product_attributes">' . htmlspecialchars($attribute['name']) . ':';
-                        if (isset($attribute['internalName']) && $attribute['internalName'] == 'Brand') {
+                        if ($this->with_microdata && isset($attribute['internalName']) && $attribute['internalName'] == 'Brand') {
                             $return .= '<span itemprop="brand">' . $value . '</span>';
                         } else {
                             $return .= $value;

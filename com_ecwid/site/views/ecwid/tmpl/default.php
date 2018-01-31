@@ -26,7 +26,6 @@ $params = $app->getParams();
 
 include_once (JPATH_SITE . '/components/com_ecwid/helpers/ecwid_catalog.php');
 
-
 $options = array(
 	'store_id'                        => $params->get('storeID', 1003),
 	'list_of_views'                   => array('list', 'grid', 'table'),
@@ -43,7 +42,9 @@ $options = array(
 	'display_categories'			  => $params->get('displayCategories', 1),
 	'display_search'			      => $params->get('displaySearch', 1),
 	'enable_chameleon'				  => $params->get('enableChameleon', 1),
-    'use_seo_links'                   => $params->get('useSeoLinks', 1) && JFactory::getConfig()->get('sef') && !JFactory::getConfig()->get('sef_suffix') 
+    'use_seo_links'                   => $params->get('useSeoLinks', 1) && JFactory::getConfig()->get('sef') && !JFactory::getConfig()->get('sef_suffix'),
+	'with_microdata'                  => $params->get('withMicrodata', 1)
+
 );
 
 ?>

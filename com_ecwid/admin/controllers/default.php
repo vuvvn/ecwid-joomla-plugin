@@ -29,8 +29,17 @@ class EcwidControllerDefault extends JControllerForm
 	public function resetStoreID()
 	{
 		$data = $this->getModel()->getParams();
-		//JRegistry::
+		
 		$this->getModel()->save(array('storeID' => false));
+
+		$this->setRedirect(JRoute::_('index.php?option=' . $this->option, false));
+	}
+	
+	public function setWithMicrodata()
+	{
+		$data = $this->getModel()->getParams();
+		
+		$this->getModel()->save(array('withMicrodata' => @$_GET['value']));
 
 		$this->setRedirect(JRoute::_('index.php?option=' . $this->option, false));
 	}
