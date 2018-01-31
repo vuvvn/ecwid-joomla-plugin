@@ -1,4 +1,4 @@
-<!-- Ecwid Shopping Cart extension v3.2 -->
+<!-- Ecwid Shopping Cart extension v3.3 -->
 <?php
 /**
  * @author     Ecwid, Inc http://www.ecwid.com
@@ -33,4 +33,4 @@ echo EcwidCommon::getProductBrowserJS();
 <div id="ecwid_search_module_wrapper">
 	<script type="text/javascript"> xSearch("style="); </script>
 </div>
-<!-- END Ecwid Shopping Cart extension v3.2 -->
+<!-- END Ecwid Shopping Cart extension v3.3 -->
