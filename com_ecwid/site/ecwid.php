@@ -19,6 +19,15 @@ defined('_JEXEC') or die('Restricted access');
 // Require the base controller
 require_once JPATH_COMPONENT . '/controller.php';
 
+JLoader::register(
+	'EcwidCommon',
+	JPATH_SITE . DIRECTORY_SEPARATOR .
+	'components' . DIRECTORY_SEPARATOR .
+	'com_ecwid' . DIRECTORY_SEPARATOR .
+	'helpers' . DIRECTORY_SEPARATOR .
+	'common.php'
+);
+
 // Initialize the controller
 $controller = new EcwidController();
 $controller->execute( null );
