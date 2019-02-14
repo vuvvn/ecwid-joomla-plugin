@@ -154,7 +154,7 @@ HTML;
 
 			$body = method_exists($app, 'getBody') ? $app->getBody() : JResponse::getBody();
 			// split up the body after the body tag
-			$matches = preg_split('/(<body.*?>)/i', $body, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+			$matches = preg_split('/(<body.*?>)/is', $body, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
 
 			if (defined('ECWID_SCRIPT')) {
                 $body = $matches[0] . $matches[1] . $escript . $sso . $matches[2];
